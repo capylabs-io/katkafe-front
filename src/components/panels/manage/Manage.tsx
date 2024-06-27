@@ -256,7 +256,13 @@ const Manage: React.FC = () => {
 
   useEffect(() => {
     fetchDataUpgrade();
+    fetchRestaurants();
     fetchStaffs();
+    if (!currentRestaurant) {
+      setCurrentRestaurant(
+        restaurants && (restaurants[0] as RestaurantType | null)
+      );
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
