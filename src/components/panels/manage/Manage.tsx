@@ -255,14 +255,17 @@ const Manage: React.FC = () => {
   }, [isUpdated]);
 
   useEffect(() => {
-    fetchDataUpgrade();
-    fetchRestaurants();
-    fetchStaffs();
-    if (!currentRestaurant) {
-      setCurrentRestaurant(
-        restaurants && (restaurants[0] as RestaurantType | null)
-      );
-    }
+    const fetchData = async () => {
+      fetchDataUpgrade();
+      fetchRestaurants();
+      fetchStaffs();
+      if (!currentRestaurant) {
+        setCurrentRestaurant(
+          restaurants && (restaurants[0] as RestaurantType | null)
+        );
+      }
+    };
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
