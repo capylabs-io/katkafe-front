@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useFetchBonuses } from "@/lib/hooks/friend/useBonus";
+// import { useFetchBonuses } from "@/lib/hooks/friend/useBonus";
 import { useBonusStore } from "@/stores/friend/bonusStore";
 import { useLayoutStore } from "@/stores/layoutStore";
-import CardBonus from "@/components/ui/CardBonus";
+// import CardBonus from "@/components/ui/CardBonus";
 import Button from "@/components/ui/Button";
 
 const InviteInfo: React.FC = () => {
-  const { fetchBonuses } = useFetchBonuses();
+  // const { fetchBonuses } = useFetchBonuses();
   const [bonuses, setCurrentBonus] = useBonusStore((state) => [
     state.bonuses,
     state.setCurrentBonus,
@@ -20,7 +20,7 @@ const InviteInfo: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchBonuses();
+    // fetchBonuses();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -97,7 +97,7 @@ const InviteInfo: React.FC = () => {
                 </div>
                 {bonuses.map((bonus) => (
                   <div key={bonus.id} className="w-full h-full cursor-pointer">
-                    <CardBonus bonus={bonus} />
+                    {/* <CardBonus bonus={bonus} /> */}
                   </div>
                 ))}
               </div>

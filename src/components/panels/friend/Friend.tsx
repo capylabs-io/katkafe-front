@@ -3,7 +3,7 @@ import Button from "../../ui/Button";
 import { useLayoutStore } from "@/stores/layoutStore";
 import { useFetchFriends } from "@/lib/hooks/friend/useFriend";
 import CardBarista from "@/components/ui/CardBarista";
-import { useFetchBaristas } from "@/lib/hooks/friend/useBarista";
+// import { useFetchBaristas } from "@/lib/hooks/friend/useBarista";
 import { useFetchUser } from "@/lib/hooks/useUser";
 import { useUserStore } from "@/stores/userStore";
 import Image from "next/image";
@@ -79,11 +79,11 @@ const Friend: React.FC = () => {
     }
   };
 
-  const { fetchBaristas } = useFetchBaristas();
+  // const { fetchBaristas } = useFetchBaristas();
   const { fetchUser } = useFetchUser();
 
   useEffect(() => {
-    fetchBaristas();
+    // fetchBaristas();
     fetchUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

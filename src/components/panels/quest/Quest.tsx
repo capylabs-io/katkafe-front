@@ -1,5 +1,5 @@
 import CardTask from "@/components/ui/CardTask";
-import { useFetchAchievements } from "@/lib/hooks/quest/useAchievement";
+// import { useFetchAchievements } from "@/lib/hooks/quest/useAchievement";
 import { useFetchQuests } from "@/lib/hooks/quest/useFetchQuests";
 import { checkIn, visitWebsite, youtube } from "@/requests/quest/quests";
 import { useLayoutStore } from "@/stores/layoutStore";
@@ -31,7 +31,7 @@ function Task({}: Props) {
   const isActive = "!py-2 !-translate-y-[28px] !border-orange-90 !bg-orange-10";
 
   const { quests, questTasks, refetchQuests } = useFetchQuests();
-  const { fetchAchievements } = useFetchAchievements();
+  // const { fetchAchievements } = useFetchAchievements();
 
   const handleTaskTabClick = () => {
     setActiveTab(TAB.DAILY);
@@ -103,7 +103,7 @@ function Task({}: Props) {
     setShowQuestPanel(false);
   };
   useEffect(() => {
-    fetchAchievements();
+    // fetchAchievements();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

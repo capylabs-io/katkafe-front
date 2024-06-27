@@ -10,25 +10,23 @@ type Props = {
   restaurant: Restaurant;
   onUnlock?: () => void;
   onCardClick?: (order: number) => void;
-
 };
 
 const RestaurantCard = ({ restaurant, onUnlock, onCardClick }: Props) => {
-  const [
-    nextRestaurantUnclockIndex,
-    myRestaurants,
-    currentRestaurant
-  ] = useRestaurantStore((state) => [
-    state.nextRestaurantUnclockIndex,
-    state.myRestaurants,
-    state.currentRestaurant
-  ]);
+  const [nextRestaurantUnclockIndex, myRestaurants, currentRestaurant] =
+    useRestaurantStore((state) => [
+      state.nextRestaurantUnclockIndex,
+      state.myRestaurants,
+      state.currentRestaurant,
+    ]);
   const cats = get(restaurant, "cats", []);
-  const power = cats && usePower(restaurant._id);
+  const power = usePower(restaurant._id);
   const name = get(restaurant, "name", "");
   const imageUrl = get(restaurant, "imgUrl", "");
   const staffSlot = get(restaurant, "slot", "");
-  const isUnlock = myRestaurants && myRestaurants.find(item => item.order === get(restaurant, "order"))
+  const isUnlock =
+    myRestaurants &&
+    myRestaurants.find((item) => item.order === get(restaurant, "order"));
 
   const handleClickUnlock = () => {
     onUnlock?.();
@@ -39,25 +37,30 @@ const RestaurantCard = ({ restaurant, onUnlock, onCardClick }: Props) => {
     }
   };
 
-  const restaurantLocked = (<>
-    <div className="flex flex-col items-center justify-center gap-4 absolute w-full h-full z-20 bg-black/75 backdrop-blur-sm">
-      <div>
-        <Image src={"/images/unlock.png"} alt={""} width={24} height={32} />
-      </div>
-      {
-        restaurant.order === nextRestaurantUnclockIndex ?
+  const restaurantLocked = (
+    <>
+      <div className="flex flex-col items-center justify-center gap-4 absolute w-full h-full z-20 bg-black/75 backdrop-blur-sm">
+        <div>
+          <Image src={"/images/unlock.png"} alt={""} width={24} height={32} />
+        </div>
+        {restaurant.order === nextRestaurantUnclockIndex ? (
           <div className="w-[156px] h-[36px] bg-white rounded-xl">
             <Button onClick={handleClickUnlock}>Unlock</Button>
-          </div> :
+          </div>
+        ) : (
           <div className="max-w-[180px] text-center text-white">
             Fufill the requirement to unlock this shop
           </div>
-      }
-    </div>
-  </>)
+        )}
+      </div>
+    </>
+  );
 
   return (
-    <div className="relative flex flex-col justify-center items-center min-h-[198px]" onClick={handleCardClick}>
+    <div
+      className="relative flex flex-col justify-center items-center min-h-[198px]"
+      onClick={handleCardClick}
+    >
       <Image
         src={imageUrl}
         alt="res pic"
@@ -65,13 +68,16 @@ const RestaurantCard = ({ restaurant, onUnlock, onCardClick }: Props) => {
         height={144}
         className="aspect-[2/1] object-cover rounded"
       />
-      {
-        !isUnlock && restaurantLocked
-      }
+      {!isUnlock && restaurantLocked}
       <div className="flex justify-between items-start mt-2 w-full">
         <div>
           <div>{name}</div>
-          <div className={classNames("flex gap-1 items-center", cats.length === 0 && 'hidden')}>
+          <div
+            className={classNames(
+              "flex gap-1 items-center",
+              cats.length === 0 && "hidden"
+            )}
+          >
             <div>
               <Image
                 src="/images/speed.png"
@@ -83,7 +89,12 @@ const RestaurantCard = ({ restaurant, onUnlock, onCardClick }: Props) => {
             {power}/s
           </div>
         </div>
-        <div className={classNames("flex items-center gap-1", cats.length === 0 && 'hidden')}>
+        <div
+          className={classNames(
+            "flex items-center gap-1",
+            cats.length === 0 && "hidden"
+          )}
+        >
           <div>
             <Image
               src="/images/slot_cat.png"
