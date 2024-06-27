@@ -12,10 +12,7 @@ import {
   useFetchStaffs,
   useFetchStaffUpgradeConfigs,
 } from "@/lib/hooks/cat/useStaff";
-import {
-  useFetchRestaurantUpgradeConfigs,
-  useFetchRestaurants,
-} from "@/lib/hooks/restaurant/useRestaurant";
+import { useFetchRestaurantUpgradeConfigs } from "@/lib/hooks/restaurant/useRestaurant";
 import { getClaim, getClaimable } from "@/requests/user";
 import OfflineEarning from "./OfflineEarning";
 import NumberFormatter from "./NumberFormat";
@@ -77,7 +74,6 @@ export const InGameUI = () => {
   const telegramData = useInitData();
 
   const { fetchStaffs } = useFetchStaffs();
-  const { fetchRestaurants } = useFetchRestaurants();
   const { fetchStaffUpgradeConfigs } = useFetchStaffUpgradeConfigs();
   const { fetchRestaurantUpgradeConfigs } = useFetchRestaurantUpgradeConfigs();
 
@@ -229,7 +225,6 @@ export const InGameUI = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetchRestaurants();
       await fetchStaffs();
       await fetchStaffUpgradeConfigs();
       await fetchRestaurantUpgradeConfigs();

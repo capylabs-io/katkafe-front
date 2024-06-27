@@ -8,16 +8,19 @@ import {
 } from "@/requests/restaurant";
 import { useRestaurantStore } from "@/stores/restaurant/restaurantStore";
 import { useEffect, useState } from "react";
+import { Restaurant as RestaurantType } from "@/types/restaurant";
 
 export const useFetchRestaurants = () => {
   const [
     setRestaurants,
+    currentRestaurant,
     setCurrentRestaurant,
     setNextRestaurantUnclockIndex,
     setNextRestaurantUnclock,
     setMyRestaurants,
   ] = useRestaurantStore((state) => [
     state.setRestaurants,
+    state.currentRestaurant,
     state.setCurrentRestaurant,
     state.setNextRestaurantUnclockIndex,
     state.setNextRestaurantUnclock,
@@ -50,6 +53,11 @@ export const useFetchRestaurants = () => {
       if (listRestaurantsConfigMapped.length) {
         await fetchNextRestaurants(
           listRestaurantsMapped[restaurants.length - 1].order
+        );
+      }
+      if (!currentRestaurant) {
+        setCurrentRestaurant(
+          restaurants && (restaurants[0] as RestaurantType | null)
         );
       }
       setNextRestaurantUnclockIndex(restaurants.length + 1);

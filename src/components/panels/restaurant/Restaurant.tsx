@@ -21,23 +21,27 @@ function Restaurant() {
   ]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showDialog, setShowDialog] = useState(false);
-  const [unclockError, setUnclockError] = useState(false)
-  const [user, setUser] = useUserStore((state) => [state.user, state.setUser])
+  const [unclockError, setUnclockError] = useState(false);
+  const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
   const [isShowing, show, hide] = useLoadingStore((state) => [
     state.isShowing,
     state.show,
     state.hide,
   ]);
+  const [showSuccessDialog, setDialogType, setDialogContent] = useDialogStore(
+    (state) => [state.show, state.setDialogType, state.setDialogContent]
+  );
   const [
-    showSuccessDialog,
-    setDialogType,
-    setDialogContent
-  ] = useDialogStore((state) => [
-    state.show,
-    state.setDialogType,
-    state.setDialogContent
+    restaurants,
+    nextRestaurantUnclock,
+    currentRestaurant,
+    setCurrentRestaurant,
+  ] = useRestaurantStore((state) => [
+    state.restaurants,
+    state.nextRestaurantUnclock,
+    state.currentRestaurant,
+    state.setCurrentRestaurant,
   ]);
-  const [restaurants, nextRestaurantUnclock, currentRestaurant, setCurrentRestaurant] = useRestaurantStore((state) => [state.restaurants, state.nextRestaurantUnclock, state.currentRestaurant, state.setCurrentRestaurant])
   const handlePageClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
@@ -76,24 +80,30 @@ function Restaurant() {
     setShowDialog(false);
   };
   const handleClickUnlockDialog = async () => {
-    if ((user && user?.cats.length >= Number(nextRestaurantUnclock?.numberCatsRequire)) && (currentRestaurant && currentRestaurant.level >= 9) && (Number(user?.bean) >= Number(nextRestaurantUnclock?.fee))) {
+    if (
+      user &&
+      user?.cats.length >= Number(nextRestaurantUnclock?.numberCatsRequire) &&
+      currentRestaurant &&
+      currentRestaurant.level >= 9 &&
+      Number(user?.bean) >= Number(nextRestaurantUnclock?.fee)
+    ) {
       try {
-        show()
-        const res = await unclockRestaurant()
+        show();
+        const res = await unclockRestaurant();
         if (res) {
-          setCurrentRestaurant(res?.newLocation)
-          setUser(res?.updatedUser)
+          setCurrentRestaurant(res?.newLocation);
+          setUser(res?.updatedUser);
           fetchRestaurants();
           setShowDialog(false);
           setShowRestaurantPanel(false);
-          setDialogType('restaurant')
+          setDialogType("restaurant");
           setDialogContent({
-            title: 'Congratulation!',
-            content: 'You have unlocked a new shop.',
-            buttonText: 'Check it out',
-            imgUrl: res?.newLocation.imgUrl
-          })
-          showSuccessDialog()
+            title: "Congratulation!",
+            content: "You have unlocked a new shop.",
+            buttonText: "Check it out",
+            imgUrl: res?.newLocation.imgUrl,
+          });
+          showSuccessDialog();
         }
       } catch (error) {
         console.error("Error fetching", error);
@@ -108,18 +118,13 @@ function Restaurant() {
         setUnclockError(false);
       }, 1000);
     }
-  }
+  };
   const handleOnCardClick = (order: number) => {
-    const restaurantSelected = restaurants.find((restaurant) => restaurant.order === order)
-    setCurrentRestaurant(restaurantSelected as RestaurantType | null)
-  }
-  useEffect(() => {
-    fetchRestaurants();
-    if (!currentRestaurant) {
-      setCurrentRestaurant(restaurants && restaurants[0] as RestaurantType | null)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const restaurantSelected = restaurants.find(
+      (restaurant) => restaurant.order === order
+    );
+    setCurrentRestaurant(restaurantSelected as RestaurantType | null);
+  };
 
   return (
     <div className="list-panel bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">
@@ -148,11 +153,20 @@ function Restaurant() {
               <>
                 <div
                   key={restaurant._id}
-                  className={classNames("bg-orange-10 p-2 rounded-lg", currentRestaurant?.order === restaurant.order ? 'border-2 border-primary !shadow-none' : 'border border-[#cccbbd]')}
+                  className={classNames(
+                    "bg-orange-10 p-2 rounded-lg",
+                    currentRestaurant?.order === restaurant.order
+                      ? "border-2 border-primary !shadow-none"
+                      : "border border-[#cccbbd]"
+                  )}
                   style={{ boxShadow: "0px -4px 0px 0px #cccbbd inset" }}
                 >
-                  <RestaurantCard restaurant={restaurant} onUnlock={handleClickUnlock} onCardClick={handleOnCardClick} />
-                </div >
+                  <RestaurantCard
+                    restaurant={restaurant}
+                    onUnlock={handleClickUnlock}
+                    onCardClick={handleOnCardClick}
+                  />
+                </div>
               </>
             ))}
             {/* {currentPage ===
@@ -175,30 +189,26 @@ function Restaurant() {
           </div>
         </div>
       </div>
-      {
-        showDialog && (
-          <>
-            <div
-              className="bg-[#807f76] opacity-70 absolute w-[384px] h-[608px] items-center flex justify-center top-0 left-0 z-10"
-              onClick={handleClickOutside}
-            ></div>
-            <UnlockDialog
-              data={dataUnlock}
-              onUnclock={handleClickUnlockDialog}
-              onClose={() => setShowDialog(false)}
-            />
-          </>
-        )
-      }
-      {
-        unclockError && (
-          <div className="bg-[#000] opacity-70 text-bodyLg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 text-white px-4 py-2 w-max">
-            Insufficient resource
-          </div>
-        )
-      }
+      {showDialog && (
+        <>
+          <div
+            className="bg-[#807f76] opacity-70 absolute w-[384px] h-[608px] items-center flex justify-center top-0 left-0 z-10"
+            onClick={handleClickOutside}
+          ></div>
+          <UnlockDialog
+            data={dataUnlock}
+            onUnclock={handleClickUnlockDialog}
+            onClose={() => setShowDialog(false)}
+          />
+        </>
+      )}
+      {unclockError && (
+        <div className="bg-[#000] opacity-70 text-bodyLg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 text-white px-4 py-2 w-max">
+          Insufficient resource
+        </div>
+      )}
       {isShowing && <Loading />}
-    </div >
+    </div>
   );
 }
 
