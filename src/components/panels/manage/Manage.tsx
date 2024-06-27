@@ -256,9 +256,16 @@ const Manage: React.FC = () => {
 
   useEffect(() => {
     fetchDataUpgrade();
+    fetchRestaurants();
     fetchStaffs();
+    if (!currentRestaurant) {
+      setCurrentRestaurant(
+        restaurants && (restaurants[0] as RestaurantType | null)
+      );
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log("currentRestaurant", currentRestaurant);
 
   return (
     <div className="bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">
