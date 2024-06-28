@@ -8,12 +8,12 @@ import { useFetchUser } from "@/lib/hooks/useUser";
 import { useUserStore } from "@/stores/userStore";
 import Image from "next/image";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { getInviteUrl } from "@/requests/user";
 import { useRankConfigs } from "@/lib/hooks/rank/useRankConfigs";
 import CardBonus from "@/components/ui/CardBonus";
 import { useFetchRanks } from "@/lib/hooks/rank/useRank";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { Loading } from "@/components/ui/Loading";
+import { useWebApp } from "@zakarliuka/react-telegram-web-tools";
 
 export const TABS = {
   FRIENDLIST: "Friendlist",
@@ -31,11 +31,9 @@ const Friend: React.FC = () => {
   const { friends } = useFetchFriends();
   const [rankConfigs, fetchRankConfigs] = useRankConfigs();
   const user = useUserStore((state) => state.user);
-  const [setShowInviteInfoPanel] = useLayoutStore((state) => [
-    state.setShowInviteInfoPanel,
-  ]);
+  const telegramWebApp = useWebApp();
 
-  const [inviteUrl, setInviteUrl] = useState("");
+  const { inviteUrl, fetchInviteUrl } = useFetchUser();
   const [showNotiCoppyRight, setShowNotiCoppyRight] = useState(false);
   const { claimRankReward } = useFetchRanks();
   const [isShowing, show, hide] = useLoadingStore((state) => [
@@ -65,22 +63,25 @@ const Friend: React.FC = () => {
   };
 
   const handleInviteUrl = async () => {
-    try {
-      const response = await getInviteUrl();
-      if (response.inviteUrl) {
-        setInviteUrl(response.inviteUrl);
-      }
-      setShowNotiCoppyRight(true);
-      setTimeout(() => {
-        setShowNotiCoppyRight(false);
-      }, 2000);
-    } catch (error) {
-      console.error("Error fetching", error);
-    }
+    // setShowNotiCoppyRight(true);
+    // setTimeout(() => {
+    //   setShowNotiCoppyRight(false);
+    // }, 1000);
+    telegramWebApp?.openLink(
+      `https://t.me/share/url?url=${encodeURIComponent(
+        inviteUrl
+      )}&text=${encodeURIComponent("Join me in KatKafe and earn rewards!")}`,
+      { try_instant_view: false }
+    );
   };
 
+  useEffect(() => {
+    fetchInviteUrl();
+    // if using fetchInviteUrl inside dependencies, it will cause infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const { fetchBaristas } = useFetchBaristas();
-  const { fetchUser } = useFetchUser();
 
   useEffect(() => {
     fetchBaristas();
@@ -108,15 +109,17 @@ const Friend: React.FC = () => {
           <div className="flex">
             <div
               onClick={() => handleTabClick(TABS.FRIENDLIST)}
-              className={`absolute cursor-pointer left-1/2 -translate-x-[145px] border-2 border-b-0 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${activeTab === TABS.FRIENDLIST ? isActive : ""
-                }`}
+              className={`absolute cursor-pointer left-1/2 -translate-x-[145px] border-2 border-b-0 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                activeTab === TABS.FRIENDLIST ? isActive : ""
+              }`}
             >
               {TABS.FRIENDLIST}
             </div>
             <div
               onClick={() => handleTabClick(TABS.INVITE)}
-              className={`absolute cursor-pointer left-1/2 translate-x-[0px] border-2 border-b-0 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${activeTab === TABS.INVITE ? isActive : ""
-                }`}
+              className={`absolute cursor-pointer left-1/2 translate-x-[0px] border-2 border-b-0 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                activeTab === TABS.INVITE ? isActive : ""
+              }`}
             >
               {TABS.INVITE}
             </div>
