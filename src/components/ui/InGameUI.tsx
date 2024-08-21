@@ -96,9 +96,12 @@ export const InGameUI = () => {
   const [hideDialog, showDialog, setDialogType, DialogType] = useDialogStore(
     (state) => [state.hide, state.show, state.setDialogType, state.type]
   );
-  const [restaurantUpgradeConfigs, currentRestaurant] = useRestaurantStore(
-    (state) => [state.restaurantUpgradeConfigs, state.currentRestaurant]
-  );
+  const [restaurantUpgradeConfigs, currentRestaurant, restaurants] =
+    useRestaurantStore((state) => [
+      state.restaurantUpgradeConfigs,
+      state.currentRestaurant,
+      state.restaurants,
+    ]);
   const [showOfflineEarning, setShowOfflineEarning] = useLayoutStore(
     (state) => [state.showOfflineEarning, state.setShowOfflineEarning]
   );
@@ -109,7 +112,10 @@ export const InGameUI = () => {
   const [show, hide] = useLoadingStore((state) => [state.show, state.hide]);
   // const telegramData = useInitData()
 
-  const { power } = usePower(currentRestaurant!._id, currentRestaurant!);
+  const { power, fetchPower } = usePower(
+    currentRestaurant!._id,
+    currentRestaurant!
+  );
   const { fetchUser } = useFetchUser();
   const { fetchRestaurants } = useFetchRestaurants();
   const { fetchStaffs } = useFetchStaffs();
@@ -297,6 +303,10 @@ export const InGameUI = () => {
     checkStaffsUpgrade();
     checkRestaurantUpgrade();
   }, [user]);
+
+  useEffect(() => {
+    fetchPower(currentRestaurant!._id);
+  }, [restaurants]);
 
   return (
     <div className="absolute game-ui top-0">

@@ -35,6 +35,7 @@ const StaffList: React.FC = () => {
     state.user,
     state.fetchUser,
   ]);
+
   const [
     fee,
     setFee,
@@ -213,7 +214,7 @@ const StaffList: React.FC = () => {
       await fetchUser();
       await fetchRestaurants();
       await fetchStaffs();
-      fetchPower(currentRestaurant!._id);
+      await fetchPower(currentRestaurant!._id);
       setIsChooseUpgrade([]);
       await fetchDataUpgrade();
       showSnackbar("Upgrade successfully!");

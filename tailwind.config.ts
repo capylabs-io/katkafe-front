@@ -14,6 +14,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "info-box": "url('/images/info-box.png')",
         "btn-menu": "url('/images/btn-menu.png')",
+        overlay: "url(/assets/overlay.png)",
       },
       colors: {
         primary: "#FC9B53",

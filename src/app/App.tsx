@@ -18,7 +18,7 @@ function App() {
   // }
 
   return (
-    <div id="app">
+    <div id="app" className="bg-overlay">
       {needDeviceGuard == 1 ? (
         <DeviceGuard>
           <AuthProvider>

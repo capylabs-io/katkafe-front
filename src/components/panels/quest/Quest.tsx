@@ -170,17 +170,17 @@ function Task({}: Props) {
   const handleQuestSubmit = async (quest: Quest) => {
     switch (quest.questCode) {
       case QuestCodes.CHECK_IN:
-        webApp.openLink(quest.visitUrl);
+        // webApp.openLink(quest.visitUrl);
         await handleCheckInQuest();
         break;
       case QuestCodes.VISIT_WEBSITE:
         webApp.openLink(quest.visitUrl);
         await handleVisitWebsiteQuest();
         break;
-      case QuestCodes.YOUTUBE:
-        webApp.openLink(quest.visitUrl);
-        await handleYoutubeQuest();
-        break;
+      // case QuestCodes.YOUTUBE:
+      //   webApp.openLink(quest.visitUrl);
+      //   await handleYoutubeQuest();
+      //   break;
       case QuestCodes.JOIN_TELEGRAM_CHAT:
         await handleJoinTelegramChat();
         break;
