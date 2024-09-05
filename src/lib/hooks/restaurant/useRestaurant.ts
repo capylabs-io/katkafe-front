@@ -47,9 +47,10 @@ export const useFetchRestaurants = () => {
         getRestaurants(),
         getRestaurantConfigs(),
       ]);
+
       const listRestaurantsConfigMapped = restaurantConfig
         .filter((resConfig: any) =>
-          restaurants.some(
+          restaurants.every(
             (restaurant: any) => restaurant.order !== resConfig.order
           )
         )
@@ -67,6 +68,7 @@ export const useFetchRestaurants = () => {
           listRestaurantsMapped[restaurants.length - 1].order
         );
       }
+
       setNextRestaurantUnclockIndex(restaurants.length + 1);
       setRestaurants(listRestaurantsMapped);
       setMyRestaurants(restaurants);
