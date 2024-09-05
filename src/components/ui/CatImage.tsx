@@ -18,12 +18,10 @@ export const CatImage = ({ cat, width, height }: Props) => {
   const catFace = get(cat, "itemAssets.face", 0);
   const catCape = get(cat, "itemAssets.cape", 0);
   const catAura = get(cat, "numberStar", 1);
+  let catBase = get(cat, "catAsset", 1);
+  if (catBase === 0) catBase = 1;
 
-  const catBaseUrl = getCatAvatarUrl(
-    CatAssetType.Base,
-    cat.catAsset,
-    isSpecial
-  );
+  const catBaseUrl = getCatAvatarUrl(CatAssetType.Base, catBase, isSpecial);
   const catHeadUrl = getCatAvatarUrl(CatAssetType.Hat, catHead, isSpecial);
   const catBodyUrl = getCatAvatarUrl(CatAssetType.Body, catBody, isSpecial);
   const catFaceUrl = getCatAvatarUrl(CatAssetType.Face, catFace, isSpecial);

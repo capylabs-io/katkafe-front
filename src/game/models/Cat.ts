@@ -61,11 +61,8 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
   private dialogInterval: Phaser.Time.TimerEvent;
 
   constructor(scene: Phaser.Scene, x: number, y: number, data: Staff) {
-    const catBase = get(
-      data,
-      "catAsset",
-      Phaser.Math.Between(1, CAT_BASE_COUNT)
-    );
+    let catBase = get(data, "catAsset", 1);
+    if (catBase === 0) catBase = 1;
     super(
       scene,
       x,
@@ -82,7 +79,7 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
 
     this.id = data._id;
     this.catData = data;
-    this.catBase = get(data, "catAsset", catBase);
+    this.catBase = catBase;
     this.catHat = get(data, "itemAssets.head", 0);
     this.catBody = get(data, "itemAssets.body", 0);
     this.catFace = get(data, "itemAssets.face", 0);
