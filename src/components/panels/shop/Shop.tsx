@@ -22,6 +22,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/Popover";
 import { get } from "lodash";
+import NumberFormatter from "@/components/ui/NumberFormat";
 
 const TABS = {
   CAT: "Cat",
@@ -172,9 +173,8 @@ const Shop = () => {
             <div className="flex">
               <div
                 onClick={() => handleTabClick(TABS.ROLL)}
-                className={`absolute cursor-pointer left-1/2 -translate-x-[50px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
-                  activeTab === TABS.ROLL ? isActive : ""
-                }`}
+                className={`absolute cursor-pointer left-1/2 -translate-x-[50px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${activeTab === TABS.ROLL ? isActive : ""
+                  }`}
               >
                 Roll
               </div>
@@ -277,13 +277,13 @@ const Shop = () => {
                       </Popover>
 
                       <div
-                        className="w-[88px] h-[30px]"
+                        className="w-[90px] h-[30px] flex justify-center items-center"
                         onClick={(event: React.MouseEvent<HTMLDivElement>) =>
                           showConfirm(item)
                         }
                       >
                         <Button>
-                          {item.price || 0}
+                          <NumberFormatter value={item.price} />
                           <img
                             className="w-4 h-4 ml-1"
                             src="./images/coin.png"

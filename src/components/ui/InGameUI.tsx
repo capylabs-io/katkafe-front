@@ -339,12 +339,14 @@ export const InGameUI = () => {
         <InfoBox
           key="totalSPD"
           content={
-            power
-              ? !idleBoost
-                ? formatNumber(power) + "/s"
-                : formatNumber(power * idleBoost.boostConfig.boostMultiply) +
-                  "/s"
-              : "0/s"
+            <div className="relative h-max flex justify-center items-center">
+              {power
+                ? !idleBoost
+                  ? formatNumber(power)
+                  : formatNumber(power * idleBoost.boostConfig.boostMultiply)
+                : 0}
+              <div className="absolute -right-4 top-0">/s</div>
+            </div>
           }
           icon={{
             url: "/images/speed.png",
