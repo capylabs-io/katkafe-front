@@ -5,7 +5,7 @@ import { useLayoutStore } from "@/stores/layoutStore";
 import { useUserStore } from "@/stores/userStore";
 import { updateLoginStatus, updateStatus } from "@/requests/login";
 import { useRestaurantStore } from "@/stores/restaurant/restaurantStore";
-import LoginAward from "./LoginAward";
+import AwardPanel from "./AwardPanel";
 import { getClaimable } from "@/requests/user";
 import OfflineEarning from "./OfflineEarning";
 import NumberFormatter, { formatNumber } from "./NumberFormat";
@@ -41,6 +41,7 @@ export const InGameUI = () => {
   let manageUrl = "/icons/ic-manage.png";
   let shopUrl = "/icons/ic-shop.png";
   let friendUrl = "/icons/ic-friend.png";
+
   const [clicks, setClicks] = useState<Click[]>([]);
   const [showLoginAward, setShowLoginAward] = useState(false);
   const [initStaff, setInitStaff] = useState<Staff | null>(null);
@@ -57,12 +58,14 @@ export const InGameUI = () => {
     setShowShopPanel,
     setShowRestaurantPanel,
     setShowBoostPanel,
+    setShowEventPanel,
   ] = useLayoutStore((state) => [
     state.setShowManagePanel,
     state.setShowStaffPanel,
     state.setShowShopPanel,
     state.setShowRestaurantPanel,
     state.setShowBoostPanel,
+    state.setShowEventPanel,
   ]);
 
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
@@ -443,15 +446,24 @@ export const InGameUI = () => {
       {showLoginAward && (
         <>
           <div className="bg-[#232322] opacity-80 absolute w-[384px] h-[608px] items-center flex justify-center top-0 left-0 z-10"></div>
-          <LoginAward
-            handleClaim={handleClaimFirstTimeLogin}
-            response={initStaff}
-          />
+          <AwardPanel handleClaim={handleClaimFirstTimeLogin} cat={initStaff} />
         </>
       )}
       {!loading && user && !user.isLoginFirstTime && showOfflineEarning && (
         <OfflineEarning onClick={handleOnClick} data={claimableData} />
       )}
+      <div className="absolute left-2 top-[22%]">
+        <MenuButton
+          key="shop"
+          title="Event"
+          icon={{
+            url: "/images/task.png",
+            size: 56,
+          }}
+          onClick={() => setShowEventPanel(true)}
+          showButtonBg={false}
+        />
+      </div>
     </div>
   );
 };

@@ -43,9 +43,9 @@ const CardTask = ({
   const isAchievement = useMemo(() => type === "achievement", [type]);
 
   return (
-    <div className="bg-[#fffffa] border-black border rounded-lg w-full h-full p-2">
-      <div className="flex gap-8 items-start justify-between">
-        <div className="flex flex-col">
+    <div className="bg-[#fffffa] border-black border rounded-lg w-full h-full px-2 py-3">
+      <div className="flex flex-col">
+        <div className="flex justify-between mb-1">
           <div className="rounded-full w-6 h-6">
             <Image
               src={img.imgUrl || DEFAULT_QUEST_ICON}
@@ -54,21 +54,21 @@ const CardTask = ({
               height={img.height}
             />
           </div>
-          <div>
-            {content}
-            {isAchievement && (
-              <span>
-                : {progress?.current || 0}/{progress?.total || 0}
-              </span>
+          <div className="flex items-center gap-1">
+            <div className="text-gray-30">{reward.quantity}</div>
+            {reward.type === "token" && (
+              <div className="w-4 h-4">
+                <img src="/images/coin.png" alt="" />
+              </div>
             )}
           </div>
         </div>
-        <div className="flex items-center gap-1">
-          <div className="text-gray-30">{reward.quantity}</div>
-          {reward.type === "token" && (
-            <div className="w-4 h-4">
-              <img src="/images/coin.png" alt="" />
-            </div>
+        <div>
+          {content}
+          {isAchievement && (
+            <span>
+              : {progress?.current || 0}/{progress?.total || 0}
+            </span>
           )}
         </div>
       </div>

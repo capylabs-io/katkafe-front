@@ -19,6 +19,10 @@ type States = {
   showOfflineEarning: boolean;
   isAnyPanelOpen: boolean;
   showBoostPanel: boolean;
+
+  //Events
+  showEventPanel: boolean;
+  showRewardPanel: boolean;
 };
 
 type Actions = {
@@ -39,6 +43,10 @@ type Actions = {
   setShowOfflineEarning: (show: boolean) => void;
   setIsAnyPanelOpen: (show: boolean) => void;
   setShowBoostPanel: (show: boolean) => void;
+
+  //Events
+  setShowEventPanel: (show: boolean) => void;
+  setShowRewardPanel: (show: boolean) => void;
 };
 
 const defaultStates = {
@@ -59,10 +67,21 @@ const defaultStates = {
   showOfflineEarning: false,
   isAnyPanelOpen: false,
   showBoostPanel: false,
+  //Events
+  showEventPanel: false,
+  showRewardPanel: false,
 };
 
 export const useLayoutStore = create<States & Actions>((set) => ({
   ...defaultStates,
+  setShowEventPanel: (show: boolean) => {
+    set({ showEventPanel: show });
+    set({ isAnyPanelOpen: show });
+  },
+  setShowRewardPanel: (show: boolean) => {
+    set({ showRewardPanel: show });
+    set({ isAnyPanelOpen: show });
+  },
   setShowFriendPanel: (show: boolean) => {
     set({ showFriendPanel: show });
     set({ isAnyPanelOpen: show });

@@ -4,9 +4,10 @@ import Image from "next/image";
 
 type Props = {
   onClick: () => void;
+  reward?: number;
 };
 
-const RewardQuest = ({ onClick }: Props) => {
+const RewardQuest = ({ onClick, reward = 100 }: Props) => {
   return (
     <>
       <div className="bg-[#232322] opacity-70 absolute w-[384px] h-[608px] items-center flex justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"></div>
@@ -32,7 +33,7 @@ const RewardQuest = ({ onClick }: Props) => {
             <div className="absolute top-1/2 -translate-y-1/2 -left-2">
               <img src="/images/coin.png" className="w-4 h-4" alt="" />
             </div>
-            100
+            {reward}
           </div>
         </div>
 
