@@ -25,6 +25,7 @@ import { useLoadingStore } from "@/stores/LoadingStore";
 import Dialog from "./common/Dialog";
 import { useUserBoostsStore } from "@/stores/boost/userBoostsStore";
 import { BoostType } from "@/types/boost";
+import { Animator } from "./Animator";
 
 type Click = {
   id: number;
@@ -452,8 +453,8 @@ export const InGameUI = () => {
       {!loading && user && !user.isLoginFirstTime && showOfflineEarning && (
         <OfflineEarning onClick={handleOnClick} data={claimableData} />
       )}
-      <div className="absolute left-2 top-[22%]">
-        <MenuButton
+      <div className="absolute left-2.5 top-[20%]">
+        {/* <MenuButton
           key="shop"
           title="Event"
           icon={{
@@ -462,7 +463,18 @@ export const InGameUI = () => {
           }}
           onClick={() => setShowEventPanel(true)}
           showButtonBg={false}
+        /> */}
+        <Animator
+          width={64}
+          height={72}
+          url="/images/event-btn.png"
+          steps={4}
+          onClick={() => setShowEventPanel(true)}
+          fps={6}
         />
+        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-bold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5">
+          Events
+        </div>
       </div>
     </div>
   );
