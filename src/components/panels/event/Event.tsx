@@ -1,6 +1,6 @@
 import CardTask from "@/components/ui/CardTask";
 import { useLayoutStore } from "@/stores/layoutStore";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import RewardQuest from "@/components/ui/RewardQuest";
 import { useSnackBarStore } from "@/stores/SnackBarStore";
@@ -8,7 +8,7 @@ import { Quest, RewardType } from "@/types/quest";
 import { useWebApp } from "@zakarliuka/react-telegram-web-tools";
 import { useEvent } from "@/lib/hooks/event/useEvent";
 import { get, set } from "lodash";
-import { EventReward, EventRewardType } from "@/types/event";
+import { EventReward, EventRewardType, EventType } from "@/types/event";
 import { doEventQuest } from "@/requests/event/events";
 import { RARITY_CONFIG, Staff } from "@/types/common-types";
 import { CatRarity } from "@/types/cat-config";
@@ -16,6 +16,7 @@ import { getOneStaff } from "@/requests/staff";
 import AwardPanel from "@/components/ui/AwardPanel";
 import { EventRewardInfo } from "@/components/ui/event/EventRewardInfo";
 import { useFetchStaffs } from "@/lib/hooks/cat/useStaff";
+import classNames from "classnames";
 
 type Props = {};
 
@@ -32,6 +33,9 @@ function EventPanel({}: Props) {
   const [questReward, setQuestReward] = useState();
   const [eventReward, setEventReward] = useState();
   const [rewardCat, setRewardCat] = useState<Staff>();
+
+  const eventQuestSectionRefs = useRef({});
+  const [currentEvent, setCurrentEvent] = useState<EventType>();
 
   const [setShowEventPanel] = useLayoutStore((state) => [
     state.setShowEventPanel,
@@ -108,6 +112,28 @@ function EventPanel({}: Props) {
     setShowEventPanel(false);
   };
 
+  const handleEventInfoClick = (e: EventType) => {
+    if (!e || !e.reward || !e.quests || e.quests.length === 0) return;
+    handleQuestTabClick();
+    setCurrentEvent(e);
+    // handleScrollToSection(e._id);
+  };
+
+  useEffect(() => {
+    if (activeTab === TAB.QUEST && currentEvent) {
+      handleScrollToSection(currentEvent._id);
+    } else if (activeTab === TAB.INFO) {
+      setCurrentEvent(undefined);
+    }
+  }, [activeTab, currentEvent]);
+
+  const handleScrollToSection = (sectionId) => {
+    const ref = eventQuestSectionRefs.current[sectionId];
+    if (ref) {
+      ref.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   const tabs = (
     <div className="absolute flex gap-x-4 -translate-x-1/2 left-1/2 items-end">
       <div
@@ -135,7 +161,7 @@ function EventPanel({}: Props) {
         <div
           className="bg-[#fffffa] border-black border rounded-lg w-full p-3 cursor-pointer"
           key={e._id}
-          onClick={e.reward ? handleQuestTabClick : undefined}
+          onClick={() => handleEventInfoClick(e)}
         >
           <img className="mb-2" src={e.logoUrl} alt="quest-info" />
           <div className="text-bodyLg">{e.name}</div>
@@ -149,7 +175,7 @@ function EventPanel({}: Props) {
   );
 
   const questTabContent = (
-    <div className="w-full overflow-y-auto p-3">
+    <div className="w-full flex flex-col gap-y-3 divide-y overflow-y-auto p-3">
       {/* {quests.map((quest) => (
         <div key={quest._id} className="w-full flex flex-col items-center">
           <CardTask
@@ -173,57 +199,63 @@ function EventPanel({}: Props) {
           />
         </div>
       ))} */}
-      {events.map((e) => {
-        const quests = get(e, "quests", []);
-        const rewards = get(e, "reward", []);
+      {events
+        .filter((e) => e.reward && e.quests && e.quests.length > 0)
+        .map((e, index) => {
+          const quests = get(e, "quests", []);
+          const rewards = get(e, "reward", []);
 
-        const isCompleted = quests.every((quest: Quest) => !!quest.progress);
-        return (
-          <div key={e._id}>
-            <div className="text-center">{e.name}</div>
-            {!isCompleted ? (
-              <>
-                <div className="text-orange-90 text-center text-bodyMd">
-                  Complete all the quests to get the reward
+          const isCompleted = quests.every((quest: Quest) => !!quest.progress);
+          return (
+            <div
+              key={e._id}
+              ref={(el) => (eventQuestSectionRefs.current[e._id] = el)}
+              className={classNames(index !== 0 && "pt-2")}
+            >
+              <div className="text-center">{e.name}</div>
+              {!isCompleted ? (
+                <>
+                  <div className="text-orange-90 text-center text-bodyMd">
+                    Complete all the quests to get the reward
+                  </div>
+                  <div className="flex justify-center gap-x-2 my-1">
+                    {rewards.map((reward: EventReward, index) => (
+                      <EventRewardInfo reward={reward} key={index} />
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="text-center text-orange-90 text-bodyMd">
+                  You have completed all the quests and received the reward
                 </div>
-                <div className="flex justify-center gap-x-2 my-1">
-                  {rewards.map((reward: EventReward, index) => (
-                    <EventRewardInfo reward={reward} key={index} />
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="text-center text-orange-90 text-bodyMd">
-                You have completed all the quests and received the reward
+              )}
+              <div className="flex flex-col gap-y-3 mt-2">
+                {quests.map((quest: Quest) => (
+                  <CardTask
+                    key={quest._id}
+                    type="task"
+                    content={quest.name}
+                    img={{
+                      imgUrl: quest.imgUrl,
+                      width: 24,
+                      height: 24,
+                    }}
+                    reward={{
+                      type: "token",
+                      quantity: get(quest, "reward.value", 0),
+                    }}
+                    button={{
+                      text: "Go",
+                      onClick: () => handleQuestSubmit(quest),
+                    }}
+                    isDone={quest.progress}
+                    visitUrl={quest.needCheck ? quest.visitUrl : undefined}
+                  />
+                ))}
               </div>
-            )}
-            <div className="flex flex-col gap-y-3 mt-2">
-              {quests.map((quest: Quest) => (
-                <CardTask
-                  key={quest._id}
-                  type="task"
-                  content={quest.name}
-                  img={{
-                    imgUrl: quest.imgUrl,
-                    width: 24,
-                    height: 24,
-                  }}
-                  reward={{
-                    type: "token",
-                    quantity: get(quest, "reward.value", 0),
-                  }}
-                  button={{
-                    text: "Go",
-                    onClick: () => handleQuestSubmit(quest),
-                  }}
-                  isDone={quest.progress}
-                  visitUrl={quest.needCheck ? quest.visitUrl : undefined}
-                />
-              ))}
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </div>
   );
 
