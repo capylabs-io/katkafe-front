@@ -175,7 +175,7 @@
         {
           "position": {
             "x": 152,
-            "y": 176
+            "y": 152
           },
           "behavior": {
             "type": "forward",
@@ -197,7 +197,7 @@
         {
           "position": {
             "x": 232,
-            "y": 176
+            "y": 152
           },
           "behavior": {
             "type": "forward",
@@ -279,7 +279,7 @@
         {
           "position": {
             "x": 152,
-            "y": 176
+            "y": 152
           },
           "behavior": {
             "type": "forward",
@@ -301,7 +301,7 @@
         {
           "position": {
             "x": 232,
-            "y": 176
+            "y": 152
           },
           "behavior": {
             "type": "forward",

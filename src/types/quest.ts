@@ -20,6 +20,7 @@ export type Quest = {
   visitUrl?: string;
   imgUrl: string;
   needCheck: boolean;
+  isEventQuest: boolean;
 };
 
 export type Achievement = {
