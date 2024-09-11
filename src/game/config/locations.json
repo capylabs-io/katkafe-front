@@ -1,0 +1,314 @@
+{
+  "location-1": {
+    "assets": {
+      "Button-Rank": {
+        "x": 292,
+        "y": 64
+      },
+      "Button-Friend": {
+        "x": 352,
+        "y": 64
+      },
+      "Button-Quest": {
+        "x": 64,
+        "y": 64
+      },
+      "Button-Swap": {
+        "x": 102,
+        "y": 218
+      }
+    },
+    "spawnPoints": [
+      {
+        "x": 78,
+        "y": 316
+      },
+      {
+        "x": 182,
+        "y": 316
+      },
+      {
+        "x": 294,
+        "y": 316
+      },
+      {
+        "x": 78,
+        "y": 388
+      },
+      {
+        "x": 182,
+        "y": 388
+      },
+      {
+        "x": 294,
+        "y": 388
+      },
+      {
+        "x": 78,
+        "y": 460
+      },
+      {
+        "x": 182,
+        "y": 460
+      },
+      {
+        "x": 294,
+        "y": 460
+      }
+    ],
+    "paths": [
+      [
+        {
+          "position": {
+            "x": 152,
+            "y": 24
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "down"
+          }
+        },
+        {
+          "position": {
+            "x": 152,
+            "y": 176
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "left"
+          }
+        }
+      ],
+      [
+        {
+          "position": {
+            "x": 232,
+            "y": 24
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "down"
+          }
+        },
+        {
+          "position": {
+            "x": 232,
+            "y": 176
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "right"
+          }
+        }
+      ]
+    ]
+  },
+  "location-2": {
+    "assets": {
+      "Button-Rank": {
+        "x": 292,
+        "y": 64
+      },
+      "Button-Friend": {
+        "x": 352,
+        "y": 64
+      },
+      "Button-Quest": {
+        "x": 64,
+        "y": 64
+      },
+      "Button-Swap": {
+        "x": 102,
+        "y": 218
+      }
+    },
+    "spawnPoints": [
+      {
+        "x": 78,
+        "y": 316
+      },
+      {
+        "x": 182,
+        "y": 316
+      },
+      {
+        "x": 294,
+        "y": 316
+      },
+      {
+        "x": 78,
+        "y": 388
+      },
+      {
+        "x": 182,
+        "y": 388
+      },
+      {
+        "x": 294,
+        "y": 388
+      },
+      {
+        "x": 78,
+        "y": 460
+      },
+      {
+        "x": 182,
+        "y": 460
+      },
+      {
+        "x": 294,
+        "y": 460
+      }
+    ],
+    "paths": [
+      [
+        {
+          "position": {
+            "x": 152,
+            "y": 24
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "down"
+          }
+        },
+        {
+          "position": {
+            "x": 152,
+            "y": 152
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "left"
+          }
+        }
+      ],
+      [
+        {
+          "position": {
+            "x": 232,
+            "y": 24
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "down"
+          }
+        },
+        {
+          "position": {
+            "x": 232,
+            "y": 152
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "right"
+          }
+        }
+      ]
+    ]
+  },
+  "location-3": {
+    "assets": {
+      "Button-Rank": {
+        "x": 292,
+        "y": 64
+      },
+      "Button-Friend": {
+        "x": 352,
+        "y": 64
+      },
+      "Button-Quest": {
+        "x": 64,
+        "y": 64
+      },
+      "Button-Swap": {
+        "x": 102,
+        "y": 218
+      }
+    },
+    "spawnPoints": [
+      {
+        "x": 78,
+        "y": 316
+      },
+      {
+        "x": 182,
+        "y": 316
+      },
+      {
+        "x": 294,
+        "y": 316
+      },
+      {
+        "x": 78,
+        "y": 388
+      },
+      {
+        "x": 182,
+        "y": 388
+      },
+      {
+        "x": 294,
+        "y": 388
+      },
+      {
+        "x": 78,
+        "y": 460
+      },
+      {
+        "x": 182,
+        "y": 460
+      },
+      {
+        "x": 294,
+        "y": 460
+      }
+    ],
+    "paths": [
+      [
+        {
+          "position": {
+            "x": 152,
+            "y": 24
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "down"
+          }
+        },
+        {
+          "position": {
+            "x": 152,
+            "y": 152
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "left"
+          }
+        }
+      ],
+      [
+        {
+          "position": {
+            "x": 232,
+            "y": 24
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "down"
+          }
+        },
+        {
+          "position": {
+            "x": 232,
+            "y": 152
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "right"
+          }
+        }
+      ]
+    ]
+  }
+}

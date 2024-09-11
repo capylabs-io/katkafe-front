@@ -1,0 +1,1038 @@
+{
+  "restaurants": [
+    {
+      "id": "1",
+      "name": "Cafe's staff",
+      "level": 1,
+      "imageUrl": "/images/bg-deploy.png",
+      "maxSlot": "9",
+      "totalSPB": "10933",
+      "staffSlot": "4",
+      "balance": "12",
+      "staff": [
+        {
+          "id": "1",
+          "name": "Cat 1",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 1,
+          "backgroundUrl": "/images/background-cat.png"
+        },
+        {
+          "id": "2",
+          "name": "Cat 2",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 2,
+          "backgroundUrl": "/images/background-cat.png"
+        },
+        {
+          "id": "3",
+          "name": "Cat 3",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 3,
+          "backgroundUrl": "/images/background-cat.png"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Koeyai  Spot",
+      "level": 1,
+      "imageUrl": "/images/restaurant-1.png",
+      "maxSlot": "9",
+      "totalSPB": "10933",
+      "staffSlot": "4",
+      "balance": "12",
+      "staff": [
+        {
+          "id": "1",
+          "name": "Cat 1",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 1,
+          "backgroundUrl": "/images/background-cat.png"
+        },
+        {
+          "id": "2",
+          "name": "Cat 2",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 2,
+          "backgroundUrl": "/images/background-cat.png"
+        },
+        {
+          "id": "3",
+          "name": "Cat 3",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 3,
+          "backgroundUrl": "/images/background-cat.png"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Koeyai  Spot",
+      "level": 1,
+      "imageUrl": "/images/restaurant-2.png",
+      "maxSlot": "9",
+      "totalSPB": "10933",
+      "staffSlot": "4",
+      "balance": "12",
+      "staff": [
+        {
+          "id": "1",
+          "name": "Cat 1",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 1,
+          "backgroundUrl": "/images/background-cat.png"
+        },
+        {
+          "id": "2",
+          "name": "Cat 2",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 2,
+          "backgroundUrl": "/images/background-cat.png"
+        },
+        {
+          "id": "3",
+          "name": "Cat 3",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 3,
+          "backgroundUrl": "/images/background-cat.png"
+        }
+      ]
+    }
+  ],
+  "restaurant": [
+    {
+      "id": "1",
+      "name": "Cafe's staff",
+      "level": 1,
+      "imageUrl": "/images/bg-deploy.png",
+      "maxSlot": "9",
+      "totalSPB": "10933",
+      "staffSlot": "4",
+      "balance": "12",
+      "staff": [
+        {
+          "id": "1",
+          "name": "Cat 1",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 1,
+          "backgroundUrl": "/images/background-cat.png"
+        },
+        {
+          "id": "2",
+          "name": "Cat 2",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 2,
+          "backgroundUrl": "/images/background-cat.png"
+        },
+        {
+          "id": "3",
+          "name": "Cat 3",
+          "level": 2,
+          "imgUrl": "/images/Cat.png",
+          "numberStar": 3,
+          "backgroundUrl": "/images/background-cat.png"
+        }
+      ]
+    }
+  ],
+  "bundles": [
+    {
+      "id": "1",
+      "name": "Tiny Bundle 100",
+      "imageUrl": "/images/bg-deploy.png",
+      "price": "12",
+      "items": [
+        {
+          "name": "gold",
+          "value": "12",
+          "imageUrl": "/images/coin.png"
+        },
+        {
+          "name": "kbuck",
+          "value": "12",
+          "imageUrl": "/images/kbuck.png"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Tiny Bundle 200",
+      "imageUrl": "/images/bg-deploy.png",
+      "price": "12",
+      "items": [
+        {
+          "name": "gold",
+          "value": "12",
+          "imageUrl": "/images/coin.png"
+        },
+        {
+          "name": "kbuck",
+          "value": "12",
+          "imageUrl": "/images/kbuck.png"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Tiny Bundle 300",
+      "imageUrl": "/images/bg-deploy.png",
+      "price": "12",
+      "items": [
+        {
+          "name": "gold",
+          "value": "12",
+          "imageUrl": "/images/coin.png"
+        },
+        {
+          "name": "kbuck",
+          "value": "12",
+          "imageUrl": "/images/kbuck.png"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Tiny Bundle 300",
+      "imageUrl": "/images/bg-deploy.png",
+      "price": "12",
+      "items": [
+        {
+          "name": "gold",
+          "value": "12",
+          "imageUrl": "/images/coin.png"
+        },
+        {
+          "name": "kbuck",
+          "value": "12",
+          "imageUrl": "/images/kbuck.png"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Tiny Bundle 300",
+      "imageUrl": "/images/bg-deploy.png",
+      "price": "12",
+      "items": [
+        {
+          "name": "gold",
+          "value": "12",
+          "imageUrl": "/images/coin.png"
+        },
+        {
+          "name": "kbuck",
+          "value": "12",
+          "imageUrl": "/images/kbuck.png"
+        }
+      ]
+    }
+  ],
+  "catDeals": [
+    {
+      "id": "1",
+      "name": "Cat 1",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 1,
+      "backgroundUrl": "/images/background-cat.png",
+      "price": "12"
+    },
+    {
+      "id": "2",
+      "name": "Cat 2",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 2,
+      "backgroundUrl": "/images/background-cat.png",
+      "price": "12"
+    },
+    {
+      "id": "3",
+      "name": "Cat 3",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 3,
+      "backgroundUrl": "/images/background-cat.png",
+      "price": "12"
+    },
+    {
+      "id": "4",
+      "name": "Cat 4",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 1,
+      "backgroundUrl": "/images/background-cat.png",
+      "price": "12"
+    },
+    {
+      "id": "5",
+      "name": "Cat 5",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 2,
+      "backgroundUrl": "/images/background-cat.png",
+      "price": "12"
+    },
+    {
+      "id": "6",
+      "name": "Cat 6",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 3,
+      "backgroundUrl": "/images/background-cat.png",
+      "price": "12"
+    }
+  ],
+  "friends": [
+    {
+      "id": "1",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "balance": "12",
+      "totalFriend": "12"
+    },
+    {
+      "id": "2",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "balance": "12",
+      "totalFriend": "12"
+    },
+    {
+      "id": "3",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "balance": "12",
+      "totalFriend": "12"
+    },
+    {
+      "id": "4",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "balance": "12",
+      "totalFriend": "12"
+    },
+    {
+      "id": "5",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "balance": "12",
+      "totalFriend": "12"
+    },
+    {
+      "id": "6",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "balance": "12",
+      "totalFriend": "12"
+    },
+    {
+      "id": "7",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "balance": "12",
+      "totalFriend": "12"
+    }
+  ],
+  "ranks": [
+    {
+      "id": "1",
+      "title": "bronze",
+      "imageUrl": "/images/bronze.png",
+      "balance": "60000",
+      "totalPeople": "6",
+      "people": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "6",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Sliver",
+      "imageUrl": "/images/sliver.png",
+      "balance": "60000",
+      "totalPeople": "6",
+      "people": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Gold",
+      "imageUrl": "/images/gold.png",
+      "balance": "60000",
+      "totalPeople": "6",
+      "people": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Platinum",
+      "imageUrl": "/images/platinum.png",
+      "balance": "60000",
+      "totalPeople": "6",
+      "people": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Emerald League",
+      "imageUrl": "/images/emerald-league.png",
+      "balance": "60000",
+      "totalPeople": "6",
+      "people": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "488888"
+        }
+      ]
+    }
+  ],
+  "staffs": [
+    {
+      "id": "1",
+      "name": "Cat 1",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 1,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "2",
+      "name": "Cat 2",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 2,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "3",
+      "name": "Cat 3",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 3,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "4",
+      "name": "Cat 4",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 1,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "5",
+      "name": "Cat 5",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 2,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "6",
+      "name": "Cat 6",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 3,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "7",
+      "name": "Cat 7",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 2,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "8",
+      "name": "Cat 8",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 3,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "9",
+      "name": "Cat 9",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 1,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    },
+    {
+      "id": "10",
+      "name": "Cat 10",
+      "level": 2,
+      "imgUrl": "/images/Cat.png",
+      "numberStar": 3,
+      "backgroundUrl": "/images/background-cat.png",
+      "speed": "12.24242"
+    }
+  ],
+  "invites": [
+    {
+      "id": "1",
+      "title": "Invite Regular user",
+      "bonus": "3"
+    },
+    {
+      "id": "2",
+      "title": "Invite Premium Telegram user",
+      "bonus": "43"
+    }
+  ],
+  "baristas": [
+    {
+      "id": "1",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "totalBonus": "12323",
+      "totalFriend": "1224"
+    },
+    {
+      "id": "2",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "totalBonus": "12323",
+      "totalFriend": "1224"
+    },
+    {
+      "id": "3",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "totalBonus": "12323",
+      "totalFriend": "1224"
+    },
+    {
+      "id": "4",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "totalBonus": "12323",
+      "totalFriend": "1224"
+    },
+    {
+      "id": "5",
+      "name": "Mizu Waha",
+      "imageUrl": "/images/cat.png",
+      "totalBonus": "12323",
+      "totalFriend": "1224"
+    }
+  ],
+  "bonuses": [
+    {
+      "id": "1",
+      "title": "Bronze",
+      "imageUrl": "/images/bronze.png",
+      "regular": "6",
+      "premium": "108"
+    },
+    {
+      "id": "2",
+      "title": "Sliver",
+      "imageUrl": "/images/sliver.png",
+      "regular": "12",
+      "premium": "216"
+    },
+    {
+      "id": "3",
+      "title": "Gold",
+      "imageUrl": "/images/gold.png",
+      "regular": "22",
+      "premium": "434"
+    },
+    {
+      "id": "4",
+      "title": "Platinum",
+      "imageUrl": "/images/platinum.png",
+      "regular": "44",
+      "premium": "868"
+    }
+  ],
+  "guilds": [
+    {
+      "id": "1",
+      "title": "Anh em đông lào",
+      "imageUrl": "/images/bronze.png",
+      "backgroundUrl": "/images/Cat.png",
+      "totalMinted": "4823242",
+      "totalMember": "1232",
+      "rank": "bronze",
+      "member": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Anh em đông lào",
+      "imageUrl": "/images/bronze.png",
+      "backgroundUrl": "/images/Cat.png",
+      "totalMinted": "4823242",
+      "totalMember": "12232",
+      "rank": "bronze",
+      "member": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Anh em đông lào",
+      "imageUrl": "/images/bronze.png",
+      "backgroundUrl": "/images/Cat.png",
+      "totalMinted": "4823242",
+      "totalMember": "12232",
+      "rank": "bronze",
+      "member": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Anh em đông lào",
+      "imageUrl": "/images/bronze.png",
+      "backgroundUrl": "/images/Cat.png",
+      "totalMinted": "4823242",
+      "totalMember": "12232",
+      "rank": "bronze",
+      "member": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Anh em đông lào",
+      "imageUrl": "/images/bronze.png",
+      "backgroundUrl": "/images/Cat.png",
+      "totalMinted": "4823242",
+      "totalMember": "12232",
+      "rank": "bronze",
+      "member": [
+        {
+          "id": "1",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "2",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "3",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "4",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        },
+        {
+          "id": "5",
+          "name": "Mizu Waha",
+          "imageUrl": "/images/cat.png",
+          "balance": "122332"
+        }
+      ]
+    }
+  ],
+  "rolls": [
+    {
+      "id": "1",
+      "imageUrl": "/images/Brew-Pack.png",
+      "price": "100"
+    },
+    {
+      "id": "2",
+      "imageUrl": "/images/Mega-Pack.png",
+      "price": "100"
+    },
+    {
+      "id": "3",
+      "imageUrl": "/images/Moon-Pack.png",
+      "price": "100"
+    },
+    {
+      "id": "4",
+      "imageUrl": "/images/Regular-Pack.png",
+      "price": "100"
+    },
+    {
+      "id": "5",
+      "imageUrl": "/images/Brew-Pack.png",
+      "price": "100"
+    },
+    {
+      "id": "6",
+      "imageUrl": "/images/Moon-Pack.png",
+      "price": "100"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Add Kat Kafé bot user",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100"
+    },
+    {
+      "id": "2",
+      "title": "Add Kat Kafé bot user",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100"
+    },
+    {
+      "id": "3",
+      "title": "Add Kat Kafé bot user",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100"
+    },
+    {
+      "id": "4",
+      "title": "Add Kat Kafé bot user",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100"
+    },
+    {
+      "id": "5",
+      "title": "Add Kat Kafé bot user",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "1",
+      "title": "Total invitations",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100",
+      "totalAchievement": "50"
+    },
+    {
+      "id": "2",
+      "title": "Total invitations",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100",
+      "totalAchievement": "100"
+    },
+    {
+      "id": "3",
+      "title": "Total invitations",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100",
+      "totalAchievement": "150"
+    },
+    {
+      "id": "4",
+      "title": "Total invitations",
+      "imageUrl": "/images/user-task.png",
+      "claim": "100",
+      "totalAchievement": "50"
+    },
+    {
+      "id": "5",
+      "title": "Total invitations",
+      "imageUrl": "/images/user-task.png",
+      "claim": "150",
+      "totalAchievement": "50"
+    }
+  ],
+  "user": {
+    "id": "1",
+    "name": "Kei BAKATATO",
+    "rank": "13333",
+    "imageUrl": "/images/Cat.png",
+    "balance": "745"
+  }
+}
