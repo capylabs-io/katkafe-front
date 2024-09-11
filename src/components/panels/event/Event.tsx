@@ -17,6 +17,7 @@ import AwardPanel from "@/components/ui/AwardPanel";
 import { EventRewardInfo } from "@/components/ui/event/EventRewardInfo";
 import { useFetchStaffs } from "@/lib/hooks/cat/useStaff";
 import classNames from "classnames";
+import { waitForSeconds } from "@/utils/helpers";
 
 type Props = {};
 
@@ -90,6 +91,9 @@ function EventPanel({}: Props) {
         setEventReward(res.event);
         setShowEventReward(true);
       }
+
+      await waitForSeconds(0.5);
+
       if (quest.visitUrl) webApp.openLink(quest.visitUrl);
     } catch (error) {
       console.error(error);
