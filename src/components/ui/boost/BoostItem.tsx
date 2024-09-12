@@ -11,6 +11,7 @@ import {
 import { useUserStore } from "@/stores/userStore";
 import { get } from "lodash";
 import moment from "moment";
+import { CURRENCY_TYPES } from "@/types/item";
 
 type Props = {
   boostConfig: BoostConfig;
@@ -116,13 +117,23 @@ export const BoostItem = ({
         ) : (
           <Button customClassNames="px-4 pb-1" onClick={handleOnClick}>
             {formatStringNumber(boostConfig.fee)}
-            <Image
-              className="ml-1"
-              src="/images/coin.png"
-              alt="coin"
-              width={16}
-              height={16}
-            />
+            {boostConfig.currencyType === CURRENCY_TYPES.BEAN ? (
+              <Image
+                className="ml-1"
+                src="/images/coin.png"
+                alt="coin"
+                width={16}
+                height={16}
+              />
+            ) : (
+              <Image
+                className="ml-1"
+                src="/images/kbuck.png"
+                alt="coin"
+                width={16}
+                height={16}
+              />
+            )}
           </Button>
         )}
       </div>
