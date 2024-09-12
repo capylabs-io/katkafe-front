@@ -257,7 +257,7 @@ const Friend: React.FC = () => {
                           <img src="/images/kbuck.png" alt="" />
                         </div>
                         <span className="text-gray-30">
-                          +500 For you and your Friend
+                          +2 For you and your Friend
                         </span>
                       </div>
                     </div>
@@ -267,13 +267,13 @@ const Friend: React.FC = () => {
                   </div>
                   <div className="flex justify-between items-center w-full">
                     <div className="flex flex-col gap-1 text-bodyMd text-gray-40">
-                      <div>Invite Regular user</div>
+                      <div>Invite Premium user</div>
                       <div className="flex items-center gap-1">
                         <div className="w-4 h-4">
                           <img src="/images/kbuck.png" alt="" />
                         </div>
                         <span className="text-gray-30">
-                          +1000 For you and your Friend
+                          +3 For you and your Friend
                         </span>
                       </div>
                     </div>
