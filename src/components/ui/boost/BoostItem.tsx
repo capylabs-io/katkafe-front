@@ -137,7 +137,7 @@ export const BoostItem = ({
           </Button>
         )}
       </div>
-      {isCooldown && boostConfig.fee === "0" && !isOtherBoostActive && (
+      {isCooldown && !isOtherBoostActive && (
         <div className="flex flex-col justify-center items-center inset-x-0 absolute w-full h-full z-10 rounded-xl bg-black opacity-70">
           <div className="text-white z-9">Cooldown</div>
           <div className="text-white z-9">
