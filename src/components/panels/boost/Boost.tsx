@@ -123,7 +123,7 @@ function Boost({}: Props) {
             </div>
 
             {/* items idle booster */}
-            {/* <div className="mt-4 mb-2">Idle Boost</div>
+            <div className="mt-4 mb-2">Idle Boost</div>
             <div className="w-full flex flex-wrap gap-y-1 justify-center">
               {idleBoosts.map((boost) => (
                 <BoostItem
@@ -133,7 +133,7 @@ function Boost({}: Props) {
                   onClick={handleBoost}
                 />
               ))}
-            </div> */}
+            </div>
 
             {/* items tap booster */}
             <div className="mt-4 mb-2">Tap Boost</div>

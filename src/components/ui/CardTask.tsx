@@ -4,6 +4,7 @@ import Button from "./Button";
 import { DEFAULT_QUEST_ICON } from "@/constants/config";
 import { Check } from "lucide-react";
 import Link from "next/link";
+import { RewardType } from "@/types/quest";
 
 type Props = {
   type: "achievement" | "task";
@@ -14,7 +15,7 @@ type Props = {
     height: number;
   };
   reward: {
-    type: "cat" | "token";
+    type: RewardType;
     quantity: number | string;
   };
   button?: {
@@ -56,9 +57,13 @@ const CardTask = ({
           </div>
           <div className="flex items-center gap-1">
             <div className="text-gray-30">{reward.quantity}</div>
-            {reward.type === "token" && (
+            {reward.type === RewardType.BEAN ? (
               <div className="w-4 h-4">
                 <img src="/images/coin.png" alt="" />
+              </div>
+            ) : (
+              <div className="w-4 h-4">
+                <img src="/images/kbuck.png" alt="" />
               </div>
             )}
           </div>

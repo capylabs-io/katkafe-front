@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import CatCard from "@/components/ui/CatCard";
 import RewardDialog from "@/components/ui/RewardDialog";
 import { Bundle, ShopType } from "@/types/bundle";
-import { Item } from "@/types/item";
+import { CURRENCY_TYPES, Item } from "@/types/item";
 import CardInfo from "@/components/ui/CardInfo";
 import { useStaffStore } from "@/stores/staffStore";
 import { buyItem, getItems } from "@/requests/shop/item";
@@ -56,6 +56,7 @@ const Shop = () => {
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
   const [show, hide] = useLoadingStore((state) => [state.show, state.hide]);
   const [showSnackbar] = useSnackBarStore((state) => [state.show]);
+  const [currencyType, setCurrencyType] = useState(CURRENCY_TYPES.BEAN);
 
   const { fetchStaffs } = useFetchStaffs();
 
@@ -76,9 +77,10 @@ const Shop = () => {
     setShowRewardDialog(!showRewardDialog);
   };
 
-  const showConfirm = (item: Item) => {
+  const showConfirm = (item: Item, currencyType: CURRENCY_TYPES) => {
     setShowConfirmDialog(!showConfirmDialog);
     setCurrentItem(item);
+    setCurrencyType(currencyType);
   };
 
   const handleBuyItem = async (item: Item) => {
@@ -96,7 +98,9 @@ const Shop = () => {
       show();
       const body = {
         itemId: item._id,
+        currencyType,
       };
+      console.log("body", body);
       const response = await buyItem(body);
       if (response) {
         setPurchasedItem(response.items.cats[0]);
@@ -173,8 +177,9 @@ const Shop = () => {
             <div className="flex">
               <div
                 onClick={() => handleTabClick(TABS.ROLL)}
-                className={`absolute cursor-pointer left-1/2 -translate-x-[50px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${activeTab === TABS.ROLL ? isActive : ""
-                  }`}
+                className={`absolute cursor-pointer left-1/2 -translate-x-[50px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                  activeTab === TABS.ROLL ? isActive : ""
+                }`}
               >
                 Roll
               </div>
@@ -276,17 +281,26 @@ const Shop = () => {
                         </PopoverContent>
                       </Popover>
 
-                      <div
-                        className="w-[90px] h-[30px] flex justify-center items-center"
-                        onClick={(event: React.MouseEvent<HTMLDivElement>) =>
-                          showConfirm(item)
-                        }
-                      >
-                        <Button>
+                      <div className="w-[90px] h-[30px] flex flex-col justify-center items-center gap-y-1.5 mt-2">
+                        <Button
+                          onClick={() => showConfirm(item, CURRENCY_TYPES.BEAN)}
+                        >
                           <NumberFormatter value={item.price} />
                           <img
                             className="w-4 h-4 ml-1"
                             src="./images/coin.png"
+                            alt=""
+                          />
+                        </Button>
+                        <Button
+                          onClick={() =>
+                            showConfirm(item, CURRENCY_TYPES.DIAMOND)
+                          }
+                        >
+                          <NumberFormatter value={item.diamondPrice} />
+                          <img
+                            className="w-4 h-4 ml-1"
+                            src="./images/kbuck.png"
                             alt=""
                           />
                         </Button>

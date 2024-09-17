@@ -10,6 +10,7 @@ export type BoostConfig = {
   type: BoostType;
   boostMultiply: number;
   fee: string;
+  currencyType: string;
   duration: number;
   cooldown: number;
   imgUrl: string;
