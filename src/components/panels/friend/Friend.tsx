@@ -5,25 +5,26 @@ import { useFetchFriends } from "@/lib/hooks/friend/useFriend";
 import CardBarista from "@/components/ui/CardBarista";
 import { useUserStore } from "@/stores/userStore";
 import Image from "next/image";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getInviteUrl } from "@/requests/user";
 import { useRankConfigs } from "@/lib/hooks/rank/useRankConfigs";
 import CardBonus from "@/components/ui/CardBonus";
 import { useFetchRanks } from "@/lib/hooks/rank/useRank";
 import { useLoadingStore } from "@/stores/LoadingStore";
-import { Loading } from "@/components/ui/Loading";
 import { useSnackBarStore } from "@/stores/SnackBarStore";
+import { useWebApp } from "@zakarliuka/react-telegram-web-tools";
 
 export const TABS = {
   FRIENDLIST: "Friendlist",
   INVITE: "Invite Info",
 };
 
+const INVITE_TEXT = `Play with me, become a cafe manager and get a token AirDrop!\n
+💎 +2 diamonds for normal telegram users.
+💎 +3 diamonds for Premium telegram users.`;
+
 const Friend: React.FC = () => {
   const isActive = "!py-2 !-translate-y-[28px] !border-orange-90 !bg-orange-10";
   const [activeTab, setActiveTab] = useState(TABS.FRIENDLIST);
-  const [inviteUrl, setInviteUrl] = useState("");
-  const [showNotiCoppyRight, setShowNotiCoppyRight] = useState(false);
 
   const [setShowFriendPanel] = useLayoutStore((state) => [
     state.setShowFriendPanel,
@@ -32,6 +33,7 @@ const Friend: React.FC = () => {
 
   const [show, hide] = useLoadingStore((state) => [state.show, state.hide]);
   const [showSnackbar] = useSnackBarStore((state) => [state.show]);
+  const webApp = useWebApp();
 
   const { friends } = useFetchFriends();
   const [rankConfigs, fetchRankConfigs] = useRankConfigs();
@@ -66,10 +68,13 @@ const Friend: React.FC = () => {
     try {
       show();
       const response = await getInviteUrl();
-      if (response.inviteUrl) {
-        setInviteUrl(response.inviteUrl);
+      if (!response.inviteUrl) {
+        return;
       }
-      showSnackbar("Copied to clipboard!");
+      const inviteUrl = `https://t.me/share/url?url=${encodeURIComponent(
+        response.inviteUrl
+      )}&text=${encodeURIComponent(INVITE_TEXT)}`;
+      webApp.openTelegramLink(inviteUrl);
     } catch (error) {
       console.error("Error fetching", error);
     } finally {
@@ -201,9 +206,7 @@ const Friend: React.FC = () => {
                 </div>
                 <div className="mt-3 justify-center flex">
                   <div className="w-[172px] h-[39px]">
-                    <CopyToClipboard text={inviteUrl}>
-                      <Button onClick={handleInviteUrl}>Invite Friend</Button>
-                    </CopyToClipboard>
+                    <Button onClick={handleInviteUrl}>Invite Friend</Button>
                   </div>
                 </div>
               </div>
@@ -254,7 +257,7 @@ const Friend: React.FC = () => {
                           <img src="/images/kbuck.png" alt="" />
                         </div>
                         <span className="text-gray-30">
-                          +500 For you and your Friend
+                          +2 For you and your Friend
                         </span>
                       </div>
                     </div>
@@ -264,13 +267,13 @@ const Friend: React.FC = () => {
                   </div>
                   <div className="flex justify-between items-center w-full">
                     <div className="flex flex-col gap-1 text-bodyMd text-gray-40">
-                      <div>Invite Regular user</div>
+                      <div>Invite Premium user</div>
                       <div className="flex items-center gap-1">
                         <div className="w-4 h-4">
                           <img src="/images/kbuck.png" alt="" />
                         </div>
                         <span className="text-gray-30">
-                          +1000 For you and your Friend
+                          +3 For you and your Friend
                         </span>
                       </div>
                     </div>

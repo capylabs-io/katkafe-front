@@ -3,6 +3,7 @@ import { QuestCodes } from "@/constants/quest";
 export enum RewardType {
   KBUCK = "kBuck",
   BEAN = "bean",
+  DIAMOND = "diamond",
 }
 
 export type Quest = {
