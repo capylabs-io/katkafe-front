@@ -241,7 +241,7 @@ function EventPanel({}: Props) {
                       height: 24,
                     }}
                     reward={{
-                      type: "token",
+                      type: quest.reward.type,
                       quantity: get(quest, "reward.value", 0),
                     }}
                     button={{

@@ -11,6 +11,7 @@ export type Rank = {
   name: string;
   numberReferral: number;
   beanReward: string;
+  diamondReward: string;
   imgUrl: string;
   requiredReferral: number;
 };

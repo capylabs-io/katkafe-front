@@ -14,7 +14,7 @@ const CardBonus = ({ rankConfig, onClick }: Props) => {
   const imgUrl = get(rankConfig, "imgUrl", "");
   const name = get(rankConfig, "name", "");
   const requiredReferral = get(rankConfig, "requiredReferral", 0);
-  const beanReward = get(rankConfig, "beanReward", "0");
+  const diamondReward = get(rankConfig, "diamondReward", "0");
   const id = get(rankConfig, "_id", "");
   const claimable = get(rankConfig, "claimable", false);
   const done = get(rankConfig, "done", false);
@@ -61,7 +61,10 @@ const CardBonus = ({ rankConfig, onClick }: Props) => {
         </div>
       </div>
       <div className="flex items-center gap-1 col-span-3">
-        <div className="text-bodyMd text-gray-40">+{beanReward}</div>
+        <div className="text-bodyMd text-gray-40">+{diamondReward}</div>
+        <div className="w-4 h-4">
+          <img src="/images/kbuck.png" alt="" />
+        </div>
       </div>
     </div>
   );

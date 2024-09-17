@@ -324,18 +324,21 @@ export const InGameUI = () => {
         <InfoBox
           key="branchSPD"
           content={
-            currentPower ? (
-              <NumberFormatter
-                value={
-                  !idleBoost
-                    ? currentPower
-                    : currentPower * idleBoost.boostConfig.boostMultiply
-                }
-              />
-            ) : (
-              "0"
-            )
+            user ? <NumberFormatter value={Number(user.diamond)} /> : "0"
           }
+          // content={
+          //   currentPower ? (
+          //     <NumberFormatter
+          //       value={
+          //         !idleBoost
+          //           ? currentPower
+          //           : currentPower * idleBoost.boostConfig.boostMultiply
+          //       }
+          //     />
+          //   ) : (
+          //     "0"
+          //   )
+          // }
           icon={{
             url: "/images/kbuck.png",
           }}

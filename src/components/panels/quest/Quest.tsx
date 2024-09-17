@@ -1,11 +1,15 @@
 import CardTask from "@/components/ui/CardTask";
 import { useFetchQuests } from "@/lib/hooks/quest/useFetchQuests";
 import {
+  allDailyQuests,
   checkIn,
   followTwitter,
   joinTelegramChat,
   joinTelegramOfficialAnnouncement,
   shareLinktree,
+  visitTelegramAnnouncement,
+  visitTelegramChat,
+  visitTwitter,
   visitWebsite,
   youtube,
 } from "@/requests/quest/quests";
@@ -33,6 +37,7 @@ function Task({}: Props) {
   const isActive = "!py-2 !-translate-y-[28px] !border-orange-90 !bg-orange-10";
   const [activeTab, setActiveTab] = useState(TAB.DAILY);
   const [showReward, setShowReward] = useState(false);
+  const [currentQuest, setCurrentQuest] = useState<Quest | null>(null);
 
   const [setShowQuestPanel] = useLayoutStore((state) => [
     state.setShowQuestPanel,
@@ -88,6 +93,62 @@ function Task({}: Props) {
       setShowReward(true);
     } catch (error) {
       showSnackbar("Visit youtube faild!");
+    } finally {
+      hide();
+    }
+  };
+
+  const handleVisitTelegramAnnouncementQuest = async () => {
+    try {
+      show();
+      await visitTelegramAnnouncement();
+      refetchQuests();
+      showSnackbar("Visit telegram announcement successfully!");
+      setShowReward(true);
+    } catch (error) {
+      showSnackbar("Visit telegram announcement faild!");
+    } finally {
+      hide();
+    }
+  };
+
+  const handleVisitTeleramChatQuest = async () => {
+    try {
+      show();
+      await visitTelegramChat();
+      refetchQuests();
+      showSnackbar("Visit telegram chat successfully!");
+      setShowReward(true);
+    } catch (error) {
+      showSnackbar("Visit telegram chat faild!");
+    } finally {
+      hide();
+    }
+  };
+
+  const handleVisitTwitterQuest = async () => {
+    try {
+      show();
+      await visitTwitter();
+      refetchQuests();
+      showSnackbar("Visit twitter successfully!");
+      setShowReward(true);
+    } catch (error) {
+      showSnackbar("Visit twitter fail!");
+    } finally {
+      hide();
+    }
+  };
+
+  const handleAllDailyQuests = async () => {
+    try {
+      show();
+      await allDailyQuests();
+      refetchQuests();
+      showSnackbar("All daily quest done!");
+      setShowReward(true);
+    } catch (error) {
+      showSnackbar("You are not done all daily quests!");
     } finally {
       hide();
     }
@@ -168,6 +229,7 @@ function Task({}: Props) {
   //   setConfirmDialog(true)
   // }
   const handleQuestSubmit = async (quest: Quest) => {
+    setCurrentQuest(quest);
     switch (quest.questCode) {
       case QuestCodes.CHECK_IN:
         // webApp.openLink(quest.visitUrl);
@@ -194,6 +256,20 @@ function Task({}: Props) {
       case QuestCodes.SHARE_LINKTREE:
         webApp.openLink("https://t.me/share?url=" + encodeURI(quest.visitUrl));
         await handleShareLinktreeQuest();
+      case QuestCodes.VISIT_TELEGRAM_OFFICIAL_ANNOUNCEMENT:
+        webApp.openLink(quest.visitUrl);
+        await handleVisitTelegramAnnouncementQuest();
+        break;
+      case QuestCodes.VISIT_TELEGRAM_CHAT:
+        webApp.openLink(quest.visitUrl);
+        await handleVisitTeleramChatQuest();
+        break;
+      case QuestCodes.VISIT_TWITTER:
+        webApp.openLink(quest.visitUrl);
+        await handleVisitTwitterQuest();
+        break;
+      case QuestCodes.ALL_DAILY_QUESTS:
+        await handleAllDailyQuests();
       default:
         break;
     }
@@ -263,7 +339,7 @@ function Task({}: Props) {
                           height: 24,
                         }}
                         reward={{
-                          type: "token",
+                          type: quest.reward.type,
                           quantity: quest.reward.value,
                         }}
                         button={{
@@ -297,7 +373,7 @@ function Task({}: Props) {
                           height: 24,
                         }}
                         reward={{
-                          type: "token",
+                          type: quest.reward.type,
                           quantity: quest.reward.value,
                         }}
                         button={{
@@ -314,7 +390,13 @@ function Task({}: Props) {
           </div>
         </div>
       </div>
-      {showReward && <RewardQuest onClick={handleOnClick} />}
+      {showReward && (
+        <RewardQuest
+          onClick={handleOnClick}
+          reward={Number(currentQuest.reward.value)}
+          rewardType={currentQuest.reward.type}
+        />
+      )}
       {/* {
         confirmDialog &&
         <ConfirmDialog onCancel={() => setConfirmDialog(false)} onAgree={() => handleQuestSubmit(selectedQuestCode!)} title="Quest Confirmation" content={confirmDialogContent} />

@@ -39,3 +39,27 @@ export const shareLinktree = async () => {
   const response = await katAxios.post(`${BASE_URL}/quests/share-linktree`);
   return response.data;
 };
+
+export const visitTelegramAnnouncement = async () => {
+  const response = await katAxios.post(
+    `${BASE_URL}/quests/visit-telegram-announcement`
+  );
+  return response.data;
+};
+
+export const visitTelegramChat = async () => {
+  const response = await katAxios.post(
+    `${BASE_URL}/quests/visit-telegram-chat`
+  );
+  return response.data;
+};
+
+export const visitTwitter = async () => {
+  const response = await katAxios.post(`${BASE_URL}/quests/visit-twitter`);
+  return response.data;
+};
+
+export const allDailyQuests = async () => {
+  const response = await katAxios.post(`${BASE_URL}/quests/all-daily-quests`);
+  return response.data;
+};
