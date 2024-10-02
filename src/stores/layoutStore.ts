@@ -1,4 +1,3 @@
-import { set } from "lodash";
 import { create } from "zustand";
 
 type States = {
@@ -13,7 +12,6 @@ type States = {
   showFindGuildPanel: boolean;
   showRollPanel: boolean;
   showQuestPanel: boolean;
-  showRankPanel: boolean;
   showGuildDetailPanel: boolean;
   showRestaurantPanel: boolean;
   showOfflineEarning: boolean;
@@ -23,6 +21,9 @@ type States = {
   //Events
   showEventPanel: boolean;
   showRewardPanel: boolean;
+
+  // Leaderboard
+  showLeaderboardPanel: boolean;
 };
 
 type Actions = {
@@ -37,7 +38,6 @@ type Actions = {
   setShowFindGuildPanel: (show: boolean) => void;
   setShowRollPanel: (show: boolean) => void;
   setShowQuestPanel: (show: boolean) => void;
-  setShowRankPanel: (show: boolean) => void;
   setShowGuildDetailPanel: (show: boolean) => void;
   setShowRestaurantPanel: (show: boolean) => void;
   setShowOfflineEarning: (show: boolean) => void;
@@ -47,6 +47,9 @@ type Actions = {
   //Events
   setShowEventPanel: (show: boolean) => void;
   setShowRewardPanel: (show: boolean) => void;
+
+  // Leaderboard
+  setShowLeaderboardPanel: (show: boolean) => void;
 };
 
 const defaultStates = {
@@ -61,7 +64,6 @@ const defaultStates = {
   showFindGuildPanel: false,
   showRollPanel: false,
   showQuestPanel: false,
-  showRankPanel: false,
   showGuildDetailPanel: false,
   showRestaurantPanel: false,
   showOfflineEarning: false,
@@ -70,6 +72,9 @@ const defaultStates = {
   //Events
   showEventPanel: false,
   showRewardPanel: false,
+
+  //
+  showLeaderboardPanel: false,
 };
 
 export const useLayoutStore = create<States & Actions>((set) => ({
@@ -124,8 +129,8 @@ export const useLayoutStore = create<States & Actions>((set) => ({
     set({ showQuestPanel: show });
     set({ isAnyPanelOpen: show });
   },
-  setShowRankPanel: (show: boolean) => {
-    set({ showRankPanel: show });
+  setShowLeaderboardPanel: (show: boolean) => {
+    set({ showLeaderboardPanel: show });
     set({ isAnyPanelOpen: show });
   },
   setShowGuildDetailPanel: (show: boolean) => {

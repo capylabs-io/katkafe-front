@@ -1,9 +1,16 @@
-import { claimReferralRankReward, getRanks } from "@/requests/rank";
+import {
+  claimReferralRankReward,
+  getLeaderboard,
+} from "@/requests/leaderboard";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { useRankStore } from "@/stores/rank/rankStore";
 import { ClaimReferralRankRewardRequest } from "@/types/friend";
+import { useState } from "react";
 
-export const useFetchRanks = () => {
+export const useLeaderboad = () => {
+  const [showPanel, setShowPanel] = useState({
+    gold: false,
+  });
   const [setRanks, setCurrentRank, setTotalUsers] = useRankStore((state) => [
     state.setRanks,
     state.setCurrentRank,
@@ -11,10 +18,10 @@ export const useFetchRanks = () => {
   ]);
   const [show, hide] = useLoadingStore((state) => [state.show, state.hide]);
 
-  const fetchRanks = async () => {
+  const fetchLeaderboard = async (type: string, rarity?: string) => {
     try {
       show();
-      const response = await getRanks();
+      const response = await getLeaderboard(type, rarity);
       setRanks(response.topUsers);
       setCurrentRank(response.userRank[0]);
       setTotalUsers(response.totalUsers);
@@ -35,7 +42,9 @@ export const useFetchRanks = () => {
   };
 
   return {
-    fetchRanks,
+    showPanel,
+    setShowPanel,
+    fetchLeaderboard,
     claimRankReward,
   };
 };

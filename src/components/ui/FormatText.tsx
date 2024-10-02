@@ -2,6 +2,9 @@ import React from "react";
 
 const FormatText = ({ text }: { text: string }) => {
   const formatText = (text: string) => {
+    if (!text) {
+      return "";
+    }
     const maxLength = 15;
     if (text.length <= maxLength) {
       return text;

@@ -1,7 +1,7 @@
 export type UserType = {
   _id: string;
-  name: string;
-  imageUrl: string;
+  username: string;
+  avatarUrl: string;
   bean: string;
   diamond: string;
   rank: string;
