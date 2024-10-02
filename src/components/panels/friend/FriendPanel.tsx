@@ -186,7 +186,6 @@ export const FriendPanel: React.FC = () => {
                             className="w-full h-full cursor-pointer bg-[#f7f6dc] border-[#e8ddbd] border-b first:rounded-t-lg last:border-b-0 last:rounded-b-lg"
                           >
                             <CardBarista
-                              type={TABS.FRIENDLIST}
                               id={index}
                               username={friend.username}
                               imageUrl={friend.avatarUrl}
@@ -195,6 +194,8 @@ export const FriendPanel: React.FC = () => {
                                 "referralCounter",
                                 0
                               ).toString()}
+                              isShowIcon
+                              iconUrl="/icons/ic-user-ref.png"
                             />
                           </div>
                         ))}

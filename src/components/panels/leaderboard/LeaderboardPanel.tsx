@@ -63,28 +63,34 @@ export const LeaderboardPanel = () => {
             <div className="flex flex-col items-center justify-between w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-1 overflow-hidden mt-8">
               {/* <Slider ranks={[]} /> */}
               <div className="flex flex-col items-center w-full overflow-auto">
-                <Image
-                  width={320}
-                  height={60}
-                  className="mb-4"
-                  src="/images/bg-deploy.png"
-                  alt=""
-                />
-                <div className="overflow-y-auto w-full flex flex-wrap justify-center gap-2 mx-auto mb-2">
+                <div className="w-full h-96 relative">
+                  <Image
+                    layout="fill"
+                    // objectFit="contain"
+                    src="/images/leaderboard/background.png"
+                    alt=""
+                  />
+                </div>
+
+                <div className="overflow-y-auto w-full flex flex-wrap justify-center gap-2 mx-auto mb-2 mt-6">
                   {Object.values(LEADERBOARDS).map((item) => (
                     <Card
+                      key={item.key}
                       className="w-[150px] h-[120]px border-orange-90 bg-orange-10 rounded-t-xl shadow-bottom-xl-orange-20 cursor-pointer"
                       onClick={() => handleOpenLeaderboard(item.key)}
                     >
-                      <CardContent className="m-2">
-                        <Image
-                          width={136}
-                          height={80}
-                          src="/images/friend.png"
-                          alt=""
-                        />
+                      <CardContent className="p-0">
+                        <div className="w-full bg-[url('/assets/cover.png')] bg-cover rounded-t-xl">
+                          <Image
+                            width={120}
+                            height={120}
+                            src={`/images/leaderboard/80px/${item.key}.png`}
+                            alt=""
+                            className="mx-auto"
+                          />
+                        </div>
                       </CardContent>
-                      <CardFooter>
+                      <CardFooter className="px-0 mt-2">
                         <div className="flex justify-center w-full">
                           <div className="text-sm">{item.value}</div>
                         </div>

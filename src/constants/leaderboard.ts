@@ -14,8 +14,8 @@ export const LEADERBOARDS = {
     value: "Total cat lvl",
     path: "total-cat-level",
   },
-  TOTAL_COMMAN_CAT: {
-    key: "TOTAL_COMMAN_CAT",
+  TOTAL_COMMON_CAT: {
+    key: "TOTAL_COMMON_CAT",
     value: "Total common cat",
     path: "cat-rarity",
     rarity: "common",

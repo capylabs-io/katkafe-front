@@ -9,9 +9,11 @@ import { DEFAULT_QUEST_ICON } from "@/constants/config";
 type Props = {
   user: LeaderBoard;
   type?: string;
+  isShowIcon?: boolean;
+  iconUrl?: string;
 };
 
-const CardUser = ({ user, type }: Props) => {
+const CardUser = ({ user, type, isShowIcon, iconUrl }: Props) => {
   const imageUrl = get(user, "avatarUrl", "");
   const name = get(user, "username", "");
   const rank = get(user, "rank", 0);
@@ -47,14 +49,11 @@ const CardUser = ({ user, type }: Props) => {
                 ? formatStringNumber(get(user, "rankValue", "0"))
                 : formatStringNumber(balance)}
             </div>
-            <div>
-              <Image
-                src="/images/coin.png"
-                alt="cat pic"
-                width={16}
-                height={16}
-              />
-            </div>
+            {isShowIcon && (
+              <div>
+                <Image src={iconUrl} alt="cat pic" width={16} height={16} />
+              </div>
+            )}
           </div>
         </>
       )}

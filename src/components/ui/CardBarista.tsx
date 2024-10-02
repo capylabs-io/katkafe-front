@@ -5,14 +5,22 @@ import { formatStringNumber, ordinalSuffix } from "@/utils/helpers";
 import FormatText from "./FormatText";
 
 type Props = {
-  type: string;
   id: number;
   username: string;
   imageUrl: string;
   value: string;
+  isShowIcon?: boolean;
+  iconUrl?: string;
 };
 
-const CardBarista = ({ id, type, username, imageUrl, value }: Props) => {
+const CardBarista = ({
+  id,
+  username,
+  imageUrl,
+  value,
+  isShowIcon = false,
+  iconUrl,
+}: Props) => {
   return (
     <div className="w-full h-full p-2 pl-4 flex gap-8 items-center justify-between text-gray-60">
       <div className="flex gap-y-2 gap-x-4 items-center text-center">
@@ -34,9 +42,11 @@ const CardBarista = ({ id, type, username, imageUrl, value }: Props) => {
         <div className="flex items-center gap-1 text-bodyMd">
           <div className="flex items-center justify-end gap-1">
             <div>{formatStringNumber(value)}</div>
-            <div className="w-4 h-4">
-              <img src="/images/coin.png" alt="" />
-            </div>
+            {isShowIcon && (
+              <div className="w-4 h-4">
+                <img src={iconUrl} alt="" />
+              </div>
+            )}
           </div>
         </div>
       </div>
