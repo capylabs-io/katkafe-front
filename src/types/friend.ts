@@ -1,4 +1,6 @@
-export type Friend = {
+import { UserType } from "./user";
+
+export type Friend = UserType & {
   _id: string;
   username: string;
   avatarUrl: string;

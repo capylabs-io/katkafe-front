@@ -6,12 +6,13 @@ import CardBarista from "@/components/ui/CardBarista";
 import { useUserStore } from "@/stores/userStore";
 import Image from "next/image";
 import { getInviteUrl } from "@/requests/user";
-import { useRankConfigs } from "@/lib/hooks/rank/useRankConfigs";
+import { useRankConfigs } from "@/lib/hooks/leaderboard/useRankConfigs";
 import CardBonus from "@/components/ui/CardBonus";
-import { useFetchRanks } from "@/lib/hooks/rank/useRank";
+import { useLeaderboad } from "@/lib/hooks/leaderboard/useLeaderboard";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { useSnackBarStore } from "@/stores/SnackBarStore";
 import { useWebApp } from "@zakarliuka/react-telegram-web-tools";
+import { get } from "lodash";
 
 export const TABS = {
   FRIENDLIST: "Friendlist",
@@ -22,7 +23,7 @@ const INVITE_TEXT = `Play with me, become a cafe manager and get a token AirDrop
 💎 +2 diamonds for normal telegram users.
 💎 +3 diamonds for Premium telegram users.`;
 
-const Friend: React.FC = () => {
+export const FriendPanel: React.FC = () => {
   const isActive = "!py-2 !-translate-y-[28px] !border-orange-90 !bg-orange-10";
   const [activeTab, setActiveTab] = useState(TABS.FRIENDLIST);
 
@@ -37,7 +38,7 @@ const Friend: React.FC = () => {
 
   const { friends } = useFetchFriends();
   const [rankConfigs, fetchRankConfigs] = useRankConfigs();
-  const { claimRankReward } = useFetchRanks();
+  const { claimRankReward } = useLeaderboad();
 
   const handleClose = () => {
     setShowFriendPanel(false);
@@ -185,12 +186,16 @@ const Friend: React.FC = () => {
                             className="w-full h-full cursor-pointer bg-[#f7f6dc] border-[#e8ddbd] border-b first:rounded-t-lg last:border-b-0 last:rounded-b-lg"
                           >
                             <CardBarista
-                              type={TABS.FRIENDLIST}
                               id={index}
-                              avatarUrl={friend.avatarUrl}
                               username={friend.username}
-                              referralReward={friend.referralReward}
-                              bean={"0"}
+                              imageUrl={friend.avatarUrl}
+                              value={get(
+                                friend,
+                                "referralCounter",
+                                0
+                              ).toString()}
+                              isShowIcon
+                              iconUrl="/icons/ic-user-ref.png"
                             />
                           </div>
                         ))}
@@ -318,5 +323,3 @@ const Friend: React.FC = () => {
     </div>
   );
 };
-
-export default Friend;

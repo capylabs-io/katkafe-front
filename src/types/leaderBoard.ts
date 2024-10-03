@@ -1,6 +1,6 @@
-export type LeaderBoard = {
-  _id: string;
-  username: string;
-  bean: string;
-  avatarUrl: string;
+import { UserType } from "./user";
+
+export type LeaderBoard = UserType & {
+  rankValue: string;
+  rank: number;
 };

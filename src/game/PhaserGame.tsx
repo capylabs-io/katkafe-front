@@ -14,10 +14,10 @@ import Staff from "@/components/panels/staff/UserStaffList";
 import Manage from "@/components/panels/manage/Manage";
 import Shop from "@/components/panels/shop/Shop";
 // import Friend from "@/components/panels/friend/Friend";
-import Friend from "@/components/panels/friend/Friend";
+import { FriendPanel } from "@/components/panels/friend/FriendPanel";
 import { EVENT_BUS_TYPES } from "@/constants/events";
 import { useEventBus } from "@/lib/hooks/useEventBus";
-import Rank from "@/components/panels/rank/Rank";
+import { LeaderboardPanel } from "@/components/panels/leaderboard/LeaderboardPanel";
 import InviteInfo from "@/components/panels/invite/InviteInfo";
 import Guild from "@/components/panels/guild/Guild";
 import FindGuild from "@/components/panels/guild/FindGuildPanel";
@@ -56,7 +56,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     showFindGuildPanel,
     showRollPanel,
     showQuestPanel,
-    showRankPanel,
+    showLeaderboardPanel,
     showGuildDetailPanel,
     showRestaurantPanel,
     showBoostPanel,
@@ -72,7 +72,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     state.showFindGuildPanel,
     state.showRollPanel,
     state.showQuestPanel,
-    state.showRankPanel,
+    state.showLeaderboardPanel,
     state.showGuildDetailPanel,
     state.showRestaurantPanel,
     state.showBoostPanel,
@@ -129,10 +129,10 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
         className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
       >
         {isGameScene && <InGameUI />}
-        {showFriendPanel && <Friend />}
+        {showFriendPanel && <FriendPanel />}
         {showStaffPanel && <Staff />}
         {showManagePanel && <Manage />}
-        {showRankPanel && <Rank />}
+        {showLeaderboardPanel && <LeaderboardPanel />}
         {showInviteInfoPanel && <InviteInfo />}
         {showRollPanel && <Roll />}
         {showQuestPanel && <Task />}

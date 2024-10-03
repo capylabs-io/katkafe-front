@@ -7,10 +7,13 @@ import FormatText from "./FormatText";
 import { DEFAULT_QUEST_ICON } from "@/constants/config";
 
 type Props = {
-  user: LeaderBoard | null;
+  user: LeaderBoard;
+  type?: string;
+  isShowIcon?: boolean;
+  iconUrl?: string;
 };
 
-const CardFriend = ({ user }: Props) => {
+const CardUser = ({ user, type, isShowIcon, iconUrl }: Props) => {
   const imageUrl = get(user, "avatarUrl", "");
   const name = get(user, "username", "");
   const rank = get(user, "rank", 0);
@@ -40,18 +43,17 @@ const CardFriend = ({ user }: Props) => {
               <FormatText text={name} />
             </div>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 mx-1">
             <div className="text-bodyMd text-gray-60">
-              {formatStringNumber(balance)}
+              {type === "rank"
+                ? formatStringNumber(get(user, "rankValue", "0"))
+                : formatStringNumber(balance)}
             </div>
-            <div>
-              <Image
-                src="/images/coin.png"
-                alt="cat pic"
-                width={16}
-                height={16}
-              />
-            </div>
+            {isShowIcon && (
+              <div>
+                <Image src={iconUrl} alt="cat pic" width={16} height={16} />
+              </div>
+            )}
           </div>
         </>
       )}
@@ -59,4 +61,4 @@ const CardFriend = ({ user }: Props) => {
   );
 };
 
-export default CardFriend;
+export default CardUser;
