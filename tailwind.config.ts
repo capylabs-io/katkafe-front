@@ -80,6 +80,8 @@ const config: Config = {
         "bottom-xl": "0px -2px 0px 0px #cccbbd inset",
         "bottom-2xl-orange-20": "0px -4px 0px 0px #eeedd8 inset",
         "bottom-xl-orange-20": "0px -2px 0px 0px #eeedd8 inset",
+        "bottom-xl-gray-20": "0px -2px 0px 0px #b5b5b5 inset",
+        "bottom-2xl-gray-20": "0px -4px 0px 0px #b5b5b5 inset",
       },
     },
   },

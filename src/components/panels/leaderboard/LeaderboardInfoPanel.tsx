@@ -62,7 +62,7 @@ export const LeaderboardInfoPanel = ({
           <div className="flex flex-col items-center justify-between w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-1 overflow-hidden mt-8">
             {/* <Slider ranks={[]} /> */}
             <div className="flex flex-col items-center w-full">
-              <div className="bg-[url('/assets/cover.png')] bg-cover w-full mx-auto flex flex-col items-center mb-2">
+              <div className="bg-[url('/images/leaderboard/pattern.png')] bg-cover w-full mx-auto flex flex-col items-center mb-2">
                 <Image
                   width={164}
                   height={164}

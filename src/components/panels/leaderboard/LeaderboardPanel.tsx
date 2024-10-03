@@ -63,10 +63,10 @@ export const LeaderboardPanel = () => {
             <div className="flex flex-col items-center justify-between w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-1 overflow-hidden mt-8">
               {/* <Slider ranks={[]} /> */}
               <div className="flex flex-col items-center w-full overflow-auto">
-                <div className="w-full h-96 relative">
+                <div className="w-full h-96 relative mt-2">
                   <Image
                     layout="fill"
-                    // objectFit="contain"
+                    objectFit="cover"
                     src="/images/leaderboard/background.png"
                     alt=""
                   />
@@ -76,21 +76,21 @@ export const LeaderboardPanel = () => {
                   {Object.values(LEADERBOARDS).map((item) => (
                     <Card
                       key={item.key}
-                      className="w-[150px] h-[120]px border-orange-90 bg-orange-10 rounded-t-xl shadow-bottom-xl-orange-20 cursor-pointer"
+                      className="w-[150px] h-[120]px border-gray-20 bg-orange-10 rounded-t-xl cursor-pointer shadow-bottom-2xl-gray-20"
                       onClick={() => handleOpenLeaderboard(item.key)}
                     >
                       <CardContent className="p-0">
-                        <div className="w-full bg-[url('/assets/cover.png')] bg-cover rounded-t-xl">
+                        <div className="w-full bg-[url('/images/leaderboard/pattern.png')] bg-cover rounded-t-xl">
                           <Image
                             width={120}
                             height={120}
                             src={`/images/leaderboard/80px/${item.key}.png`}
                             alt=""
-                            className="mx-auto"
+                            className="mx-auto drop-shadow-2xl"
                           />
                         </div>
                       </CardContent>
-                      <CardFooter className="px-0 mt-2">
+                      <CardFooter className="p-0 my-2">
                         <div className="flex justify-center w-full">
                           <div className="text-sm">{item.value}</div>
                         </div>
