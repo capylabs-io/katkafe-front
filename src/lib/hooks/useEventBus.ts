@@ -5,14 +5,14 @@ import { useLayoutStore } from "@/stores/layoutStore";
 export const useEventBus = () => {
   const [
     setShowQuestPanel,
-    setShowRankPanel,
+    setShowLeaderboardPanel,
     setShowRollPanel,
     setShowGuildPanel,
     setShowFriendPanel,
     isAnyPanelOpen,
   ] = useLayoutStore((state) => [
     state.setShowQuestPanel,
-    state.setShowRankPanel,
+    state.setShowLeaderboardPanel,
     state.setShowRollPanel,
     state.setShowGuildPanel,
     state.setShowFriendPanel,
@@ -41,7 +41,7 @@ export const useEventBus = () => {
           break;
         case UI_BUTTON.RANK:
           console.log("Rank button clicked");
-          setShowRankPanel(true);
+          setShowLeaderboardPanel(true);
           break;
       }
     });

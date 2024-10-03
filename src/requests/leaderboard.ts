@@ -7,8 +7,10 @@ export const getRankConfig = async () => {
   return response.data;
 };
 
-export const getRanks = async () => {
-  const response = await katAxios.get(`${BASE_URL}/leaderboard`);
+export const getLeaderboard = async (type: string, rarity?: string) => {
+  const response = await katAxios.get(
+    `${BASE_URL}/leaderboard/${type}${!rarity ? "" : "/" + rarity}`
+  );
   return response.data;
 };
 
