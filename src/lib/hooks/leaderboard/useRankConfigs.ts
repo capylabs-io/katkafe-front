@@ -1,5 +1,5 @@
 "use client";
-import { getRankConfig } from "@/requests/rank";
+import { getRankConfig } from "@/requests/leaderboard";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { Rank } from "@/types/friend";
 import { useEffect, useState } from "react";

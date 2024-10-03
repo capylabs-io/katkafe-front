@@ -13,11 +13,10 @@ function Roll() {
 
   const { fetchRolls } = useFetchRolls();
 
-  
   const handleClose = () => {
     setShowRollPanel(false);
   };
-  
+
   useEffect(() => {
     fetchRolls();
     // eslint-disable-next-line react-hooks/exhaustive-deps
