@@ -9,7 +9,7 @@ type Props = {
 const LoginDialog = ({ onClick }: Props) => {
   return (
     <>
-      <div className="bg-[#232322] opacity-70 absolute w-[384px] h-[608px] items-center flex justify-center top-0 left-0 z-10"></div>
+      <div className="bg-[#232322] opacity-70 absolute w-full h-full items-center flex justify-center top-0 left-0 z-10"></div>
       <div className="bg-orange-10 absolute rounded-2xl w-[95%] text-center pt-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
         <div className="p-3">
           <div className="text-xl mb-1">Congratulation!</div>

@@ -123,29 +123,27 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
   }, [ref, registerEventListeners, removeAllEventListeners]);
 
   return (
-    <div className="w-full h-full">
-      <div
-        id="game-container"
-        className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-      >
-        {isGameScene && <InGameUI />}
-        {showFriendPanel && <FriendPanel />}
-        {showStaffPanel && <Staff />}
-        {showManagePanel && <Manage />}
-        {showLeaderboardPanel && <LeaderboardPanel />}
-        {showInviteInfoPanel && <InviteInfo />}
-        {showRollPanel && <Roll />}
-        {showQuestPanel && <Task />}
-        {showShopPanel && <Shop />}
-        {showGuildPanel && <Guild />}
-        {showFindGuildPanel && <FindGuild />}
-        {showGuildDetailPanel && <GuildDetail />}
-        {showRestaurantPanel && <Restaurant />}
-        {isShowingLoading && <Loading />}
-        {isShowingSnackbar && <SnackBar />}
-        {showBoostPanel && <Boost />}
-        {showEventPanel && <EventPanel />}
-      </div>
+    <div
+      id="game-container"
+      // className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+    >
+      {isGameScene && <InGameUI />}
+      {showFriendPanel && <FriendPanel />}
+      {showStaffPanel && <Staff />}
+      {showManagePanel && <Manage />}
+      {showLeaderboardPanel && <LeaderboardPanel />}
+      {showInviteInfoPanel && <InviteInfo />}
+      {showRollPanel && <Roll />}
+      {showQuestPanel && <Task />}
+      {showShopPanel && <Shop />}
+      {showGuildPanel && <Guild />}
+      {showFindGuildPanel && <FindGuild />}
+      {showGuildDetailPanel && <GuildDetail />}
+      {showRestaurantPanel && <Restaurant />}
+      {isShowingLoading && <Loading />}
+      {isShowingSnackbar && <SnackBar />}
+      {showBoostPanel && <Boost />}
+      {showEventPanel && <EventPanel />}
     </div>
   );
 });

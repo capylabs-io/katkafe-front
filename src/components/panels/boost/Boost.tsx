@@ -89,7 +89,7 @@ function Boost({}: Props) {
             <div
               className={`absolute cursor-pointer text-center min-w-[112px] left-[62%] -translate-x-[100px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${activeTabClasses}`}
             >
-              Booster
+              <div className="uppercase font-semibold">Booster</div>
             </div>
           </div>
           <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">

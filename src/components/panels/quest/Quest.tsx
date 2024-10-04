@@ -303,7 +303,7 @@ function Task({}: Props) {
                 activeTab === "Daily" ? isActive : ""
               }`}
             >
-              Daily Task
+              <div className="uppercase font-semibold">Daily Task</div>
             </div>
             <div
               onClick={handleAchievementTabClick}
@@ -311,7 +311,7 @@ function Task({}: Props) {
                 activeTab === "Social" ? isActive : ""
               }`}
             >
-              Social Task
+              <div className="uppercase font-semibold"> Social Task</div>
             </div>
           </div>
           <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">

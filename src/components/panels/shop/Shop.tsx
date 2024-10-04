@@ -181,7 +181,7 @@ const Shop = () => {
                   activeTab === TABS.ROLL ? isActive : ""
                 }`}
               >
-                Roll
+                <div className="uppercase font-semibold">Roll</div>
               </div>
               {/* <div
                 onClick={() => handleTabClick(TABS.CAT)}
@@ -314,7 +314,7 @@ const Shop = () => {
         </div>
         {showRewardDialog && (
           <>
-            <div className="bg-[#807f76] opacity-70 absolute w-[384px] h-[608px] items-center flex justify-center top-0 left-0 z-40"></div>
+            <div className="bg-[#807f76] opacity-70 absolute w-full h-full items-center flex justify-center top-0 left-0 z-40"></div>
             {purchasedItem && (
               <RewardDialog
                 type={activeTab === TABS.ROLL ? ShopType.Roll : ShopType.Cat}

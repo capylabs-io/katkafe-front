@@ -26,6 +26,7 @@ import Dialog from "./common/Dialog";
 import { useUserBoostsStore } from "@/stores/boost/userBoostsStore";
 import { BoostType } from "@/types/boost";
 import { Animator } from "./Animator";
+import { CommonDot } from "./CommonDot";
 
 type Click = {
   id: number;
@@ -313,8 +314,8 @@ export const InGameUI = () => {
   }, [restaurants]);
 
   return (
-    <div className="absolute game-ui top-0">
-      <div className="absolute flex w-full justify-around py-4">
+    <div className="absolute game-ui top-0 bottom-0">
+      <div className="absolute flex w-full justify-around py-4 top-4">
         <InfoBox
           key="branch"
           icon={{ url: "/images/coin.png" }}
@@ -384,7 +385,7 @@ export const InGameUI = () => {
           </>
         ))}
       </div>
-      <div className="absolute flex w-full justify-between bottom-4 px-8">
+      <div className="absolute flex w-full justify-between px-8 bottom-8">
         <MenuButton
           key="home"
           title="Home"
@@ -403,8 +404,8 @@ export const InGameUI = () => {
             onClick={() => setShowStaffPanel(true)}
           />
           {showNotiCatUpgrade && (
-            <div className="absolute -top-6 -right-6 pointer-events-none">
-              <Dot size={56} color="red" />
+            <div className="absolute top-0 right-0 pointer-events-none">
+              <CommonDot />
             </div>
           )}
         </div>
@@ -418,8 +419,8 @@ export const InGameUI = () => {
             onClick={() => setShowManagePanel(true)}
           />
           {showNotiRestaurantUpgrade && (
-            <div className="absolute -top-6 -right-6 pointer-events-none">
-              <Dot size={56} color="red" />
+            <div className="absolute top-0 right-0 pointer-events-none">
+              <CommonDot />
             </div>
           )}
         </div>
@@ -449,14 +450,14 @@ export const InGameUI = () => {
 
       {showLoginAward && (
         <>
-          <div className="bg-[#232322] opacity-80 absolute w-[384px] h-[608px] items-center flex justify-center top-0 left-0 z-10"></div>
+          <div className="bg-[#232322] opacity-80 absolute w-full h-full items-center flex justify-center top-0 left-0 z-10"></div>
           <AwardPanel handleClaim={handleClaimFirstTimeLogin} cat={initStaff} />
         </>
       )}
       {!loading && user && !user.isLoginFirstTime && showOfflineEarning && (
         <OfflineEarning onClick={handleOnClick} data={claimableData} />
       )}
-      <div className="absolute left-2.5 top-[20%]">
+      <div className="absolute left-2.5 top-[25%]">
         {/* <MenuButton
           key="shop"
           title="Event"
@@ -475,7 +476,7 @@ export const InGameUI = () => {
           onClick={() => setShowEventPanel(true)}
           fps={6}
         />
-        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-bold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5">
+        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[16px] font-bold drop-shadow-[0px_1.5px_black] text-stroke-[0.5px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
           Events
         </div>
       </div>
