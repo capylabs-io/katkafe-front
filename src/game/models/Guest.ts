@@ -25,6 +25,9 @@ import { AUDIO_EVENTS } from "@/constants/events";
 import { GUEST_AUDIO_COUNT } from "@/constants/audio";
 import { CatAssetType } from "@/types/cat-config";
 import { getCatTextureName } from "../utils/anim";
+import { CatItemObject } from "./CatItem";
+import { getSpecialAura, getSpecialAuraOffset } from "@/utils/cat";
+import { get } from "lodash";
 
 export class GuestObject extends Phaser.Physics.Arcade.Sprite {
   index: number;
@@ -34,11 +37,14 @@ export class GuestObject extends Phaser.Physics.Arcade.Sprite {
   path: PathData;
   isSpecial: boolean;
 
+  specialAura: number;
   currentPointIndex: number = 0;
 
   private worldBounds: Phaser.Geom.Rectangle;
   private dialog: DialogObject;
   private isRemoved: boolean;
+
+  private catSpecialAuraItem: CatItemObject;
 
   private orderInterval: Phaser.Time.TimerEvent;
 
@@ -71,6 +77,11 @@ export class GuestObject extends Phaser.Physics.Arcade.Sprite {
     this.index = index;
     this.isSpecial = isSpecial;
 
+    if (this.isSpecial) this.specialAura = getSpecialAura(index);
+    else this.specialAura = 0;
+
+    if (this.specialAura !== 0) this.generateSpecialAuraItem();
+
     this.speed = GUEST_SPEED;
     this.state = GUEST_STATES.ARRIVING;
     this.worldBounds = scene.physics.world.bounds;
@@ -82,6 +93,19 @@ export class GuestObject extends Phaser.Physics.Arcade.Sprite {
     this.scene.events.on("update", (time: number, delta: number) =>
       this.update(time, delta)
     );
+  }
+
+  private generateSpecialAuraItem() {
+    const offset = getSpecialAuraOffset(this.specialAura);
+    this.catSpecialAuraItem = new CatItemObject(
+      this.scene,
+      this,
+      CatAssetType.SpecialAura,
+      this.specialAura,
+      offset.x,
+      offset.y
+    );
+    this.catSpecialAuraItem.playAnimation();
   }
 
   update(time: number, delta: number) {
@@ -144,6 +168,7 @@ export class GuestObject extends Phaser.Physics.Arcade.Sprite {
     if (this.orderInterval) this.orderInterval.remove();
     if (this.body) this.body.destroy();
     if (this.dialog) this.dialog.destroy(true);
+    if (this.catSpecialAuraItem) this.catSpecialAuraItem.destroy();
   }
 
   private showOrderDialog() {

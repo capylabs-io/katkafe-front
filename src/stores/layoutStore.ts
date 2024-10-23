@@ -1,3 +1,4 @@
+import { set } from "lodash";
 import { create } from "zustand";
 
 type States = {
@@ -21,6 +22,8 @@ type States = {
   //Events
   showEventPanel: boolean;
   showRewardPanel: boolean;
+
+  showRedeemPanel: boolean;
 
   // Leaderboard
   showLeaderboardPanel: boolean;
@@ -47,6 +50,7 @@ type Actions = {
   //Events
   setShowEventPanel: (show: boolean) => void;
   setShowRewardPanel: (show: boolean) => void;
+  setShowRedeemPanel(show: boolean): void;
 
   // Leaderboard
   setShowLeaderboardPanel: (show: boolean) => void;
@@ -72,13 +76,14 @@ const defaultStates = {
   //Events
   showEventPanel: false,
   showRewardPanel: false,
-
+  showRedeemPanel: false,
   //
   showLeaderboardPanel: false,
 };
 
 export const useLayoutStore = create<States & Actions>((set) => ({
   ...defaultStates,
+  setShowRedeemPanel: (show: boolean) => set({ showRedeemPanel: show }),
   setShowEventPanel: (show: boolean) => {
     set({ showEventPanel: show });
     set({ isAnyPanelOpen: show });

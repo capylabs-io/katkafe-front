@@ -60,6 +60,7 @@ export const InGameUI = () => {
     setShowRestaurantPanel,
     setShowBoostPanel,
     setShowEventPanel,
+    setShowRedeemPanel,
   ] = useLayoutStore((state) => [
     state.setShowManagePanel,
     state.setShowStaffPanel,
@@ -67,6 +68,7 @@ export const InGameUI = () => {
     state.setShowRestaurantPanel,
     state.setShowBoostPanel,
     state.setShowEventPanel,
+    state.setShowRedeemPanel,
   ]);
 
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
@@ -477,6 +479,29 @@ export const InGameUI = () => {
         />
         <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-bold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5">
           Events
+        </div>
+      </div>
+      <div className="absolute right-2.5 top-[20%]">
+        {/* <MenuButton
+          key="shop"
+          title="Event"
+          icon={{
+            url: "/images/task.png",
+            size: 56,
+          }}
+          onClick={() => setShowEventPanel(true)}
+          showButtonBg={false}
+        /> */}
+        <Animator
+          width={64}
+          height={72}
+          url="/images/redeem-btn.png"
+          steps={4}
+          onClick={() => setShowRedeemPanel(true)}
+          fps={6}
+        />
+        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-bold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5">
+          Redeem
         </div>
       </div>
     </div>

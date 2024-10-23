@@ -31,6 +31,7 @@ import SnackBar from "@/components/ui/common/SnackBar";
 import { useSnackBarStore } from "@/stores/SnackBarStore";
 import Boost from "@/components/panels/boost/Boost";
 import EventPanel from "@/components/panels/event/Event";
+import { RedeemPanel } from "@/components/panels/redeem/Redeem";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -62,6 +63,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     showBoostPanel,
     showEventPanel,
     showRewardPanel,
+    showRedeemPanel,
   ] = useLayoutStore((state) => [
     state.showFriendPanel,
     state.showManagePanel,
@@ -78,6 +80,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     state.showBoostPanel,
     state.showEventPanel,
     state.showRewardPanel,
+    state.showRedeemPanel,
   ]);
 
   const [isShowingLoading] = useLoadingStore((state) => [state.isShowing]);
@@ -145,6 +148,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
         {isShowingSnackbar && <SnackBar />}
         {showBoostPanel && <Boost />}
         {showEventPanel && <EventPanel />}
+        {showRedeemPanel && <RedeemPanel />}
       </div>
     </div>
   );

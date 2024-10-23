@@ -10,6 +10,7 @@ export const LAYERS = {
   CAT_CAPE: 7,
   CAT_FACE: 8,
   CAT_HAT: 9,
+  CAT_SPECIAL_AURA: 10,
 
   DIALOG: 98,
   UI: 100,

@@ -12,3 +12,10 @@ export const doEventQuest = async (questCode: string) => {
   });
   return response.data;
 };
+
+export const redeemGiftCode = async (code: string) => {
+  const response = await katAxios.post(`${BASE_URL}/gift-code/redeem`, {
+    giftCode: code,
+  });
+  return response.data;
+};
