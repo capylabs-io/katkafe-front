@@ -32,6 +32,8 @@ import { useSnackBarStore } from "@/stores/SnackBarStore";
 import Boost from "@/components/panels/boost/Boost";
 import EventPanel from "@/components/panels/event/Event";
 import { RedeemPanel } from "@/components/panels/redeem/Redeem";
+import { ShopConfirmDialog } from "@/components/ui/shop/ShopConfirmDialog";
+import { PurchaseResultDialog } from "@/components/ui/shop/PurchaseResultDialog";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -149,6 +151,8 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
         {showBoostPanel && <Boost />}
         {showEventPanel && <EventPanel />}
         {showRedeemPanel && <RedeemPanel />}
+        <ShopConfirmDialog />
+        <PurchaseResultDialog />
       </div>
     </div>
   );

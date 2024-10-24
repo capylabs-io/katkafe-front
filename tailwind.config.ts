@@ -93,7 +93,7 @@ const config: Config = {
     },
   },
   plugins: [
-	daisyui,
+    daisyui,
     require("@designbycode/tailwindcss-text-stroke"),
     function ({ addUtilities }) {
       const newUtilities = {

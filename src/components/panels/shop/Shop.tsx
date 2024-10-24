@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import CatCard from "@/components/ui/CatCard";
 import RewardDialog from "@/components/ui/RewardDialog";
 import { Bundle, ShopType } from "@/types/bundle";
-import { CURRENCY_TYPES, Item } from "@/types/item";
+import { CURRENCY_TYPES, Item, ITEM_TYPES } from "@/types/item";
 import CardInfo from "@/components/ui/CardInfo";
 import { useStaffStore } from "@/stores/staffStore";
 import { buyItem, getItems } from "@/requests/shop/item";
@@ -23,10 +23,14 @@ import {
 } from "@/components/ui/Popover";
 import { get } from "lodash";
 import NumberFormatter from "@/components/ui/NumberFormat";
+import { InfoBox } from "@/components/ui/InfoBox";
+import { GemShopContent } from "./GemShopContent";
 
 const TABS = {
   CAT: "Cat",
   ROLL: "Roll",
+  BOOSTER: "Booster",
+  GEM: "Gem",
 };
 
 const Shop = () => {
@@ -88,7 +92,7 @@ const Shop = () => {
       setCurrentItem(item);
     }
     if (!user) return;
-    if (Number(user.bean) < item.price) {
+    if (Number(user.bean) < Number(item.price)) {
       setShowNotiBean(true);
       showSnackbar("Not enough gold!");
       return;
@@ -100,7 +104,6 @@ const Shop = () => {
         itemId: item._id,
         currencyType,
       };
-      console.log("body", body);
       const response = await buyItem(body);
       if (response) {
         setPurchasedItem(response.items.cats[0]);
@@ -130,6 +133,9 @@ const Shop = () => {
         case TABS.CAT:
           type = "cat";
           break;
+        case TABS.GEM:
+          type = ITEM_TYPES.STAR;
+          break;
         default:
           type = "pack";
           break;
@@ -156,6 +162,78 @@ const Shop = () => {
     }
   };
 
+  const packItems = items.filter((item) => item.type === ITEM_TYPES.PACK);
+
+  const gemShopContent = <GemShopContent />;
+
+  const rollCatShopContent = (
+    <div className="bg-orange-10 rounded-b-[20px] flex flex-wrap justify-center rounded-t border border-gray-20 w-full overflow-y-auto h-[calc(100%-32px)] p-4 mt-8">
+      <div className="bg-[url('/images/bg-name.png')] w-[170px] h-[35px] bg-contain bg-center bg-no-repeat text-center mb-6">
+        <div className="text-center uppercase">deal of the day</div>
+      </div>
+      <div className="w-full flex flex-wrap gap-10 justify-center">
+        {packItems.map((item) => (
+          <div key={item._id} className="flex flex-col items-center gap-y-2">
+            <div className="w-[114px] h-[186px]">
+              <Image
+                alt="pack image"
+                src={item.imgUrl}
+                width={114}
+                height={186}
+              />
+            </div>
+            <Popover>
+              <PopoverTrigger>
+                <div className="text-orange-90 flex items-center hover:cursor-pointer">
+                  <div>{item.itemName}</div>
+                  <InfoIcon size={16} className="ml-2 cursor-pointer" />
+                </div>
+              </PopoverTrigger>
+              <PopoverContent className="w-[150px] bg-[#fffde9] text-orange-90">
+                <div>
+                  <div className="text-bold text-black">Rarity Info</div>
+                  <div className="flex flex-row gap-x-1.5">
+                    <div>Common:</div>
+                    <div>{get(item, "data.rarity.common", 0)}%</div>
+                  </div>
+                  <div className="flex flex-row gap-x-1.5">
+                    <div className="text-[#5e80d8]">Rare:</div>
+                    <div>{get(item, "data.rarity.rare", 0)}%</div>
+                  </div>
+                  <div className="flex flex-row gap-x-1.5">
+                    <div className="text-[#a8163d]">Epic:</div>
+                    <div>{get(item, "data.rarity.epic", 0)}%</div>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+
+            <div className="w-[90px] h-[30px] flex flex-col justify-center items-center gap-y-1.5 mt-2">
+              <Button onClick={() => showConfirm(item, CURRENCY_TYPES.BEAN)}>
+                <NumberFormatter value={item.price} />
+                <img className="w-4 h-4 ml-1" src="./images/coin.png" alt="" />
+              </Button>
+              <Button onClick={() => showConfirm(item, CURRENCY_TYPES.DIAMOND)}>
+                <NumberFormatter value={item.diamondPrice} />
+                <img className="w-4 h-4 ml-1" src="./images/kbuck.png" alt="" />
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const renderShopContent = () => {
+    switch (activeTab) {
+      default:
+      case TABS.ROLL:
+        return rollCatShopContent;
+      case TABS.GEM:
+        return gemShopContent;
+    }
+  };
+
   useEffect(() => {
     fetchItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -174,14 +252,22 @@ const Shop = () => {
                 onClick={handleClose}
               />
             </div>
-            <div className="flex">
+            <div className="flex w-full">
               <div
                 onClick={() => handleTabClick(TABS.ROLL)}
-                className={`absolute cursor-pointer left-1/2 -translate-x-[50px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                className={`absolute cursor-pointer left-1/2 -translate-x-[100px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
                   activeTab === TABS.ROLL ? isActive : ""
                 }`}
               >
                 Roll
+              </div>
+              <div
+                onClick={() => handleTabClick(TABS.GEM)}
+                className={`absolute cursor-pointer left-1/2 translate-x-[10px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                  activeTab === TABS.GEM ? isActive : ""
+                }`}
+              >
+                Diamond
               </div>
               {/* <div
                 onClick={() => handleTabClick(TABS.CAT)}
@@ -231,85 +317,7 @@ const Shop = () => {
                 </div>
               </div>
             )} */}
-            {activeTab === TABS.ROLL && (
-              <div className="bg-orange-10 rounded-b-[20px] flex flex-wrap justify-center rounded-t border border-gray-20 w-full overflow-y-auto h-[calc(100%-32px)] p-4 mt-8">
-                <div className="bg-[url('/images/bg-name.png')] w-[170px] h-[35px] bg-contain bg-center bg-no-repeat text-center mb-6">
-                  <div className="text-center uppercase">deal of the day</div>
-                </div>
-                <div className="w-full flex flex-wrap gap-10 justify-center">
-                  {items.map((item) => (
-                    <div
-                      key={item._id}
-                      className="flex flex-col items-center gap-y-2"
-                    >
-                      <div className="w-[114px] h-[186px]">
-                        <Image
-                          alt="pack image"
-                          src={item.imgUrl}
-                          width={114}
-                          height={186}
-                        />
-                      </div>
-                      <Popover>
-                        <PopoverTrigger>
-                          <div className="text-orange-90 flex items-center hover:cursor-pointer">
-                            <div>{item.itemName}</div>
-                            <InfoIcon
-                              size={16}
-                              className="ml-2 cursor-pointer"
-                            />
-                          </div>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-[150px] bg-[#fffde9] text-orange-90">
-                          <div>
-                            <div className="text-bold text-black">
-                              Rarity Info
-                            </div>
-                            <div className="flex flex-row gap-x-1.5">
-                              <div>Common:</div>
-                              <div>{get(item, "data.rarity.common", 0)}%</div>
-                            </div>
-                            <div className="flex flex-row gap-x-1.5">
-                              <div className="text-[#5e80d8]">Rare:</div>
-                              <div>{get(item, "data.rarity.rare", 0)}%</div>
-                            </div>
-                            <div className="flex flex-row gap-x-1.5">
-                              <div className="text-[#a8163d]">Epic:</div>
-                              <div>{get(item, "data.rarity.epic", 0)}%</div>
-                            </div>
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-
-                      <div className="w-[90px] h-[30px] flex flex-col justify-center items-center gap-y-1.5 mt-2">
-                        <Button
-                          onClick={() => showConfirm(item, CURRENCY_TYPES.BEAN)}
-                        >
-                          <NumberFormatter value={item.price} />
-                          <img
-                            className="w-4 h-4 ml-1"
-                            src="./images/coin.png"
-                            alt=""
-                          />
-                        </Button>
-                        <Button
-                          onClick={() =>
-                            showConfirm(item, CURRENCY_TYPES.DIAMOND)
-                          }
-                        >
-                          <NumberFormatter value={item.diamondPrice} />
-                          <img
-                            className="w-4 h-4 ml-1"
-                            src="./images/kbuck.png"
-                            alt=""
-                          />
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            {renderShopContent()}
           </div>
         </div>
         {showRewardDialog && (
