@@ -16,6 +16,7 @@ import { EventBus } from "../EventBus";
 import { EVENT_BUS_TYPES, UI_BUTTON } from "@/constants/events";
 import Locations from "@/game/config/locations.json";
 import { LocationsData } from "@/types/location";
+import { getOffsetByLocation } from "@/utils/helpers";
 
 export class GameUI {
   locationsData: LocationsData;
@@ -115,7 +116,7 @@ export class GameUI {
 
     this.uiGroup.add(
       this.scene.add
-        .text(GAME_WIDTH / 2, 402, "Collect", {
+        .text(GAME_WIDTH / 2, 466, "Collect", {
           fontFamily: "Pixelify Sans",
           fontSize: 36,
           color: "#ffffff",
@@ -159,7 +160,7 @@ export class GameUI {
       LAYERS.OBJECT,
       {
         title: "Rank",
-        offset: 64,
+        offset: getOffsetByLocation(currentLocation),
       },
       () => EventBus.emit(EVENT_BUS_TYPES.UI_BUTTON_CLICK, UI_BUTTON.RANK)
     );
@@ -175,7 +176,7 @@ export class GameUI {
       LAYERS.OBJECT,
       {
         title: "Friend",
-        offset: 64,
+        offset: getOffsetByLocation(currentLocation),
       },
       () => EventBus.emit(EVENT_BUS_TYPES.UI_BUTTON_CLICK, UI_BUTTON.FRIEND)
     );

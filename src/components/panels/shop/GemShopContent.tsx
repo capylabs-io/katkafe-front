@@ -63,7 +63,6 @@ export const GemShopContent = () => {
     showLoading();
     try {
       const res = await createStarInvoice(item._id);
-      console.log("res", res);
       const invoiceUrl = get(res, "invoiceLink");
       if (!invoiceUrl) {
         showSnackbar("Failed to create invoice!");

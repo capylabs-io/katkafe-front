@@ -166,6 +166,7 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
     if (this.dialogInterval) this.dialogInterval.remove();
 
     if (!this.isSpecial) this.destroyCatItems();
+    if (this.catSpecialAuraItem) this.catSpecialAuraItem.destroy();
   }
 
   private destroyCatItems() {
@@ -174,7 +175,6 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
     if (this.catFaceItem) this.catFaceItem.destroy();
     if (this.catCapeItem) this.catCapeItem.destroy();
     if (this.catHatItem) this.catHatItem.destroy();
-    if (this.catSpecialAuraItem) this.catSpecialAuraItem.destroy();
   }
 
   private playItemsAnimation(animName: string) {

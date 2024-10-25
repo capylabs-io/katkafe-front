@@ -44,7 +44,7 @@ export const getSpecialAuraOffset = (id: number) => {
     case 1:
       return { x: 0, y: -56 };
     case 2:
-      return { x: 0, y: -56 };
+      return { x: 0, y: -48 };
     default:
       return { x: 0, y: 0 };
   }
