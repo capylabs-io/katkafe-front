@@ -204,19 +204,37 @@ const Shop = () => {
                     <div className="text-[#a8163d]">Epic:</div>
                     <div>{get(item, "data.rarity.epic", 0)}%</div>
                   </div>
+                  <div className="flex flex-row gap-x-1.5">
+                    <div className="text-[#a8163d]">Legendary:</div>
+                    <div>{get(item, "data.rarity.legendary", 0)}%</div>
+                  </div>
                 </div>
               </PopoverContent>
             </Popover>
 
             <div className="w-[90px] h-[30px] flex flex-col justify-center items-center gap-y-1.5 mt-2">
-              <Button onClick={() => showConfirm(item, CURRENCY_TYPES.BEAN)}>
-                <NumberFormatter value={item.price} />
-                <img className="w-4 h-4 ml-1" src="./images/coin.png" alt="" />
-              </Button>
-              <Button onClick={() => showConfirm(item, CURRENCY_TYPES.DIAMOND)}>
-                <NumberFormatter value={item.diamondPrice} />
-                <img className="w-4 h-4 ml-1" src="./images/kbuck.png" alt="" />
-              </Button>
+              {get(item, "price").toString() !== "0" && (
+                <Button onClick={() => showConfirm(item, CURRENCY_TYPES.BEAN)}>
+                  <NumberFormatter value={item.price} />
+                  <img
+                    className="w-4 h-4 ml-1"
+                    src="./images/coin.png"
+                    alt=""
+                  />
+                </Button>
+              )}
+              {get(item, "diamondPrice").toString() !== "0" && (
+                <Button
+                  onClick={() => showConfirm(item, CURRENCY_TYPES.DIAMOND)}
+                >
+                  <NumberFormatter value={item.diamondPrice} />
+                  <img
+                    className="w-4 h-4 ml-1"
+                    src="./images/kbuck.png"
+                    alt=""
+                  />
+                </Button>
+              )}
             </div>
           </div>
         ))}

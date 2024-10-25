@@ -64,7 +64,6 @@ function EventPanel({}: Props) {
       showLoading();
       //TODO: call finish quest
       const res = await doEventQuest(quest.questCode);
-      console.log("res", res);
       if (!res) {
         showSnackbar("Claim quest failed!");
         return;
