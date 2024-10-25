@@ -3,6 +3,7 @@ import { CatObject } from "./Cat";
 import { GuestObject } from "./Guest";
 import { getCatTextureName, getCatItemLayer } from "../utils/anim";
 import { CATS_SCALE } from "@/constants/config";
+import { CatAssetType } from "@/types/cat-config";
 
 export class CatItemObject extends Phaser.GameObjects.Sprite {
   parent: GuestObject | CatObject;
@@ -47,7 +48,10 @@ export class CatItemObject extends Phaser.GameObjects.Sprite {
     this.y = this.parent.y + this.offsetY;
   }
 
-  playAnimation(animName: string) {
-    this.play(`${getCatTextureName(this.assetType, this.index)}-${animName}`);
+  playAnimation(animName?: string) {
+    if (this.assetType === CatAssetType.SpecialAura)
+      this.play(`Special-Aura-${this.index}`);
+    else
+      this.play(`${getCatTextureName(this.assetType, this.index)}-${animName}`);
   }
 }

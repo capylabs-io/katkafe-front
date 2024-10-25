@@ -142,7 +142,7 @@ function EventPanel({}: Props) {
           activeTab === TAB.INFO ? isActive : ""
         }`}
       >
-        Info
+        <div className="uppercase font-semibold">Info</div>
       </div>
       <div
         onClick={handleQuestTabClick}
@@ -150,7 +150,7 @@ function EventPanel({}: Props) {
           activeTab === TAB.QUEST ? isActive : ""
         }`}
       >
-        Quest
+        <div className="uppercase font-semibold"> Quest</div>
       </div>
     </div>
   );

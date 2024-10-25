@@ -36,7 +36,7 @@ export class Game extends Scene {
       this.gameUI.enableLoadingLocation();
       this.currentLocation = restaurant.order;
       await this.generateCatsByRestaurant(restaurant!);
-      this.gameUI.drawLocation(restaurant!.order);
+      this.gameUI.drawLocation(this.currentLocation);
       this.gameUI.disableLoadingLocation();
     }
   }

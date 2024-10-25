@@ -31,6 +31,9 @@ import SnackBar from "@/components/ui/common/SnackBar";
 import { useSnackBarStore } from "@/stores/SnackBarStore";
 import Boost from "@/components/panels/boost/Boost";
 import EventPanel from "@/components/panels/event/Event";
+import { RedeemPanel } from "@/components/panels/redeem/Redeem";
+import { ShopConfirmDialog } from "@/components/ui/shop/ShopConfirmDialog";
+import { PurchaseResultDialog } from "@/components/ui/shop/PurchaseResultDialog";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -62,6 +65,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     showBoostPanel,
     showEventPanel,
     showRewardPanel,
+    showRedeemPanel,
   ] = useLayoutStore((state) => [
     state.showFriendPanel,
     state.showManagePanel,
@@ -78,6 +82,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     state.showBoostPanel,
     state.showEventPanel,
     state.showRewardPanel,
+    state.showRedeemPanel,
   ]);
 
   const [isShowingLoading] = useLoadingStore((state) => [state.isShowing]);
@@ -123,29 +128,30 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
   }, [ref, registerEventListeners, removeAllEventListeners]);
 
   return (
-    <div className="w-full h-full">
-      <div
-        id="game-container"
-        className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-      >
-        {isGameScene && <InGameUI />}
-        {showFriendPanel && <FriendPanel />}
-        {showStaffPanel && <Staff />}
-        {showManagePanel && <Manage />}
-        {showLeaderboardPanel && <LeaderboardPanel />}
-        {showInviteInfoPanel && <InviteInfo />}
-        {showRollPanel && <Roll />}
-        {showQuestPanel && <Task />}
-        {showShopPanel && <Shop />}
-        {showGuildPanel && <Guild />}
-        {showFindGuildPanel && <FindGuild />}
-        {showGuildDetailPanel && <GuildDetail />}
-        {showRestaurantPanel && <Restaurant />}
-        {isShowingLoading && <Loading />}
-        {isShowingSnackbar && <SnackBar />}
-        {showBoostPanel && <Boost />}
-        {showEventPanel && <EventPanel />}
-      </div>
+    <div
+      id="game-container"
+      // className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+    >
+      {isGameScene && <InGameUI />}
+      {showFriendPanel && <FriendPanel />}
+      {showStaffPanel && <Staff />}
+      {showManagePanel && <Manage />}
+      {showLeaderboardPanel && <LeaderboardPanel />}
+      {showInviteInfoPanel && <InviteInfo />}
+      {showRollPanel && <Roll />}
+      {showQuestPanel && <Task />}
+      {showShopPanel && <Shop />}
+      {showGuildPanel && <Guild />}
+      {showFindGuildPanel && <FindGuild />}
+      {showGuildDetailPanel && <GuildDetail />}
+      {showRestaurantPanel && <Restaurant />}
+      {isShowingLoading && <Loading />}
+      {isShowingSnackbar && <SnackBar />}
+      {showBoostPanel && <Boost />}
+      {showEventPanel && <EventPanel />}
+      {showRedeemPanel && <RedeemPanel />}
+      <ShopConfirmDialog />
+      <PurchaseResultDialog />
     </div>
   );
 });

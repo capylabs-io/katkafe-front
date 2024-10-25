@@ -10,6 +10,7 @@ export enum EventRewardType {
 export type EventReward = {
   type: EventRewardType;
   value: string;
+  catId?: string;
 };
 
 export type EventType = {

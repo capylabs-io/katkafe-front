@@ -52,7 +52,7 @@ export const LeaderboardPanel = () => {
               />
             </div>
             <div className="absolute left-1/2 -translate-x-1/2 -translate-y-[28px] border-2 px-6 py-2 border-orange-90 bg-orange-10 rounded-t-xl text-orange-90">
-              LEADERBOARD
+              <div className="uppercase font-semibold">LEADERBOARD</div>
             </div>
 
             <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">
@@ -92,7 +92,9 @@ export const LeaderboardPanel = () => {
                       </CardContent>
                       <CardFooter className="p-0 my-2">
                         <div className="flex justify-center w-full">
-                          <div className="text-sm">{item.value}</div>
+                          <div className="text-sm uppercase font-medium">
+                            {item.value}
+                          </div>
                         </div>
                       </CardFooter>
                     </Card>

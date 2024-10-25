@@ -15,3 +15,10 @@ export const buyItem = async (body: BuyBody) => {
   const response = await katAxios.post(`${BASE_URL}/shops/buy-item`, body);
   return response.data;
 };
+
+export const createStarInvoice = async (itemId: string) => {
+  const response = await katAxios.post(`${BASE_URL}/shops/invoice`, {
+    itemId,
+  });
+  return response.data;
+};

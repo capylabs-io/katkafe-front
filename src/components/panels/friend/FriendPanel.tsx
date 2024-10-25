@@ -108,7 +108,7 @@ export const FriendPanel: React.FC = () => {
                 activeTab === TABS.FRIENDLIST ? isActive : ""
               }`}
             >
-              {TABS.FRIENDLIST}
+              <div className="uppercase font-semibold">{TABS.FRIENDLIST}</div>
             </div>
             <div
               onClick={() => handleTabClick(TABS.INVITE)}
@@ -116,7 +116,7 @@ export const FriendPanel: React.FC = () => {
                 activeTab === TABS.INVITE ? isActive : ""
               }`}
             >
-              {TABS.INVITE}
+              <div className="uppercase font-semibold">{TABS.INVITE}</div>
             </div>
           </div>
           <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">
