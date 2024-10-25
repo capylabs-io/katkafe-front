@@ -33,3 +33,15 @@ export const isoStringToDateTimeString = (
   const date = moment(isoString).utc();
   return date.format(format);
 };
+
+export const getOffsetByLocation = (currentLocation: number) => {
+  switch (currentLocation) {
+    default:
+    case 1:
+    case 2:
+    case 3:
+      return 64;
+    case 4:
+      return 8;
+  }
+};

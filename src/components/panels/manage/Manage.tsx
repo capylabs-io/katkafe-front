@@ -352,7 +352,7 @@ const Manage: React.FC = () => {
                 activeTab === TABS.CAFE ? isActive : ""
               }`}
             >
-              Cafe
+              <div className="uppercase font-semibold">Cafe</div>
             </div>
             <div
               onClick={() => handleTabClick(TABS.STAFF)}
@@ -360,7 +360,7 @@ const Manage: React.FC = () => {
                 activeTab === TABS.STAFF ? isActive : ""
               }`}
             >
-              Staff
+              <div className="uppercase font-semibold">Staff</div>
             </div>
           </div>
           <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">
@@ -588,7 +588,7 @@ const Manage: React.FC = () => {
       </div>
       {showDialog && (
         <>
-          <div className="bg-[#807f76] opacity-70 absolute w-[384px] h-[608px] items-center flex justify-center top-0 left-0 z-10"></div>
+          <div className="bg-[#807f76] opacity-70 absolute w-full h-full items-center flex justify-center top-0 left-0 z-10"></div>
           <RemoveConfirmDialog
             handleClick={handleRemoveAll}
             onClose={() => setShowDialog(false)}

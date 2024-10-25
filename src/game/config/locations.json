@@ -3,15 +3,15 @@
     "assets": {
       "Button-Rank": {
         "x": 292,
-        "y": 64
+        "y": 112
       },
       "Button-Friend": {
         "x": 352,
-        "y": 64
+        "y": 112
       },
       "Button-Quest": {
         "x": 64,
-        "y": 64
+        "y": 112
       },
       "Button-Swap": {
         "x": 102,
@@ -21,18 +21,6 @@
     "spawnPoints": [
       {
         "x": 78,
-        "y": 316
-      },
-      {
-        "x": 182,
-        "y": 316
-      },
-      {
-        "x": 294,
-        "y": 316
-      },
-      {
-        "x": 78,
         "y": 388
       },
       {
@@ -54,6 +42,18 @@
       {
         "x": 294,
         "y": 460
+      },
+      {
+        "x": 78,
+        "y": 532
+      },
+      {
+        "x": 182,
+        "y": 532
+      },
+      {
+        "x": 294,
+        "y": 532
       }
     ],
     "paths": [
@@ -61,7 +61,7 @@
         {
           "position": {
             "x": 152,
-            "y": 24
+            "y": 64
           },
           "behavior": {
             "type": "forward",
@@ -71,7 +71,7 @@
         {
           "position": {
             "x": 152,
-            "y": 176
+            "y": 224
           },
           "behavior": {
             "type": "forward",
@@ -83,7 +83,7 @@
         {
           "position": {
             "x": 232,
-            "y": 24
+            "y": 64
           },
           "behavior": {
             "type": "forward",
@@ -93,7 +93,7 @@
         {
           "position": {
             "x": 232,
-            "y": 176
+            "y": 224
           },
           "behavior": {
             "type": "forward",
@@ -107,15 +107,15 @@
     "assets": {
       "Button-Rank": {
         "x": 292,
-        "y": 64
+        "y": 128
       },
       "Button-Friend": {
         "x": 352,
-        "y": 64
+        "y": 128
       },
       "Button-Quest": {
         "x": 64,
-        "y": 64
+        "y": 96
       },
       "Button-Swap": {
         "x": 102,
@@ -125,18 +125,6 @@
     "spawnPoints": [
       {
         "x": 78,
-        "y": 316
-      },
-      {
-        "x": 182,
-        "y": 316
-      },
-      {
-        "x": 294,
-        "y": 316
-      },
-      {
-        "x": 78,
         "y": 388
       },
       {
@@ -158,6 +146,18 @@
       {
         "x": 294,
         "y": 460
+      },
+      {
+        "x": 78,
+        "y": 532
+      },
+      {
+        "x": 182,
+        "y": 532
+      },
+      {
+        "x": 294,
+        "y": 532
       }
     ],
     "paths": [
@@ -165,7 +165,7 @@
         {
           "position": {
             "x": 152,
-            "y": 24
+            "y": 64
           },
           "behavior": {
             "type": "forward",
@@ -175,7 +175,7 @@
         {
           "position": {
             "x": 152,
-            "y": 152
+            "y": 224
           },
           "behavior": {
             "type": "forward",
@@ -187,7 +187,7 @@
         {
           "position": {
             "x": 232,
-            "y": 24
+            "y": 64
           },
           "behavior": {
             "type": "forward",
@@ -197,7 +197,7 @@
         {
           "position": {
             "x": 232,
-            "y": 152
+            "y": 224
           },
           "behavior": {
             "type": "forward",
@@ -211,11 +211,11 @@
     "assets": {
       "Button-Rank": {
         "x": 292,
-        "y": 64
+        "y": 96
       },
       "Button-Friend": {
         "x": 352,
-        "y": 64
+        "y": 96
       },
       "Button-Quest": {
         "x": 64,
@@ -229,16 +229,108 @@
     "spawnPoints": [
       {
         "x": 78,
-        "y": 316
+        "y": 388
       },
       {
         "x": 182,
-        "y": 316
+        "y": 388
       },
       {
         "x": 294,
-        "y": 316
+        "y": 388
       },
+      {
+        "x": 78,
+        "y": 460
+      },
+      {
+        "x": 182,
+        "y": 460
+      },
+      {
+        "x": 294,
+        "y": 460
+      },
+      {
+        "x": 78,
+        "y": 532
+      },
+      {
+        "x": 182,
+        "y": 532
+      },
+      {
+        "x": 294,
+        "y": 532
+      }
+    ],
+    "paths": [
+      [
+        {
+          "position": {
+            "x": 164,
+            "y": 24
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "down"
+          }
+        },
+        {
+          "position": {
+            "x": 164,
+            "y": 224
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "left"
+          }
+        }
+      ],
+      [
+        {
+          "position": {
+            "x": 220,
+            "y": 24
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "down"
+          }
+        },
+        {
+          "position": {
+            "x": 220,
+            "y": 224
+          },
+          "behavior": {
+            "type": "forward",
+            "direction": "right"
+          }
+        }
+      ]
+    ]
+  },
+  "location-4": {
+    "assets": {
+      "Button-Rank": {
+        "x": 284,
+        "y": 128
+      },
+      "Button-Friend": {
+        "x": 348,
+        "y": 128
+      },
+      "Button-Quest": {
+        "x": 64,
+        "y": 128
+      },
+      "Button-Swap": {
+        "x": 102,
+        "y": 218
+      }
+    },
+    "spawnPoints": [
       {
         "x": 78,
         "y": 388
@@ -262,6 +354,18 @@
       {
         "x": 294,
         "y": 460
+      },
+      {
+        "x": 78,
+        "y": 532
+      },
+      {
+        "x": 182,
+        "y": 532
+      },
+      {
+        "x": 294,
+        "y": 532
       }
     ],
     "paths": [
@@ -279,7 +383,7 @@
         {
           "position": {
             "x": 152,
-            "y": 152
+            "y": 224
           },
           "behavior": {
             "type": "forward",
@@ -301,7 +405,7 @@
         {
           "position": {
             "x": 232,
-            "y": 152
+            "y": 224
           },
           "behavior": {
             "type": "forward",

@@ -24,7 +24,6 @@ export const useEventBus = () => {
       if (isAnyPanelOpen) return;
       switch (uiButton) {
         case UI_BUTTON.FRIEND:
-          console.log("Friend button clicked");
           setShowFriendPanel(true);
           break;
         // case UI_BUTTON.GACHA:
@@ -36,11 +35,9 @@ export const useEventBus = () => {
         //   setShowGuildPanel(true);
         //   break;
         case UI_BUTTON.QUEST:
-          console.log("Quest button clicked");
           setShowQuestPanel(true);
           break;
         case UI_BUTTON.RANK:
-          console.log("Rank button clicked");
           setShowLeaderboardPanel(true);
           break;
       }

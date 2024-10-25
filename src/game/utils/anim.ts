@@ -13,6 +13,9 @@ export const getCatItemLayer = (assetType: string) => {
       return LAYERS.CAT_CAPE;
     case CatAssetType.Aura:
       return LAYERS.CAT_AURA;
+    case CatAssetType.SpecialAura:
+      return LAYERS.CAT_SPECIAL_AURA;
+
     default:
       return LAYERS.CAT_BASE;
   }

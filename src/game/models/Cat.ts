@@ -29,6 +29,7 @@ import { Staff } from "@/types/common-types";
 import { get } from "lodash";
 import { CatAssetType, CatRarity } from "@/types/cat-config";
 import { CatItemObject } from "./CatItem";
+import { getSpecialAura, getSpecialAuraOffset } from "@/utils/cat";
 
 export class CatObject extends Phaser.Physics.Arcade.Sprite {
   id: string;
@@ -45,6 +46,8 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
   catCape: number;
   catLevel: number;
 
+  specialAura: number;
+
   isSpecial: boolean;
   rarity: string;
 
@@ -54,6 +57,7 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
   private catFaceItem: CatItemObject;
   private catCapeItem: CatItemObject;
   private catAuraItem: CatItemObject;
+  private catSpecialAuraItem: CatItemObject;
 
   private dialog: DialogObject;
 
@@ -88,6 +92,10 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
     this.isSpecial = get(data, "isSpecial", false);
     this.rarity = get(data, "rarity", CatRarity.Common);
 
+    if (this.isSpecial)
+      this.specialAura = getSpecialAura(get(data, "catAsset", 1));
+    else this.specialAura = 0;
+
     this.setDepth(LAYERS.CAT_BASE);
     this.setScale(CATS_SCALE);
     this.setVelocity(0);
@@ -106,6 +114,7 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
     this.speed = Phaser.Math.Between(CAT_MIN_SPEED, CAT_MAX_SPEED);
     //Cat Items
     if (!this.isSpecial) this.generateCatItems();
+    if (this.specialAura !== 0) this.generateSpecialAuraItem();
 
     this.playAnimation();
     this.resetDialogInterval();
@@ -115,6 +124,18 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
       callbackScope: this,
       loop: false,
     });
+  }
+
+  private generateSpecialAuraItem() {
+    const offset = getSpecialAuraOffset(this.specialAura);
+    this.catSpecialAuraItem = new CatItemObject(
+      this.scene,
+      this,
+      CatAssetType.SpecialAura,
+      this.specialAura,
+      offset.x,
+      offset.y
+    );
   }
 
   private generateCatItems() {
@@ -145,6 +166,7 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
     if (this.dialogInterval) this.dialogInterval.remove();
 
     if (!this.isSpecial) this.destroyCatItems();
+    if (this.catSpecialAuraItem) this.catSpecialAuraItem.destroy();
   }
 
   private destroyCatItems() {
@@ -161,6 +183,7 @@ export class CatObject extends Phaser.Physics.Arcade.Sprite {
     if (this.catFaceItem) this.catFaceItem.playAnimation(animName);
     if (this.catCapeItem) this.catCapeItem.playAnimation(animName);
     if (this.catAuraItem) this.catAuraItem.playAnimation(animName);
+    if (this.catSpecialAuraItem) this.catSpecialAuraItem.playAnimation();
   }
 
   private playAnimation() {

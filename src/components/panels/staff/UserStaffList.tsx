@@ -18,6 +18,7 @@ import usePower, {
   useFetchRestaurants,
 } from "@/lib/hooks/restaurant/useRestaurant";
 import { useRestaurantStore } from "@/stores/restaurant/restaurantStore";
+import { CommonDot } from "@/components/ui/CommonDot";
 
 const StaffList: React.FC = () => {
   const [showCardInfo, setShowCardInfo] = useState(false);
@@ -294,7 +295,7 @@ const StaffList: React.FC = () => {
             />
           </div>
           <div className="absolute left-1/2 -translate-x-1/2 -translate-y-[28px] border-2 px-6 py-2 border-orange-90 bg-orange-10 rounded-t-xl text-orange-90">
-            Staff List
+            <div className="uppercase font-semibold">Staff List</div>
           </div>
 
           <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">
@@ -381,8 +382,8 @@ const StaffList: React.FC = () => {
                 >
                   <CatCard cat={staff} />
                   {staff.isCanUpgrade && (
-                    <div className="absolute -top-6 -right-6 pointer-events-none">
-                      <Dot size={56} color="red" />
+                    <div className="absolute top-0 right-0 pointer-events-none">
+                      <CommonDot />
                     </div>
                   )}
                 </div>

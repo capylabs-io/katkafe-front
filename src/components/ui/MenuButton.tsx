@@ -38,7 +38,7 @@ export const MenuButton = ({
           alt="icon"
         />
       </div>
-      <div className="absolute text-center text-white text-[14px] font-bold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-1.5">
+      <div className="absolute text-center text-white text-[16px] font-black drop-shadow-[0px_1.5px_black] text-stroke-[0.5px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
         {title}
       </div>
     </button>
