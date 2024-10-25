@@ -23,11 +23,8 @@ function GuildDetail() {
   const handleBack = () => {
     setShowGuildDetailPanel(false);
   };
-  console.log("totalMember", currentGuild?.totalMember);
 
-  const handleClick = () => {
-    console.log("mmmmmmmm");
-  };
+  const handleClick = () => {};
 
   return (
     <div className="bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">

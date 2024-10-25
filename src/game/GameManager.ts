@@ -119,10 +119,10 @@ export class GameManager {
 
   createWalls() {
     this.wallGroup.addMultiple([
-      new WallObject(this.scene, 0, 358, 36, 296),
-      new WallObject(this.scene, 384 / 2 - 16, 226, 384, 32),
-      new WallObject(this.scene, 384 - 36, 358, 32, 296),
-      new WallObject(this.scene, 384 / 2 - 16, 554 - 64, 384, 32),
+      new WallObject(this.scene, 0, 358 + 64, 36, 296),
+      new WallObject(this.scene, 384 / 2 - 16, 226 + 64, 384, 32),
+      new WallObject(this.scene, 384 - 36, 358 + 64, 32, 296),
+      new WallObject(this.scene, 384 / 2 - 16, 554, 384, 32),
     ]);
   }
 }

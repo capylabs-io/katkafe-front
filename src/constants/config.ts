@@ -1,13 +1,13 @@
 // Default Telegram window size
 export const GAME_WIDTH = 384;
-export const GAME_HEIGHT = 558;
-// export const GAME_HEIGHT = 608;
+// export const GAME_HEIGHT = 558;
+export const GAME_HEIGHT = 672;
 
 // Config
 export const CAT_CONFIGS = "cat-configs";
 
 //@TODO: Load from server/config
-export const LOCATIONS_COUNT = 3;
+export const LOCATIONS_COUNT = 4;
 export const LOCATION_ASSETS = {
   BACKGROUND: "Floor",
   BTN_FRIEND: "Button-Friend",
@@ -23,7 +23,8 @@ export const ASSETS = {
   LOADING_CAT: "loading-cat",
   LOGO: "logo",
 };
-export const ASSET_SCALE = 2 / 5;
+// export const ASSET_SCALE = 2 / 5;
+export const ASSET_SCALE = 1;
 
 //@TODO: Load from server/config
 export const ACTIVE_AREA = {
@@ -61,10 +62,10 @@ export const CAT_CHANGE_DISPLAY_LEVELS = [
 
 export const GUEST_SPEED = 50;
 export const MAX_GUESTS = 6;
-export const SPECIAL_GUEST_PERCENTAGE = 5; // 5%
-export const GUEST_MAX_GEN_DELAY = 10000; // 10s
-export const GUEST_MIN_GEN_DELAY = 4000; // 4s
-export const GUEST_MAX_ORDER_DELAY = 8000;
+export const SPECIAL_GUEST_PERCENTAGE = 10;
+export const GUEST_MAX_GEN_DELAY = 8000;
+export const GUEST_MIN_GEN_DELAY = 4000;
+export const GUEST_MAX_ORDER_DELAY = 9000;
 export const GUEST_MIN_ORDER_DELAY = 3000;
 
 export const DIALOG_MAX_GEN_DELAY = 60000;
@@ -94,7 +95,14 @@ export const CAT_HAT_COUNT = 10;
 export const CAT_FRAME_WIDTH = 160;
 export const CAT_FRAME_HEIGHT = 160;
 
-export const SPECIAL_CHARACTER_COUNT = 4;
+export const SPECIAL_CHARACTER_COUNT = 12;
 export const SPECIAL_CHARACTER_FOLDER = "cats/specials";
+export const SPECIAL_AURA_COUNT = 2;
+export const SPECIAL_AURA_FOLDER = "specials/auras";
+export const SPECIAL_AURA_SOLANA_ID = 1;
+export const SPECIAL_AURA_SOLANIUM_ID = 2;
+
+export const SPECIAL_AURA_FRAME_WIDTH = 128;
+export const SPECIAL_AURA_FRAME_HEIGHT = 128;
 
 export const CAT_AVATAR_FOLDER = "cats/avatars";

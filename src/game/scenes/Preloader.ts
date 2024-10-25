@@ -20,6 +20,10 @@ import {
   CAT_HAT_COUNT,
   LOCATIONS_COUNT,
   LOCATION_ASSETS,
+  SPECIAL_AURA_COUNT,
+  SPECIAL_AURA_FOLDER,
+  SPECIAL_AURA_FRAME_HEIGHT,
+  SPECIAL_AURA_FRAME_WIDTH,
   SPECIAL_CHARACTER_COUNT,
   SPECIAL_CHARACTER_FOLDER,
 } from "@/constants/config";
@@ -124,6 +128,7 @@ export class Preloader extends Scene {
     this.loadAudios();
     this.loadAllCatAssets();
     this.loadSpecialAssets();
+    this.loadSpecialAuraAssets();
   }
 
   create() {
@@ -192,6 +197,19 @@ export class Preloader extends Scene {
     }
   }
 
+  loadSpecialAuraAssets() {
+    for (let i = 0; i < CAT_AURA_COUNT; i++) {
+      this.load.spritesheet(
+        `Special-Aura-${i + 1}`,
+        `/${SPECIAL_AURA_FOLDER}/${i + 1}/spritesheet.png`,
+        {
+          frameWidth: SPECIAL_AURA_FRAME_WIDTH,
+          frameHeight: SPECIAL_AURA_FRAME_HEIGHT,
+        }
+      );
+    }
+  }
+
   loadAllCatAssets() {
     this.loadCatAssets(
       CatAssetType.Base,
@@ -242,8 +260,23 @@ export class Preloader extends Scene {
     this.createCatAnimations(CatAssetType.Face, CAT_FACE_COUNT);
     this.createCatAnimations(CatAssetType.Hat, CAT_HAT_COUNT);
     this.createSpecialCharacterAnimations();
+    this.createSpecialAuraAnimations();
     await waitForSeconds(1);
     this.scene.start("Game");
+  }
+
+  createSpecialAuraAnimations() {
+    for (let i = 0; i < SPECIAL_AURA_COUNT; i++) {
+      this.anims.create({
+        key: `Special-Aura-${i + 1}`,
+        frames: this.anims.generateFrameNumbers(`Special-Aura-${i + 1}`, {
+          start: 0,
+          end: 3,
+        }),
+        frameRate: CATS_FRAME_RATE,
+        repeat: -1,
+      });
+    }
   }
 
   createSpecialCharacterAnimations() {

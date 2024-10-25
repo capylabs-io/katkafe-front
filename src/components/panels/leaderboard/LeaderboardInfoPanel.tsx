@@ -51,7 +51,9 @@ export const LeaderboardInfoPanel = ({
             />
           </div>
           <div className="absolute min-w-[200px] text-center left-1/2 -translate-x-1/2 -translate-y-[28px] border-2 px-6 py-2 border-orange-90 bg-orange-10 rounded-t-xl text-orange-90">
-            {currentLeaderboard?.value}
+            <div className="uppercase font-semibold">
+              {currentLeaderboard?.value}
+            </div>
           </div>
 
           <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">

@@ -28,4 +28,5 @@ export enum CatAssetType {
   Face = "Face",
   Cape = "Cape",
   Hat = "Hat",
+  SpecialAura = "SpecialAura",
 }
