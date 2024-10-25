@@ -1,7 +1,6 @@
 "use client";
 import { WebAppProvider } from "@/provider/TelegramWebAppProvider";
 import dynamic from "next/dynamic";
-import { useLayoutEffect } from "react";
 
 const AppWithoutSSR = dynamic(() => import("./App"), { ssr: false });
 

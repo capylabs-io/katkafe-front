@@ -8,7 +8,6 @@ import { useLayoutStore } from "@/stores/layoutStore";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { useSnackBarStore } from "@/stores/SnackBarStore";
 import { EventReward, EventRewardType } from "@/types/event";
-import { Divider } from "@mui/material";
 import { X } from "lucide-react";
 import React, { useState } from "react";
 
@@ -82,8 +81,7 @@ export const RedeemPanel = () => {
             placeholder="Enter code here"
           />
         </div>
-        <Divider />
-        <div className="p-4">
+        <div className="p-4 border-t border-[#E8DDBD]">
           <Button
             onClick={handleRedeemCode}
             customClassNames="text-lg font-medium min-h-10"
