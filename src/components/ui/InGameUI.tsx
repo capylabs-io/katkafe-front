@@ -62,6 +62,7 @@ export const InGameUI = () => {
     setShowBoostPanel,
     setShowEventPanel,
     setShowRedeemPanel,
+    setShowWalletPanel,
   ] = useLayoutStore((state) => [
     state.setShowManagePanel,
     state.setShowStaffPanel,
@@ -70,6 +71,7 @@ export const InGameUI = () => {
     state.setShowBoostPanel,
     state.setShowEventPanel,
     state.setShowRedeemPanel,
+    state.setShowWalletPanel,
   ]);
 
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
@@ -459,7 +461,7 @@ export const InGameUI = () => {
       {!loading && user && !user.isLoginFirstTime && showOfflineEarning && (
         <OfflineEarning onClick={handleOnClick} data={claimableData} />
       )}
-      <div className="absolute left-2.5 top-[28%]">
+      <div className="absolute left-2.5 top-[23%]">
         {/* <MenuButton
           key="shop"
           title="Event"
@@ -471,18 +473,18 @@ export const InGameUI = () => {
           showButtonBg={false}
         /> */}
         <Animator
-          width={64}
-          height={72}
+          width={48}
+          height={54}
           url="/images/event-btn.png"
           steps={4}
           onClick={() => setShowEventPanel(true)}
           fps={6}
         />
-        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[16px] font-extrabold drop-shadow-[0px_1.5px_black] text-stroke-[0.5px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
+        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-extrabold drop-shadow-[0px_1.5px_black] text-stroke-[0.5px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
           Events
         </div>
       </div>
-      <div className="absolute right-2.5 top-[28%]">
+      <div className="absolute left-2.5 top-[31%]">
         {/* <MenuButton
           key="shop"
           title="Event"
@@ -494,15 +496,39 @@ export const InGameUI = () => {
           showButtonBg={false}
         /> */}
         <Animator
-          width={64}
-          height={72}
+          width={48}
+          height={54}
           url="/images/redeem-btn.png"
           steps={4}
           onClick={() => setShowRedeemPanel(true)}
           fps={6}
         />
-        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[16px] font-extrabold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
+        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-extrabold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
           Redeem
+        </div>
+      </div>
+
+      <div className="absolute right-2.5 top-[31%]">
+        {/* <MenuButton
+          key="shop"
+          title="Event"
+          icon={{
+            url: "/images/task.png",
+            size: 56,
+          }}
+          onClick={() => setShowEventPanel(true)}
+          showButtonBg={false}
+        /> */}
+        <Animator
+          width={48}
+          height={54}
+          url="/images/wallet-btn.png"
+          steps={4}
+          onClick={() => setShowWalletPanel(true)}
+          fps={6}
+        />
+        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-extrabold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
+          Wallet
         </div>
       </div>
     </div>
