@@ -19,6 +19,10 @@ export type UserType = {
   referralCounter: number;
   nextIdleBoostAt: string;
   nextTapBoostAt: string;
+
+  //wallet addresses
+  phantomAddress: string;
+  metamaskAddress: string;
 };
 
 export type LoginBody = {
