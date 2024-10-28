@@ -27,6 +27,8 @@ type States = {
 
   // Leaderboard
   showLeaderboardPanel: boolean;
+
+  showMinigamePanel: boolean;
 };
 
 type Actions = {
@@ -54,6 +56,8 @@ type Actions = {
 
   // Leaderboard
   setShowLeaderboardPanel: (show: boolean) => void;
+
+  setMiniGamePanel: (show: boolean) => void;
 };
 
 const defaultStates = {
@@ -79,10 +83,13 @@ const defaultStates = {
   showRedeemPanel: false,
   //
   showLeaderboardPanel: false,
+
+  showMinigamePanel: false,
 };
 
 export const useLayoutStore = create<States & Actions>((set) => ({
   ...defaultStates,
+  setMiniGamePanel: (show: boolean) => set({ showMinigamePanel: show }),
   setShowRedeemPanel: (show: boolean) => set({ showRedeemPanel: show }),
   setShowEventPanel: (show: boolean) => {
     set({ showEventPanel: show });

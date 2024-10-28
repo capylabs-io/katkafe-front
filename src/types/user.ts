@@ -2,8 +2,6 @@ export type UserType = {
   _id: string;
   username: string;
   avatarUrl: string;
-  bean: string;
-  diamond: string;
   rank: string;
   guildId: string;
   isLoginFirstTime: boolean;
@@ -19,6 +17,12 @@ export type UserType = {
   referralCounter: number;
   nextIdleBoostAt: string;
   nextTapBoostAt: string;
+  //currency
+  bean: string;
+  diamond: string;
+  shield: number;
+  raidTicket: number;
+  spinTicket: number;
 };
 
 export type LoginBody = {

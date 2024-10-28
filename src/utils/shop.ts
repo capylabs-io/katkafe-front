@@ -9,6 +9,12 @@ export const getIconPathByCurrencyType = (type: string) => {
       return "/icons/ic-star.png";
     case CURRENCY_TYPES.DIAMOND:
       return "/images/kbuck.png";
+    case CURRENCY_TYPES.RAID:
+      return "/icons/ic-raid-ticket.png";
+    case CURRENCY_TYPES.SHIELD:
+      return "/icons/ic-shield.png";
+    case CURRENCY_TYPES.SPIN:
+      return "/icons/ic-spin-ticket.png";
   }
 };
 

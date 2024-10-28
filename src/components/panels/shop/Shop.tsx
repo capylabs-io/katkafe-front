@@ -2,7 +2,6 @@ import Button from "@/components/ui/Button";
 import { useItemStore } from "@/stores/shop/itemStore";
 import { useLayoutStore } from "@/stores/layoutStore";
 import React, { useEffect, useState } from "react";
-import CatCard from "@/components/ui/CatCard";
 import RewardDialog from "@/components/ui/RewardDialog";
 import { Bundle, ShopType } from "@/types/bundle";
 import { CURRENCY_TYPES, Item, ITEM_TYPES } from "@/types/item";
@@ -23,8 +22,8 @@ import {
 } from "@/components/ui/Popover";
 import { get } from "lodash";
 import NumberFormatter from "@/components/ui/NumberFormat";
-import { InfoBox } from "@/components/ui/InfoBox";
 import { GemShopContent } from "./GemShopContent";
+import qs from "qs";
 
 const TABS = {
   CAT: "Cat",
@@ -128,16 +127,16 @@ const Shop = () => {
       let type;
       switch (activeTab) {
         case TABS.ROLL:
-          type = "pack";
+          type = ITEM_TYPES.PACK;
           break;
         case TABS.CAT:
-          type = "cat";
+          type = ITEM_TYPES.CAT;
           break;
         case TABS.GEM:
           type = ITEM_TYPES.STAR;
           break;
         default:
-          type = "pack";
+          type = ITEM_TYPES.PACK;
           break;
       }
       const response = await getItems(type);

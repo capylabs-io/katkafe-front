@@ -68,7 +68,7 @@ export const ShopConfirmDialog = () => {
             </div>
           </div>
           {rewards && rewards.length > 0 && (
-            <div className="px-4 flex flex-wrap justify-center -mt-2">
+            <div className="px-4 flex flex-wrap justify-center -mt-2 mb-6">
               {rewards.map((reward, index) => (
                 <InnerInfoBox
                   key={index}
@@ -80,7 +80,7 @@ export const ShopConfirmDialog = () => {
               ))}
             </div>
           )}
-          <div className="flex flex-wrap gap-2 justify-center border-[#E8DDBD] border-t py-3 mt-6">
+          <div className="flex flex-wrap gap-2 justify-center border-[#E8DDBD] border-t py-3">
             {/* <div className="w-[164px] h-[39px]" onClick={handleClose}>
               <Button>{cancelText}</Button>
             </div>*/}
