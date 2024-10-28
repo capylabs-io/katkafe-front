@@ -147,7 +147,9 @@ export const WalletPanel = () => {
             </TooltipProvider>
           )}
 
-          <div className="font-semibold mt-4">Phantom Address</div>
+          <div className="font-semibold mt-4">
+            Phantom&apos;s Solana Address
+          </div>
           {showPhantomInput ? (
             <Input
               id="phantomWallet"
