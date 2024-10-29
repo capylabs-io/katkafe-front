@@ -87,8 +87,10 @@ const defaultStates = {
 
 export const useLayoutStore = create<States & Actions>((set) => ({
   ...defaultStates,
-  setShowWalletPanel: (show: boolean) => set({ showWalletPanel: show }),
-  setShowRedeemPanel: (show: boolean) => set({ showRedeemPanel: show }),
+  setShowWalletPanel: (show: boolean) =>
+    set({ showWalletPanel: show, isAnyPanelOpen: show }),
+  setShowRedeemPanel: (show: boolean) =>
+    set({ showRedeemPanel: show, isAnyPanelOpen: show }),
   setShowEventPanel: (show: boolean) => {
     set({ showEventPanel: show });
     set({ isAnyPanelOpen: show });
