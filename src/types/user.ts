@@ -20,6 +20,9 @@ export type UserType = {
   nextIdleBoostAt: string;
   nextTapBoostAt: string;
 
+  createdAt: string;
+  updatedAt: string;
+
   //wallet addresses
   phantomAddress: string;
   metamaskAddress: string;
