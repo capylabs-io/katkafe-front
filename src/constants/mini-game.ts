@@ -24,3 +24,6 @@ export const MINI_GAME_PANELS = {
 };
 
 export const MAX_SHIELD_COUNT = 3;
+
+export const SPIN_DURATION = 3000;
+export const SPIN_REVOLUTIONS = 3;

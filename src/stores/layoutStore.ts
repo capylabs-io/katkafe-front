@@ -89,8 +89,10 @@ const defaultStates = {
 
 export const useLayoutStore = create<States & Actions>((set) => ({
   ...defaultStates,
-  setMiniGamePanel: (show: boolean) => set({ showMinigamePanel: show }),
-  setShowRedeemPanel: (show: boolean) => set({ showRedeemPanel: show }),
+  setMiniGamePanel: (show: boolean) =>
+    set({ showMinigamePanel: show, isAnyPanelOpen: show }),
+  setShowRedeemPanel: (show: boolean) =>
+    set({ showRedeemPanel: show, isAnyPanelOpen: show }),
   setShowEventPanel: (show: boolean) => {
     set({ showEventPanel: show });
     set({ isAnyPanelOpen: show });

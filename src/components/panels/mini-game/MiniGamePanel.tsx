@@ -3,6 +3,7 @@ import { MINI_GAME_MODULES } from "@/types/mini-game";
 import React, { useMemo } from "react";
 import { HomePanel } from "./HomePanel";
 import { ShopPanel } from "./ShopPanel";
+import { SpinWheelPanel } from "./SpinWheel";
 
 export const MiniGamePanel = () => {
   const [currentModule, setCurrentModule] = useMiniGameStore((state) => [
@@ -17,6 +18,8 @@ export const MiniGamePanel = () => {
         return <HomePanel />;
       case MINI_GAME_MODULES.SHOP:
         return <ShopPanel />;
+      case MINI_GAME_MODULES.DAILY_SPIN:
+        return <SpinWheelPanel />;
     }
   }, [currentModule]);
 

@@ -35,7 +35,6 @@ import { RedeemPanel } from "@/components/panels/redeem/Redeem";
 import { ShopConfirmDialog } from "@/components/ui/shop/ShopConfirmDialog";
 import { PurchaseResultDialog } from "@/components/ui/shop/PurchaseResultDialog";
 import { MiniGamePanel } from "@/components/panels/mini-game/MiniGamePanel";
-
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
   scene: Phaser.Scene | null;
