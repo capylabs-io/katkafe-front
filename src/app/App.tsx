@@ -19,7 +19,7 @@ function App() {
   // }
 
   return (
-    <div id="app" className="bg-overlay">
+    <div id="app" className="bg-overlay !text-black">
       <MaintainGuard>
         {needDeviceGuard == 1 ? (
           <DeviceGuard>
