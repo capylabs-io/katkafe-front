@@ -1,4 +1,4 @@
-import { CURRENCY_TYPES, Item, ITEM_TYPES } from "@/types/item";
+import { CURRENCY_TYPES, Item, ITEM_TYPES, PurchaseReward } from "@/types/item";
 import { get } from "lodash";
 import React, { useMemo } from "react";
 import Image from "next/image";
@@ -36,7 +36,7 @@ export const ShopItem = ({ item, onPurchase, currencyType }: Props) => {
         {get(item, "itemName", "Ticket")}
       </div>
       <div
-        className="h-[120px] w-full flex justify-center items-center bg-center bg-no-repeat bg-cover mt-2"
+        className="h-[120px] w-full flex justify-center items-center bg-center bg-no-repeat bg-cover mt-2 rounded-lg"
         style={{
           backgroundImage: `url(${getItemBgByType(
             get(item, "type", ITEM_TYPES.STAR)

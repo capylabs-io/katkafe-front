@@ -1,8 +1,7 @@
 import Button from "@/components/ui/Button";
 import { useItemStore } from "@/stores/shop/itemStore";
 import { useLayoutStore } from "@/stores/layoutStore";
-import React, { useEffect, useState } from "react";
-import CatCard from "@/components/ui/CatCard";
+import React, { useEffect, useMemo, useState } from "react";
 import RewardDialog from "@/components/ui/RewardDialog";
 import { Bundle, ShopType } from "@/types/bundle";
 import { CURRENCY_TYPES, Item, ITEM_TYPES } from "@/types/item";
@@ -25,12 +24,14 @@ import { get } from "lodash";
 import NumberFormatter from "@/components/ui/NumberFormat";
 import { InfoBox } from "@/components/ui/InfoBox";
 import { GemShopContent } from "./GemShopContent";
+import { StarterBundleShopContent } from "./StarterBundleContent";
 
 const TABS = {
   CAT: "Cat",
   ROLL: "Roll",
   BOOSTER: "Booster",
   GEM: "Gem",
+  STARTER_BUNDLE: "Starter-Bundle",
 };
 
 const Shop = () => {
@@ -109,7 +110,7 @@ const Shop = () => {
         setPurchasedItem(response.items.cats[0]);
         setStaffs(response.user.cats);
         setUser(response.user);
-        fetchStaffs();
+        await fetchStaffs();
         setCurrentStaff(response.items.cats[0]);
         // showSnackbar("Purchase successfully!");
         setShowRewardDialog(true);
@@ -130,8 +131,11 @@ const Shop = () => {
         case TABS.ROLL:
           type = "pack";
           break;
-        case TABS.CAT:
-          type = "cat";
+        // case TABS.CAT:
+        //   type = "cat";
+        //   break;
+        case TABS.STARTER_BUNDLE:
+          type = ITEM_TYPES.STARTER_BUNDLE;
           break;
         case TABS.GEM:
           type = ITEM_TYPES.STAR;
@@ -141,6 +145,7 @@ const Shop = () => {
           break;
       }
       const response = await getItems(type);
+      console.log(response);
       setItems(response);
       return response;
     } catch (error) {
@@ -162,9 +167,15 @@ const Shop = () => {
     }
   };
 
-  const packItems = items.filter((item) => item.type === ITEM_TYPES.PACK);
+  const packItems = useMemo(() => {
+    if (!items) return [];
+    return items.filter((item) => item.type === ITEM_TYPES.PACK);
+  }, [items]);
 
   const gemShopContent = <GemShopContent />;
+  const starterBundleShopContent = (
+    <StarterBundleShopContent onPurchase={fetchItems} />
+  );
 
   const rollCatShopContent = (
     <div className="bg-orange-10 rounded-b-[20px] flex flex-wrap justify-center rounded-t border border-gray-20 w-full overflow-y-auto h-[calc(100%-32px)] p-4 mt-8">
@@ -249,6 +260,8 @@ const Shop = () => {
         return rollCatShopContent;
       case TABS.GEM:
         return gemShopContent;
+      case TABS.STARTER_BUNDLE:
+        return starterBundleShopContent;
     }
   };
 
@@ -273,19 +286,27 @@ const Shop = () => {
             <div className="flex w-full">
               <div
                 onClick={() => handleTabClick(TABS.ROLL)}
-                className={`absolute cursor-pointer left-1/2 -translate-x-[100px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                className={`absolute cursor-pointer left-1/2 -translate-x-[140px] border-2 px-4 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
                   activeTab === TABS.ROLL ? isActive : ""
                 }`}
               >
                 <div className="uppercase font-semibold">Roll</div>
               </div>
               <div
+                onClick={() => handleTabClick(TABS.STARTER_BUNDLE)}
+                className={`absolute cursor-pointer left-1/2 -translate-x-[56px] border-2 px-4 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                  activeTab === TABS.STARTER_BUNDLE ? isActive : ""
+                }`}
+              >
+                <div className="uppercase font-semibold">Bundle</div>
+              </div>
+              <div
                 onClick={() => handleTabClick(TABS.GEM)}
-                className={`absolute cursor-pointer left-1/2 translate-x-[10px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                className={`absolute cursor-pointer left-1/2 translate-x-[44px] border-2 px-4 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
                   activeTab === TABS.GEM ? isActive : ""
                 }`}
               >
-                Diamond
+                <div className="uppercase font-semibold">Diamond</div>
               </div>
               {/* <div
                 onClick={() => handleTabClick(TABS.CAT)}

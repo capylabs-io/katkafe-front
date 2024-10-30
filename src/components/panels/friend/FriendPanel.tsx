@@ -176,7 +176,7 @@ export const FriendPanel: React.FC = () => {
                       Invite more friend to get to the top
                     </div>
                   </div>
-                  <div className="overflow-y-auto">
+                  <div className="overflow-y-auto h-60">
                     {friends?.referralList &&
                     friends.referralList.length > 0 ? (
                       <div className="flex flex-col bg-orange-10 border-[#e8ddbd] border rounded-lg">
