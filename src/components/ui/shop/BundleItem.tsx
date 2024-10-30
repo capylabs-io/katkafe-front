@@ -69,7 +69,7 @@ export const BundleItem = ({ item, onPurchase, currencyType }: Props) => {
         </div>
       )}
       <div
-        className="h-[120px] w-full flex flex-col justify-center items-center bg-center bg-no-repeat bg-cover mt-2 rounded-lg relative"
+        className="h-[150px] w-full flex flex-col justify-center items-center bg-center bg-no-repeat bg-cover mt-2 rounded-lg relative"
         style={{
           backgroundImage: `url(${getItemBgByType(
             get(item, "type", ITEM_TYPES.STAR)
@@ -78,9 +78,10 @@ export const BundleItem = ({ item, onPurchase, currencyType }: Props) => {
       >
         <Image
           src={get(item, "imgUrl", DEFAULT_INFO_ICON)}
-          width={100}
-          height={100}
+          width={300}
+          height={300}
           alt={"item-img"}
+          className="w-full h-full"
         />
 
         <div className="absolute top-1 right-2 text-center text-white text-[18px] font-extrabold drop-shadow-[0px_1px_black] text-stroke-[0.5px] text-stroke-[#6f6f6f] uppercase">
