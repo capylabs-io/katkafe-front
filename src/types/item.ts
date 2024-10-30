@@ -8,6 +8,7 @@ export enum ITEM_TYPES {
   RAID = "raid",
   SPIN = "spin",
   SHIELD = "shield",
+  STARTER_BUNDLE = "starter_bundle",
 }
 
 export type Item = Staff & {
