@@ -32,3 +32,8 @@ export const postBoost = async (body: BoostBody) => {
   );
   return response.data;
 };
+
+export const getUserInventory = async () => {
+  const response = await katAxios.get(`${BASE_URL}/inventory`);
+  return response.data;
+};

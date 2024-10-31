@@ -1,10 +1,13 @@
 import NumberFormatter from "@/components/ui/NumberFormat";
 import { InnerInfoBox } from "@/components/ui/shop/InnerInfoBox";
-import { getItems } from "@/requests/shop/item";
+import { buyItem, getItems } from "@/requests/shop/item";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { useUserStore } from "@/stores/userStore";
 import { CURRENCY_TYPES, Item, ITEM_TYPES, PurchaseReward } from "@/types/item";
-import { getIconPathByCurrencyType } from "@/utils/shop";
+import {
+  getIconPathByCurrencyType,
+  isUserHasEnoughCurrency,
+} from "@/utils/shop";
 import { get } from "lodash";
 import React, { useEffect, useState } from "react";
 import qs from "qs";
@@ -14,14 +17,19 @@ import { MINI_GAME_MODULES } from "@/types/mini-game";
 import { ShopItem } from "@/components/ui/shop/ShopItem";
 import { useConfirmPurchaseStore } from "@/stores/shop/confirmPurchaseStore";
 import Image from "next/image";
+import { useSnackBarStore } from "@/stores/SnackBarStore";
 
 export const ShopPanel = () => {
-  const user = useUserStore((state) => state.user);
+  const [user, fetchUser] = useUserStore((state) => [
+    state.user,
+    state.fetchUser,
+  ]);
   const [currentModule, setCurrentModule] = useMiniGameStore((state) => [
     state.currentModule,
     state.setCurrentModule,
   ]);
   const show = useLayoutStore((state) => state.showMinigamePanel);
+  const showSnackbar = useSnackBarStore((state) => state.show);
   const showConfirmPurchase = useConfirmPurchaseStore((state) => state.show);
   const [showLoading, hideLoading] = useLoadingStore((state) => [
     state.show,
@@ -47,23 +55,41 @@ export const ShopPanel = () => {
   };
 
   const handleConfirmPurchase = (item: Item) => {
-    // const rewards = Object.entries(item.data).map(([type, value]) => ({
-    //   type,
-    //   value,
-    // })) as PurchaseReward[];
-
     showConfirmPurchase({
       content: "Are you sure to purchase this item?",
       icon: item.imgUrl,
-      //   rewards,
       price: {
         type: CURRENCY_TYPES.DIAMOND,
         value: item.diamondPrice.toString(),
       },
+      onConfirm: () => handleBuyItem(item),
     });
   };
 
-  const handleProcessPurchase = async (item: Item) => {};
+  const handleBuyItem = async (item: Item) => {
+    if (!user || !item) return;
+    if (!isUserHasEnoughCurrency(user, item, CURRENCY_TYPES.DIAMOND)) {
+      showSnackbar("Not enough diamond!");
+      return;
+    }
+    showLoading();
+    try {
+      const body = {
+        itemId: item._id,
+        currencyType: CURRENCY_TYPES.DIAMOND,
+      };
+      const response = await buyItem(body);
+      if (response) {
+        await fetchUser();
+        showSnackbar("Purchase successfully!");
+      }
+    } catch (error) {
+      console.error("Failed to buy item", error);
+      showSnackbar("Purchase fail!");
+    } finally {
+      hideLoading();
+    }
+  };
 
   const handleBackHome = () => {
     setCurrentModule(MINI_GAME_MODULES.HOME);
@@ -120,14 +146,14 @@ export const ShopPanel = () => {
               />
               <InnerInfoBox
                 key="raidTicket"
-                content={<NumberFormatter value={get(user, "raidTicket", 0)} />}
+                content={<NumberFormatter value={get(user, "raid", 0)} />}
                 icon={{
                   url: getIconPathByCurrencyType(CURRENCY_TYPES.RAID),
                 }}
               />
               <InnerInfoBox
                 key="spinTicket"
-                content={<NumberFormatter value={get(user, "spinTicket", 0)} />}
+                content={<NumberFormatter value={get(user, "spin", 0)} />}
                 icon={{
                   url: getIconPathByCurrencyType(CURRENCY_TYPES.SPIN),
                 }}

@@ -4,12 +4,10 @@ import React, { useMemo } from "react";
 import { HomePanel } from "./HomePanel";
 import { ShopPanel } from "./ShopPanel";
 import { SpinWheelPanel } from "./SpinWheel";
+import { RaidPanel } from "./RaidLoot";
 
 export const MiniGamePanel = () => {
-  const [currentModule, setCurrentModule] = useMiniGameStore((state) => [
-    state.currentModule,
-    state.setCurrentModule,
-  ]);
+  const [currentModule] = useMiniGameStore((state) => [state.currentModule]);
 
   const getModulePanel = useMemo(() => {
     switch (currentModule) {
@@ -20,6 +18,8 @@ export const MiniGamePanel = () => {
         return <ShopPanel />;
       case MINI_GAME_MODULES.DAILY_SPIN:
         return <SpinWheelPanel />;
+      case MINI_GAME_MODULES.RAID_LOOT:
+        return <RaidPanel />;
     }
   }, [currentModule]);
 

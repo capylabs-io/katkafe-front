@@ -114,7 +114,7 @@ export class Game extends Scene {
     EventBus.emit(EVENT_BUS_TYPES.SCENE_READY, this);
 
     // Audios
-    this.soundManager.playBGM();
-    this.soundManager.playAmbience();
+    // this.soundManager.playBGM();
+    // this.soundManager.playAmbience();
   }
 }

@@ -97,18 +97,14 @@ export const HomePanel = () => {
                   />
                   <InnerInfoBox
                     key="raidTicket"
-                    content={
-                      <NumberFormatter value={get(user, "raidTicket", 0)} />
-                    }
+                    content={<NumberFormatter value={get(user, "raid", 0)} />}
                     icon={{
                       url: getIconPathByCurrencyType(CURRENCY_TYPES.RAID),
                     }}
                   />
                   <InnerInfoBox
                     key="spinTicket"
-                    content={
-                      <NumberFormatter value={get(user, "spinTicket", 0)} />
-                    }
+                    content={<NumberFormatter value={get(user, "spin", 0)} />}
                     icon={{
                       url: getIconPathByCurrencyType(CURRENCY_TYPES.SPIN),
                     }}

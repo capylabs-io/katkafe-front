@@ -21,8 +21,8 @@ export type UserType = {
   bean: string;
   diamond: string;
   shield: number;
-  raidTicket: number;
-  spinTicket: number;
+  raid: number;
+  spin: number;
 };
 
 export type LoginBody = {

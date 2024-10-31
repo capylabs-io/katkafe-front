@@ -6,3 +6,8 @@ export const MINI_GAME_MODULES = {
   GENERAL_INFO: "general-info",
   SHOP: "mini-shop",
 };
+
+export enum RAID_TYPES {
+  RAID = "RAID",
+  SRAID = "S-RAID",
+}
