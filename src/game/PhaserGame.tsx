@@ -38,6 +38,7 @@ import { MiniGamePanel } from "@/components/panels/mini-game/MiniGamePanel";
 import { useMiniGameStore } from "@/stores/mini-game/useMiniGameStore";
 import { MINI_GAME_MODULES } from "@/types/mini-game";
 import { RaidingGameUI } from "@/components/ui/RaidingGameUI";
+import { ErrorStartApp } from "@/components/ui/ErrorStartApp";
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
   scene: Phaser.Scene | null;
@@ -70,6 +71,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     showRewardPanel,
     showRedeemPanel,
     showMinigamePanel,
+    showErrorPanel,
   ] = useLayoutStore((state) => [
     state.showFriendPanel,
     state.showManagePanel,
@@ -88,13 +90,17 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     state.showRewardPanel,
     state.showRedeemPanel,
     state.showMinigamePanel,
+    state.showErrorPanel,
   ]);
 
   const [isShowingLoading] = useLoadingStore((state) => [state.isShowing]);
   const [isShowingSnackbar] = useSnackBarStore((state) => [state.isShowing]);
-  const [currentModule] = useMiniGameStore((state) => [state.currentModule]);
+  const [currentMinigameModule] = useMiniGameStore((state) => [
+    state.currentModule,
+  ]);
 
-  const isRaiding = currentModule === MINI_GAME_MODULES.RAIDING;
+  const isRaiding =
+    currentMinigameModule === MINI_GAME_MODULES.RAIDING && showMinigamePanel;
 
   useLayoutEffect(() => {
     if (game.current === null) {
@@ -159,9 +165,10 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
       {showBoostPanel && <Boost />}
       {showEventPanel && <EventPanel />}
       {showRedeemPanel && <RedeemPanel />}
+      {showMinigamePanel && !isRaiding && <MiniGamePanel />}
       <ShopConfirmDialog />
       <PurchaseResultDialog />
-      {showMinigamePanel && <MiniGamePanel />}
+      {showErrorPanel && <ErrorStartApp />}
     </div>
   );
 });

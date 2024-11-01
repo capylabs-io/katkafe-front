@@ -7,12 +7,14 @@ type States = {
   currentModule: string;
   raidUser?: UserType;
   raidResult?: any;
+  raidRestaurant?: any;
 };
 
 type Actions = {
   setCurrentModule: (module: string) => void;
   setRaidUser: (user: UserType) => void;
   setRaidResult: (result: any) => void;
+  setRaidRestaurant: (restaurant: any) => void;
 };
 
 const defaultStates = {
@@ -22,6 +24,7 @@ const defaultStates = {
 
 export const useMiniGameStore = create<States & Actions>((set) => ({
   ...defaultStates,
+  setRaidRestaurant: (restaurant: any) => set({ raidRestaurant: restaurant }),
   setRaidUser: (user: UserType) => set({ raidUser: user }),
   setRaidResult: (result: any) => set({ raidResult: result }),
   setCurrentModule: (module: string) => set({ currentModule: module }),

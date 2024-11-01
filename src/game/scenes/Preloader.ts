@@ -35,6 +35,16 @@ import { DIALOG_TYPES } from "@/constants/dialog";
 import { CAT_AUDIO_COUNT, GUEST_AUDIO_COUNT } from "@/constants/audio";
 import { getAllCatConfigs } from "@/requests/cat-config";
 import { CatAssetType, CatConfig, CatLevelType } from "@/types/cat-config";
+import {
+  MINIGAME_ANIMATION,
+  MINIGAME_IMAGE_FOLDER,
+  MINIGAME_SFX,
+  MINIGAME_SFX_FOLDER,
+  MINIGAME_SFX_TYPES,
+  MINIGAME_VFX,
+  MINIGAME_VFX_FOLDER,
+  MINIGAME_VFX_TYPES,
+} from "@/constants/mini-game";
 
 export class Preloader extends Scene {
   background: GameObjects.Image;
@@ -129,6 +139,7 @@ export class Preloader extends Scene {
     this.loadAllCatAssets();
     this.loadSpecialAssets();
     this.loadSpecialAuraAssets();
+    this.loadMinigameAssets();
   }
 
   create() {
@@ -210,6 +221,61 @@ export class Preloader extends Scene {
     }
   }
 
+  loadMinigameAssets() {
+    //load images
+    this.load.image(
+      `${MINIGAME_VFX}-${MINIGAME_VFX_TYPES.MARK}`,
+      `${MINIGAME_IMAGE_FOLDER}${MINIGAME_VFX_TYPES.MARK}.png`
+    );
+    this.load.image(
+      `${MINIGAME_VFX}-${MINIGAME_VFX_TYPES.SHIELD}`,
+      `${MINIGAME_IMAGE_FOLDER}${MINIGAME_VFX_TYPES.SHIELD}.png`
+    );
+
+    this.load.spritesheet(
+      `${MINIGAME_VFX}-${MINIGAME_VFX_TYPES.BOOM}`,
+      `${MINIGAME_VFX_FOLDER}${MINIGAME_VFX_TYPES.BOOM}.png`,
+      {
+        frameWidth: 256,
+        frameHeight: 256,
+      }
+    );
+    this.load.spritesheet(
+      `${MINIGAME_VFX}-${MINIGAME_VFX_TYPES.FIRE}`,
+      `${MINIGAME_VFX_FOLDER}${MINIGAME_VFX_TYPES.FIRE}.png`,
+      {
+        frameWidth: 240,
+        frameHeight: 280,
+      }
+    );
+
+    //load audios
+    this.load.audio(
+      `${MINIGAME_SFX}-${MINIGAME_SFX_TYPES.BACKGROUND_MUSIC}`,
+      `${MINIGAME_SFX_FOLDER}${MINIGAME_SFX_TYPES.BACKGROUND_MUSIC}.mp3`
+    );
+    this.load.audio(
+      `${MINIGAME_SFX}-${MINIGAME_SFX_TYPES.EXPLOSION}`,
+      `${MINIGAME_SFX_FOLDER}${MINIGAME_SFX_TYPES.EXPLOSION}.mp3`
+    );
+    this.load.audio(
+      `${MINIGAME_SFX}-${MINIGAME_SFX_TYPES.FIRE}`,
+      `${MINIGAME_SFX_FOLDER}${MINIGAME_SFX_TYPES.FIRE}.mp3`
+    );
+    this.load.audio(
+      `${MINIGAME_SFX}-${MINIGAME_SFX_TYPES.SHIELD}`,
+      `${MINIGAME_SFX_FOLDER}${MINIGAME_SFX_TYPES.SHIELD}.mp3`
+    );
+    this.load.audio(
+      `${MINIGAME_SFX}-${MINIGAME_SFX_TYPES.SHOOT}`,
+      `${MINIGAME_SFX_FOLDER}${MINIGAME_SFX_TYPES.SHOOT}.mp3`
+    );
+    this.load.audio(
+      `${MINIGAME_SFX}-${MINIGAME_SFX_TYPES.SUCCESS}`,
+      `${MINIGAME_SFX_FOLDER}${MINIGAME_SFX_TYPES.SUCCESS}.mp3`
+    );
+  }
+
   loadAllCatAssets() {
     this.loadCatAssets(
       CatAssetType.Base,
@@ -261,8 +327,35 @@ export class Preloader extends Scene {
     this.createCatAnimations(CatAssetType.Hat, CAT_HAT_COUNT);
     this.createSpecialCharacterAnimations();
     this.createSpecialAuraAnimations();
-    await waitForSeconds(1);
+    this.createMinigameAnimations();
     this.scene.start("Game");
+  }
+
+  createMinigameAnimations() {
+    this.anims.create({
+      key: `${MINIGAME_ANIMATION}-${MINIGAME_VFX_TYPES.BOOM}`,
+      frames: this.anims.generateFrameNumbers(
+        `${MINIGAME_VFX}-${MINIGAME_VFX_TYPES.BOOM}`,
+        {
+          start: 0,
+          end: 3,
+        }
+      ),
+      frameRate: CATS_FRAME_RATE,
+      repeat: 0,
+    });
+    this.anims.create({
+      key: `${MINIGAME_ANIMATION}-${MINIGAME_VFX_TYPES.FIRE}`,
+      frames: this.anims.generateFrameNumbers(
+        `${MINIGAME_VFX}-${MINIGAME_VFX_TYPES.FIRE}`,
+        {
+          start: 0,
+          end: 7,
+        }
+      ),
+      frameRate: CATS_FRAME_RATE,
+      repeat: -1,
+    });
   }
 
   createSpecialAuraAnimations() {

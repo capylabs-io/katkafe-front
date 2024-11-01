@@ -19,6 +19,24 @@ export const getIconPathByCurrencyType = (type: string) => {
   }
 };
 
+export const getBigIconPathByCurrencyType = (type: string) => {
+  switch (type) {
+    default:
+    case CURRENCY_TYPES.BEAN:
+      return "/big-icons/Gold.png";
+    case CURRENCY_TYPES.STAR:
+      return "/icons/ic-star.png";
+    case CURRENCY_TYPES.DIAMOND:
+      return "/big-icons/Gem.png";
+    case CURRENCY_TYPES.RAID:
+      return "/big-icons/Raid.png";
+    case CURRENCY_TYPES.SHIELD:
+      return "/big-icons/Shield.png";
+    case CURRENCY_TYPES.SPIN:
+      return "/big-icons/Spin.png";
+  }
+};
+
 export const getItemBgByType = (type: string) => {
   switch (type) {
     case ITEM_TYPES.STAR:

@@ -12,6 +12,10 @@ export const LAYERS = {
   CAT_HAT: 9,
   CAT_SPECIAL_AURA: 10,
 
+  //OTHER OBJECT
+  RAID_OBJECTS: 20,
+  RAID_MARK: 21,
+
   DIALOG: 98,
   UI: 100,
   DEBUG: 101,

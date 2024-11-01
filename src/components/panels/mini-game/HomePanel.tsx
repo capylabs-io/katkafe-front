@@ -11,6 +11,7 @@ import { CURRENCY_TYPES } from "@/types/item";
 import { getIconPathByCurrencyType } from "@/utils/shop";
 import { get } from "lodash";
 import { useUserStore } from "@/stores/userStore";
+import { LogPanel } from "./LogPanel";
 
 const TAB = {
   HOME: "Home",
@@ -59,6 +60,78 @@ export const HomePanel = () => {
     </div>
   );
 
+  const homeContent = (
+    <div className="flex flex-col w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] overflow-hidden mt-8">
+      {/* <Slider ranks={[]} /> */}
+      <div className="flex flex-col w-full overflow-auto">
+        <div className="w-full relative">
+          <img src="/images/mini-game/Banner.png" alt="" />
+        </div>
+
+        <div className="grid grid-cols-3 px-3 pt-3 gap-x-3">
+          <InnerInfoBox
+            key="shield"
+            content={<NumberFormatter value={get(user, "shield", 0)} />}
+            icon={{
+              url: getIconPathByCurrencyType(CURRENCY_TYPES.SHIELD),
+            }}
+          />
+          <InnerInfoBox
+            key="raidTicket"
+            content={<NumberFormatter value={get(user, "raid", 0)} />}
+            icon={{
+              url: getIconPathByCurrencyType(CURRENCY_TYPES.RAID),
+            }}
+          />
+          <InnerInfoBox
+            key="spinTicket"
+            content={<NumberFormatter value={get(user, "spin", 0)} />}
+            icon={{
+              url: getIconPathByCurrencyType(CURRENCY_TYPES.SPIN),
+            }}
+          />
+        </div>
+
+        <div className="overflow-y-auto w-full grid grid-cols-2 justify-center gap-3 mx-auto p-3">
+          {Object.values(MINI_GAME_PANELS).map((item) => (
+            <Card
+              key={item.key}
+              className="border border-gray-20 rounded-xl p-2 drop-shadow-[0_2px_#b5b5b5] cursor-pointer bg-gray-10"
+              onClick={() => handleChangeGameModule(item.module)}
+            >
+              <CardContent className="p-0">
+                <div className="w-full bg-[url('/images/leaderboard/pattern.png')] bg-cover rounded-md h-20 flex justify-center items-center">
+                  <Image
+                    width={80}
+                    height={80}
+                    src={`/images/mini-game/${item.key}.png`}
+                    alt=""
+                    className="mx-auto drop-shadow-2xl"
+                  />
+                </div>
+              </CardContent>
+              <CardFooter className="p-0 mt-2">
+                <div className="flex justify-center w-full">
+                  <div className="text-sm uppercase">{item.value}</div>
+                </div>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      default:
+      case TAB.HOME:
+        return homeContent;
+      case TAB.NOTI:
+        return <LogPanel />;
+    }
+  };
+
   return (
     <>
       <div className="list-panel bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">
@@ -80,65 +153,8 @@ export const HomePanel = () => {
               <p className="bg-red-10 h-[2px] w-[70%]"></p>
               <p className="bg-red-10 h-[2px] w-[13%]"></p>
             </span>
-            <div className="flex flex-col w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] overflow-hidden mt-8">
-              {/* <Slider ranks={[]} /> */}
-              <div className="flex flex-col w-full overflow-auto">
-                <div className="w-full relative">
-                  <img src="/images/mini-game/Banner.png" alt="" />
-                </div>
 
-                <div className="grid grid-cols-3 px-3 pt-3 gap-x-3">
-                  <InnerInfoBox
-                    key="shield"
-                    content={<NumberFormatter value={get(user, "shield", 0)} />}
-                    icon={{
-                      url: getIconPathByCurrencyType(CURRENCY_TYPES.SHIELD),
-                    }}
-                  />
-                  <InnerInfoBox
-                    key="raidTicket"
-                    content={<NumberFormatter value={get(user, "raid", 0)} />}
-                    icon={{
-                      url: getIconPathByCurrencyType(CURRENCY_TYPES.RAID),
-                    }}
-                  />
-                  <InnerInfoBox
-                    key="spinTicket"
-                    content={<NumberFormatter value={get(user, "spin", 0)} />}
-                    icon={{
-                      url: getIconPathByCurrencyType(CURRENCY_TYPES.SPIN),
-                    }}
-                  />
-                </div>
-
-                <div className="overflow-y-auto w-full grid grid-cols-2 justify-center gap-3 mx-auto p-3">
-                  {Object.values(MINI_GAME_PANELS).map((item) => (
-                    <Card
-                      key={item.key}
-                      className="border border-gray-20 rounded-xl p-2 drop-shadow-[0_2px_#b5b5b5] cursor-pointer bg-gray-10"
-                      onClick={() => handleChangeGameModule(item.module)}
-                    >
-                      <CardContent className="p-0">
-                        <div className="w-full bg-[url('/images/leaderboard/pattern.png')] bg-cover rounded-md h-20 flex justify-center items-center">
-                          <Image
-                            width={80}
-                            height={80}
-                            src={`/images/mini-game/${item.key}.png`}
-                            alt=""
-                            className="mx-auto drop-shadow-2xl"
-                          />
-                        </div>
-                      </CardContent>
-                      <CardFooter className="p-0 mt-2">
-                        <div className="flex justify-center w-full">
-                          <div className="text-sm uppercase">{item.value}</div>
-                        </div>
-                      </CardFooter>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </div>
+            {renderTabContent()}
           </div>
         </div>
       </div>

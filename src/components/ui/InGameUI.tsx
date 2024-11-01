@@ -111,9 +111,17 @@ export const InGameUI = () => {
       state.currentRestaurant,
       state.restaurants,
     ]);
-  const [showOfflineEarning, setShowOfflineEarning] = useLayoutStore(
-    (state) => [state.showOfflineEarning, state.setShowOfflineEarning]
-  );
+  const [
+    showOfflineEarning,
+    setShowOfflineEarning,
+    isOfflineEarningClaimed,
+    setIsOfflineEarningClaimed,
+  ] = useLayoutStore((state) => [
+    state.showOfflineEarning,
+    state.setShowOfflineEarning,
+    state.isOfflineEarningClaimed,
+    state.setIsOfflineEarningClaimed,
+  ]);
   const [staffs, staffUpgradeConfigs] = useStaffStore((state) => [
     state.staffs,
     state.staffUpgradeConfigs,
@@ -285,11 +293,12 @@ export const InGameUI = () => {
   }, []);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && !isOfflineEarningClaimed) {
       setShowOfflineEarning(true);
+      setIsOfflineEarningClaimed(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [loading, isOfflineEarningClaimed]);
   useEffect(() => {
     if (user?.bean) {
       setCoinTapping(Number(user?.bean));
