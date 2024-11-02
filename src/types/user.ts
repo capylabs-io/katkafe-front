@@ -23,6 +23,13 @@ export type UserType = {
   shield: number;
   raid: number;
   spin: number;
+
+  createdAt: string;
+  updatedAt: string;
+
+  //wallet addresses
+  phantomAddress: string;
+  metamaskAddress: string;
 };
 
 export type LoginBody = {

@@ -62,13 +62,13 @@ export const CAT_CHANGE_DISPLAY_LEVELS = [
 
 export const GUEST_SPEED = 50;
 export const MAX_GUESTS = 6;
-export const SPECIAL_GUEST_PERCENTAGE = 10;
-export const GUEST_MAX_GEN_DELAY = 8000;
-export const GUEST_MIN_GEN_DELAY = 4000;
-export const GUEST_MAX_ORDER_DELAY = 9000;
+export const SPECIAL_GUEST_PERCENTAGE = 55;
+export const GUEST_MAX_GEN_DELAY = 9000;
+export const GUEST_MIN_GEN_DELAY = 3000;
+export const GUEST_MAX_ORDER_DELAY = 8000;
 export const GUEST_MIN_ORDER_DELAY = 3000;
 
-export const DIALOG_MAX_GEN_DELAY = 60000;
+export const DIALOG_MAX_GEN_DELAY = 20000;
 export const DIALOG_MIN_GEN_DELAY = 10000;
 export const DIALOG_MIN_DURATION = 3000;
 export const DIALOG_MAX_DURATION = 8000;
@@ -95,7 +95,7 @@ export const CAT_HAT_COUNT = 10;
 export const CAT_FRAME_WIDTH = 160;
 export const CAT_FRAME_HEIGHT = 160;
 
-export const SPECIAL_CHARACTER_COUNT = 6;
+export const SPECIAL_CHARACTER_COUNT = 12;
 export const SPECIAL_CHARACTER_FOLDER = "cats/specials";
 export const SPECIAL_AURA_COUNT = 2;
 export const SPECIAL_AURA_FOLDER = "specials/auras";

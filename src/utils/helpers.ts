@@ -73,3 +73,21 @@ export function timeAgo(isoString: string): string {
     return years === 1 ? "1 year ago" : `${years} years ago`;
   }
 }
+export const sliceString = (
+  input: string,
+  startCharacter: number = 8,
+  endCharacter: number = 6
+): string => {
+  if (startCharacter < 0 || startCharacter >= input.length) {
+    console.log("startCharacter is out of bounds.");
+    return input;
+  }
+
+  const startSlice = input.slice(0, startCharacter);
+  const endSlice =
+    endCharacter !== undefined && endCharacter < input.length
+      ? input.slice(-endCharacter)
+      : input.slice(-4); // Default to last 4 characters if endCharacter is not provided
+
+  return `${startSlice}...${endSlice}`;
+};

@@ -6,6 +6,7 @@ import { getIconPathByCurrencyType } from "@/utils/shop";
 import { ITEM_TYPES } from "@/types/item";
 import { get } from "lodash";
 import { InnerInfoBox } from "./InnerInfoBox";
+import { formatStringNumber } from "@/utils/helpers";
 
 export const ShopConfirmDialog = () => {
   const [
@@ -52,7 +53,7 @@ export const ShopConfirmDialog = () => {
           onClick={handleClose}
         ></div>
         <div className="bg-orange-10 absolute rounded-2xl w-[90%] text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 !z-40">
-          <div className="absolute -right-[6px] -top-[6px] bg-[#fffde9] rounded-full border-[#ededed] cursor-pointer">
+          <div className="absolute -right-[6px] -top-[6px] bg-[#fffde9] rounded-full border-[#ededed]">
             <img
               className="w-6 h-6"
               src="/images/btn-close.png"
@@ -74,7 +75,7 @@ export const ShopConfirmDialog = () => {
               {rewards.map((reward, index) => (
                 <InnerInfoBox
                   key={index}
-                  content={reward.value}
+                  content={formatStringNumber(reward.value)}
                   icon={{
                     url: getIconPathByCurrencyType(reward.type),
                   }}
@@ -82,7 +83,7 @@ export const ShopConfirmDialog = () => {
               ))}
             </div>
           )}
-          <div className="flex flex-wrap gap-2 justify-center border-[#E8DDBD] border-t py-3">
+          <div className="flex flex-wrap gap-2 justify-center border-[#E8DDBD] border-t py-3 mt-4">
             {/* <div className="w-[164px] h-[39px]" onClick={handleClose}>
               <Button>{cancelText}</Button>
             </div>*/}

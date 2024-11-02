@@ -22,8 +22,9 @@ type States = {
   //Events
   showEventPanel: boolean;
   showRewardPanel: boolean;
-
   showRedeemPanel: boolean;
+
+  showWalletPanel: boolean;
 
   // Leaderboard
   showLeaderboardPanel: boolean;
@@ -57,6 +58,8 @@ type Actions = {
   setShowRewardPanel: (show: boolean) => void;
   setShowRedeemPanel(show: boolean): void;
 
+  setShowWalletPanel: (show: boolean) => void;
+
   // Leaderboard
   setShowLeaderboardPanel: (show: boolean) => void;
 
@@ -87,6 +90,7 @@ const defaultStates = {
   showEventPanel: false,
   showRewardPanel: false,
   showRedeemPanel: false,
+  showWalletPanel: false,
   //
   showLeaderboardPanel: false,
 
@@ -106,6 +110,8 @@ export const useLayoutStore = create<States & Actions>((set) => ({
   },
   setMiniGamePanel: (show: boolean) =>
     set({ showMinigamePanel: show, isAnyPanelOpen: show }),
+  setShowWalletPanel: (show: boolean) =>
+    set({ showWalletPanel: show, isAnyPanelOpen: show }),
   setShowRedeemPanel: (show: boolean) =>
     set({ showRedeemPanel: show, isAnyPanelOpen: show }),
   setShowEventPanel: (show: boolean) => {
