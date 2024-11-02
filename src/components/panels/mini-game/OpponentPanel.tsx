@@ -23,10 +23,11 @@ export const OpponentPanel = ({ user }: Props) => {
         </div>
         <div className="rounded-lg flex justify-center mt-4">
           <Image
-            src={user.avatarUrl || DEFAULT_QUEST_ICON}
-            alt="user avatar"
-            width={48}
-            height={48}
+            // src={user.avatarUrl || DEFAULT_QUEST_ICON}
+            src={"/images/mini-game/TargetFound.png"}
+            alt="target"
+            width={96}
+            height={96}
           />
         </div>
         <div className="mt-4 mb-2">{user.username}</div>

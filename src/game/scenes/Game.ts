@@ -29,6 +29,7 @@ import { LAYERS } from "@/constants/layers";
 let target: any;
 let explosions: any;
 let fires: any;
+let shields: any;
 let cinematicActive = true;
 
 export class Game extends Scene {
@@ -74,6 +75,7 @@ export class Game extends Scene {
       get(minigameState, "raidResult.status", "success") === "blocked";
 
     fires && fires.clear(true, true);
+    shields && shields.clear(true, true);
     target && target.destroy();
 
     this.soundManager.stopAllSounds();
@@ -107,6 +109,7 @@ export class Game extends Scene {
     // Create explosions group
     explosions = this.physics.add.group();
     fires = this.physics.add.group();
+    shields = this.physics.add.group();
 
     // Start the cinematic
     this.time.addEvent({
@@ -150,11 +153,19 @@ export class Game extends Scene {
   }
 
   createShieldImage(x, y) {
-    const shield = this.physics.add.image(x, y, "fire");
+    const shield = shields.create(
+      x,
+      y,
+      `${MINIGAME_VFX}-${MINIGAME_VFX_TYPES.SHIELD}`
+    );
     shield.setOrigin(0.5, 0.5);
     shield.setScale(0.5); // Adjust scale as needed
     shield.setAlpha(0);
     shield.setDepth(LAYERS.RAID_OBJECTS);
+
+    this.soundManager.playSFX(`${MINIGAME_SFX}-${MINIGAME_SFX_TYPES.SHIELD}`, {
+      volume: 0.8,
+    });
 
     // Fade in the shield  effect
     this.tweens.add({

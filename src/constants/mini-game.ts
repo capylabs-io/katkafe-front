@@ -13,7 +13,7 @@ export const MINI_GAME_PANELS = {
   },
   GENERAL_INFO: {
     key: "Info",
-    value: "General Info",
+    value: "How to play",
     module: MINI_GAME_MODULES.GENERAL_INFO,
   },
   SHOP: {
@@ -65,3 +65,5 @@ export const MINIGAME_SFX_TYPES = {
 export const RAID_ANIMATION_COUNT = 4;
 export const RAID_ANIMATION_DURATION = 5000; // Duration in milliseconds
 export const RAID_ANIMATION_DURATION_DELAY = 6000;
+
+export const LOGS_PER_PAGE = 10;

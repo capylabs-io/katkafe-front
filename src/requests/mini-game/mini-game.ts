@@ -22,8 +22,8 @@ export const raidUser = async (isSRaid = false) => {
   return response.data;
 };
 
-export const getRaidLog = async () => {
-  const response = await katAxios.get(`${BASE_URL}/mini-game-logs`);
+export const getRaidLog = async (query?: string) => {
+  const response = await katAxios.get(`${BASE_URL}/mini-game-logs?${query}`);
   return response.data;
 };
 

@@ -1,4 +1,5 @@
 // components/SpinWheel.tsx
+import { SPIN_REVOLUTIONS } from "@/constants/mini-game";
 import { WheelItem } from "@/types/spin-wheel";
 import { calcWheelRotationForTargetAngle } from "@/utils/spin";
 import { get } from "lodash";
@@ -95,28 +96,12 @@ export const SpinWheel = forwardRef<SpinWheelRef, SpinWheelProps>(
       onSpinStart?.();
 
       const { startAngle, endAngle } = itemAngles[index];
-
-      console.log("index", index);
-      console.log("angle", itemAngles[index]);
-
       const randomAngleWithinItem =
         Math.random() * (endAngle - startAngle) + startAngle;
 
-      console.log("randomAngleWithinItem", randomAngleWithinItem);
-      console.log(
-        "randomAngleWithinItem - pointerAngle",
-        randomAngleWithinItem - pointerAngle
-      );
-
-      let newRotation = calcWheelRotationForTargetAngle(
-        currentAngle,
-        randomAngleWithinItem - pointerAngle,
-        -1
-      );
-
-      console.log("newRotation", newRotation);
-      newRotation += 360 * revolutions;
-      console.log("newRotation", newRotation);
+      const newTargetAngle = randomAngleWithinItem - (currentAngle % 360);
+      const newRotation =
+        currentAngle + (SPIN_REVOLUTIONS * 360 + newTargetAngle);
 
       setCurrentAngle(newRotation);
       setTimeout(() => {

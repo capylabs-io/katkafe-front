@@ -7,7 +7,10 @@ import { useMiniGameStore } from "@/stores/mini-game/useMiniGameStore";
 import { useUserStore } from "@/stores/userStore";
 import { CURRENCY_TYPES } from "@/types/item";
 import { MINI_GAME_MODULES } from "@/types/mini-game";
-import { getIconPathByCurrencyType } from "@/utils/shop";
+import {
+  getBigIconPathByCurrencyType,
+  getIconPathByCurrencyType,
+} from "@/utils/shop";
 import { get } from "lodash";
 import React, {
   useCallback,
@@ -63,47 +66,38 @@ export const SpinWheelPanel = () => {
       return;
     }
     try {
-      showLoading();
       const res = await spinWheel();
       const result = get(res, "result");
-      console.log("items", items);
-      console.log("res", res);
-      console.log("result", result);
       if (result) {
         const reward = get(result, "rewards[0]");
-        console.log("reward", reward);
         setSpinReward(reward);
         const winningItemIndex = items.findIndex(
           (item) => get(item, "id", -1) === result.id
         );
-        console.log("winningItemIndex", winningItemIndex);
 
+        await fetchUser();
         setIsSpinning(true);
-        spinWheelRef.current.spinToItem(0, SPIN_REVOLUTIONS);
+        spinWheelRef.current.spinToItem(winningItemIndex, SPIN_REVOLUTIONS);
       }
     } catch (error) {
       console.error(error);
       showSnackbar("Spin fail!");
-    } finally {
-      hideLoading();
     }
   };
 
   const handleSpinWheelEnd = useCallback(async () => {
-    console.log("spinReward", spinReward);
     setIsSpinning(false);
     if (!spinReward) {
       showSnackbar("Good luck next time!");
       return;
     }
     showSnackbar("Reward received");
-    console.log("spinReward", spinReward);
 
     const currencyType = get(spinReward, "type", CURRENCY_TYPES.BEAN);
     showReward({
       title: "Congrats",
       content: "You have won these reward!",
-      icon: getIconPathByCurrencyType(currencyType),
+      icon: getBigIconPathByCurrencyType(currencyType),
       rewards: [spinReward],
     });
     await fetchUser();

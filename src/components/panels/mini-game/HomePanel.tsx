@@ -61,7 +61,7 @@ export const HomePanel = () => {
   );
 
   const homeContent = (
-    <div className="flex flex-col w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] overflow-hidden mt-8">
+    <div className="flex flex-col w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 !h-[calc(100vh-96px)] overflow-hidden mt-8">
       {/* <Slider ranks={[]} /> */}
       <div className="flex flex-col w-full overflow-auto">
         <div className="w-full relative">
@@ -135,7 +135,7 @@ export const HomePanel = () => {
   return (
     <>
       <div className="list-panel bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">
-        <div className="rounded-3xl border-solid border-orange-90 border-4 h-[calc(100%-36px)] mt-6">
+        <div className="rounded-3xl border-solid border-orange-90 border-4 !h-[calc(100%-36px)] mt-6">
           <div className="rounded-[21px] border-solid border-orange-30 border-4 bg-orange-30 h-full relative">
             <div className="absolute -right-[15px] -top-[13px] bg-[#fffde9] rounded-full border-[#ededed] cursor-pointer">
               <Image

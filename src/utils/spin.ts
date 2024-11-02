@@ -13,7 +13,7 @@ export function calcWheelRotationForTargetAngle(
   angle = fixFloat(angle);
 
   // Apply direction:
-  angle = (direction === 1 ? 360 - angle : 360 + angle) % 360;
+  angle = (direction === 1 ? 360 - angle : -360 + angle) % 360;
   angle *= direction;
 
   return currentRotation + angle;

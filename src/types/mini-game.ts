@@ -26,3 +26,13 @@ export type RaidLog = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type RaidLogResponse = {
+  data: RaidLog[];
+  metadata: {
+    total: number;
+    totalPages: number;
+    page: number;
+    limit: number;
+  };
+};
