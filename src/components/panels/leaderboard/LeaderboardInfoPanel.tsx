@@ -18,10 +18,9 @@ export const LeaderboardInfoPanel = ({
   currentLeaderboard,
   onClose,
 }: Props) => {
-  const [ranks, currentRank, totalUsers] = useRankStore((state) => [
+  const [ranks, currentRank] = useRankStore((state) => [
     state.ranks,
     state.currentRank,
-    state.totalUsers,
   ]);
   const { fetchLeaderboard } = useLeaderboad();
 
@@ -72,10 +71,6 @@ export const LeaderboardInfoPanel = ({
                   src={`/images/leaderboard/200px/${currentLeaderboard.key}.png`}
                   alt=""
                 />
-                {/* <div className="text-bodyXl text-gray-40">OWNER LEAGUE</div> */}
-                <div className="text-bodyMd text-orange-90 mb-3">
-                  Total user: {totalUsers}
-                </div>
               </div>
 
               <div className="w-full overflow-auto !h-[calc(462px-30px-33px-172px-48px)]">
