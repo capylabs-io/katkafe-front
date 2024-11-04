@@ -85,7 +85,10 @@ export const ShopPanel = () => {
       }
     } catch (error) {
       console.error("Failed to buy item", error);
-      showSnackbar("Purchase fail!");
+      const errorMsg = get(error, "response.data.message");
+      if (errorMsg && errorMsg && errorMsg.includes("3 shields"))
+        showSnackbar(errorMsg);
+      else showSnackbar("Purchase fail!");
     } finally {
       hideLoading();
     }
