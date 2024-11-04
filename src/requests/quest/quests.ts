@@ -63,3 +63,13 @@ export const allDailyQuests = async () => {
   const response = await katAxios.post(`${BASE_URL}/quests/all-daily-quests`);
   return response.data;
 };
+
+export const spinQuest = async () => {
+  const response = await katAxios.post(`${BASE_URL}/quests/spin`);
+  return response.data;
+};
+
+export const raidQuest = async () => {
+  const response = await katAxios.post(`${BASE_URL}/quests/raid`);
+  return response.data;
+};

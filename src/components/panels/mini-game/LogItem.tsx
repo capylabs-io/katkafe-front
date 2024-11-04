@@ -53,9 +53,9 @@ export const LogItem = ({ log }: Props) => {
   const isRevengedLog = get(log, "type", "kat-raid") === "kat-raid-revenge";
 
   const getBackgroundColor = () => {
-    if (isRaided && isBlocked)
+    if (isBlocked)
       //blocked
-      return "#A098F1";
+      return "#FFEDBB";
     else if (isRaided && !isBlocked)
       //was raided
       return "#E2645C";

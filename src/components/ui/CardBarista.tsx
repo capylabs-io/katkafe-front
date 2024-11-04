@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { DEFAULT_QUEST_ICON } from "@/constants/config";
+import { DEFAULT_QUEST_ICON, DEFAULT_USER_AVATAR } from "@/constants/config";
 import { formatStringNumber, ordinalSuffix } from "@/utils/helpers";
 import FormatText from "./FormatText";
 
@@ -25,9 +25,9 @@ const CardBarista = ({
     <div className="w-full h-full p-2 pl-4 flex gap-8 items-center justify-between text-gray-60">
       <div className="flex gap-y-2 gap-x-4 items-center text-center">
         <div className="px-2 text-bodyMd">{ordinalSuffix(id + 1)}</div>
-        <div className="rounded-full w-6 h-6">
+        <div className="rounded-full w-6 h-6 flex items-center justify-center bg-white border border-gray-20">
           <Image
-            src={imageUrl || DEFAULT_QUEST_ICON}
+            src={DEFAULT_USER_AVATAR}
             alt="user avatar"
             width={24}
             height={24}

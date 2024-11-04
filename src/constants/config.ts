@@ -74,6 +74,7 @@ export const DIALOG_MIN_DURATION = 3000;
 export const DIALOG_MAX_DURATION = 8000;
 
 export const DEFAULT_QUEST_ICON = "/images/user-task.png";
+export const DEFAULT_USER_AVATAR = "/icons/user-avatar.png";
 
 //TODO: Change this after
 // export const CAT_ASSET_FOLDER = "demo-cats";

@@ -37,3 +37,8 @@ export const getUserInventory = async () => {
   const response = await katAxios.get(`${BASE_URL}/inventory`);
   return response.data;
 };
+
+export const getUserCount = async () => {
+  const response = await katAxios.get(`${BASE_URL}/users/count`);
+  return response.data;
+};
