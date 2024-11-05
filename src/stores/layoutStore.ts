@@ -33,6 +33,8 @@ type States = {
 
   showErrorPanel: boolean;
   isOfflineEarningClaimed: boolean;
+
+  showTransferPanel: boolean;
 };
 
 type Actions = {
@@ -67,6 +69,8 @@ type Actions = {
   setShowErrorPanel: (show: boolean) => void;
 
   setIsOfflineEarningClaimed: (show: boolean) => void;
+
+  setShowTransferPanel: (show: boolean) => void;
 };
 
 const defaultStates = {
@@ -98,10 +102,12 @@ const defaultStates = {
   showErrorPanel: false,
 
   isOfflineEarningClaimed: false,
+  showTransferPanel: false,
 };
 
 export const useLayoutStore = create<States & Actions>((set) => ({
   ...defaultStates,
+  setShowTransferPanel: (show: boolean) => set({ showTransferPanel: show }),
   setIsOfflineEarningClaimed: (show: boolean) =>
     set({ isOfflineEarningClaimed: show }),
   setShowErrorPanel: (show: boolean) => {

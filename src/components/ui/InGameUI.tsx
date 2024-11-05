@@ -64,6 +64,7 @@ export const InGameUI = () => {
     setShowRedeemPanel,
     setMiniGamePanel,
     setShowWalletPanel,
+    setShowTransferPanel,
   ] = useLayoutStore((state) => [
     state.setShowManagePanel,
     state.setShowStaffPanel,
@@ -74,6 +75,7 @@ export const InGameUI = () => {
     state.setShowRedeemPanel,
     state.setMiniGamePanel,
     state.setShowWalletPanel,
+    state.setShowTransferPanel,
   ]);
 
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
@@ -526,7 +528,8 @@ export const InGameUI = () => {
           height={48}
           url="/images/booster-btn.png"
           steps={4}
-          onClick={() => setShowBoostPanel(true)}
+          // onClick={() => setShowBoostPanel(true)}
+          onClick={() => setShowTransferPanel(true)}
           fps={6}
         />
         <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-extrabold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
