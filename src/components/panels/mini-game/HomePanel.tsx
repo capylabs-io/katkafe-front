@@ -61,7 +61,7 @@ export const HomePanel = () => {
   );
 
   const homeContent = (
-    <div className="flex flex-col w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 !h-[calc(100vh-96px)] overflow-hidden mt-8">
+    <div className="flex flex-col w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 !h-[calc(100%-32px)] overflow-hidden mt-8">
       {/* <Slider ranks={[]} /> */}
       <div className="flex flex-col w-full overflow-auto">
         <div className="w-full relative">
