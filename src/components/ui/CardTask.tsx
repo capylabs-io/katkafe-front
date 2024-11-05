@@ -5,6 +5,7 @@ import { DEFAULT_QUEST_ICON } from "@/constants/config";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import { RewardType } from "@/types/quest";
+import { getIconPathByRewardType } from "@/utils/quest";
 
 type Props = {
   type: "achievement" | "task";
@@ -57,15 +58,9 @@ const CardTask = ({
           </div>
           <div className="flex items-center gap-1">
             <div className="text-gray-30">{reward.quantity}</div>
-            {reward.type === RewardType.BEAN ? (
-              <div className="w-4 h-4">
-                <img src="/images/coin.png" alt="" />
-              </div>
-            ) : (
-              <div className="w-4 h-4">
-                <img src="/images/kbuck.png" alt="" />
-              </div>
-            )}
+            <div className="w-4 h-4">
+              <img src={getIconPathByRewardType(reward.type)} alt="" />
+            </div>
           </div>
         </div>
         <div>
@@ -89,7 +84,10 @@ const CardTask = ({
       <div className="w-full flex justify-center mt-2">
         <div className="w-[150px] h-[28px] flex justify-center gap-x-4">
           {visitUrl && (
-            <Button onClick={() => window.open(visitUrl, "_blank")}>
+            <Button
+              customClassNames="!min-h-8"
+              onClick={() => window.open(visitUrl, "_blank")}
+            >
               Visit
             </Button>
           )}
@@ -97,7 +95,7 @@ const CardTask = ({
             <Button
               onClick={button?.onClick}
               disabled={button?.disabled}
-              customClassNames="max-w-[74px]"
+              customClassNames="max-w-[74px] !min-h-8"
             >
               {button?.text}
             </Button>

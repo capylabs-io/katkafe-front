@@ -1,4 +1,5 @@
 import { DEFAULT_INFO_ICON } from "@/constants/icon";
+import classNames from "classnames";
 import Image from "next/image";
 import React from "react";
 
@@ -8,11 +9,17 @@ type Props = {
     size?: number;
   };
   content: React.ReactNode;
+  className?: string;
 };
 
-export const InnerInfoBox = ({ icon, content }: Props) => {
+export const InnerInfoBox = ({ icon, content, className }: Props) => {
   return (
-    <div className="flex relative flex-col justify-center border bg-orange-20 border-[#DDDCC9] rounded-md text-center uppercase py-1 px-4 w-[102px] !h-max">
+    <div
+      className={classNames(
+        "flex relative items-center border bg-orange-20 border-[#DDDCC9] rounded-md text-center uppercase py-1 px-4 max-w-[120px] !h-max",
+        className
+      )}
+    >
       <div className="absolute -left-2.5">
         <Image
           src={icon?.url || DEFAULT_INFO_ICON}

@@ -22,8 +22,8 @@ import {
 } from "@/components/ui/Popover";
 import { get } from "lodash";
 import NumberFormatter from "@/components/ui/NumberFormat";
-import { InfoBox } from "@/components/ui/InfoBox";
 import { GemShopContent } from "./GemShopContent";
+import qs from "qs";
 import { StarterBundleShopContent } from "./StarterBundleContent";
 
 const TABS = {
@@ -129,7 +129,7 @@ const Shop = () => {
       let type;
       switch (activeTab) {
         case TABS.ROLL:
-          type = "pack";
+          type = ITEM_TYPES.PACK;
           break;
         // case TABS.CAT:
         //   type = "cat";
@@ -141,7 +141,7 @@ const Shop = () => {
           type = ITEM_TYPES.STAR;
           break;
         default:
-          type = "pack";
+          type = ITEM_TYPES.PACK;
           break;
       }
       const response = await getItems(type);

@@ -64,12 +64,14 @@ export const ShopConfirmDialog = () => {
           <div className="p-4">
             <div className="text-xl font-semibold">{title}</div>
             <div className="text-md text-gray-30 leading-5 mt-2">{content}</div>
-            <div className="flex items-center justify-center mt-2">
-              <Image src={icon} width={140} height={140} alt={"item-img"} />
-            </div>
+            {icon && (
+              <div className="flex items-center justify-center">
+                <Image src={icon} width={140} height={140} alt={"item-img"} />
+              </div>
+            )}
           </div>
           {rewards && rewards.length > 0 && (
-            <div className="px-4 flex flex-wrap justify-center -mt-2 gap-x-4">
+            <div className="px-4 flex flex-wrap justify-center -mt-2 mb-6">
               {rewards.map((reward, index) => (
                 <InnerInfoBox
                   key={index}

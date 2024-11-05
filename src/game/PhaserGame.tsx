@@ -34,6 +34,11 @@ import EventPanel from "@/components/panels/event/Event";
 import { RedeemPanel } from "@/components/panels/redeem/Redeem";
 import { ShopConfirmDialog } from "@/components/ui/shop/ShopConfirmDialog";
 import { PurchaseResultDialog } from "@/components/ui/shop/PurchaseResultDialog";
+import { MiniGamePanel } from "@/components/panels/mini-game/MiniGamePanel";
+import { useMiniGameStore } from "@/stores/mini-game/useMiniGameStore";
+import { MINI_GAME_MODULES } from "@/types/mini-game";
+import { RaidingGameUI } from "@/components/ui/RaidingGameUI";
+import { ErrorStartApp } from "@/components/ui/ErrorStartApp";
 import { WalletPanel } from "@/components/panels/wallet/WalletPanel";
 
 export interface IRefPhaserGame {
@@ -67,6 +72,8 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     showEventPanel,
     showRewardPanel,
     showRedeemPanel,
+    showMinigamePanel,
+    showErrorPanel,
     showWalletPanel,
   ] = useLayoutStore((state) => [
     state.showFriendPanel,
@@ -85,11 +92,19 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     state.showEventPanel,
     state.showRewardPanel,
     state.showRedeemPanel,
+    state.showMinigamePanel,
+    state.showErrorPanel,
     state.showWalletPanel,
   ]);
 
   const [isShowingLoading] = useLoadingStore((state) => [state.isShowing]);
   const [isShowingSnackbar] = useSnackBarStore((state) => [state.isShowing]);
+  const [currentMinigameModule] = useMiniGameStore((state) => [
+    state.currentModule,
+  ]);
+
+  const isRaiding =
+    currentMinigameModule === MINI_GAME_MODULES.RAIDING && showMinigamePanel;
 
   useLayoutEffect(() => {
     if (game.current === null) {
@@ -135,7 +150,8 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
       id="game-container"
       // className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
     >
-      {isGameScene && <InGameUI />}
+      {isGameScene && !isRaiding && <InGameUI />}
+      {isGameScene && isRaiding && <RaidingGameUI />}
       {showFriendPanel && <FriendPanel />}
       {showStaffPanel && <Staff />}
       {showManagePanel && <Manage />}
@@ -153,9 +169,11 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
       {showBoostPanel && <Boost />}
       {showEventPanel && <EventPanel />}
       {showRedeemPanel && <RedeemPanel />}
+      {showMinigamePanel && !isRaiding && <MiniGamePanel />}
       {showWalletPanel && <WalletPanel />}
       <ShopConfirmDialog />
       <PurchaseResultDialog />
+      {showErrorPanel && <ErrorStartApp />}
     </div>
   );
 });

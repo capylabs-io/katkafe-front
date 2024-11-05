@@ -6,7 +6,9 @@ import {
   followTwitter,
   joinTelegramChat,
   joinTelegramOfficialAnnouncement,
+  raidQuest,
   shareLinktree,
+  spinQuest,
   visitTelegramAnnouncement,
   visitTelegramChat,
   visitTwitter,
@@ -140,6 +142,34 @@ function Task({}: Props) {
     }
   };
 
+  const handleSpinTicketQuest = async () => {
+    try {
+      show();
+      await spinQuest();
+      refetchQuests();
+      showSnackbar("Claim spin ticket successfully!");
+      setShowReward(true);
+    } catch (error) {
+      showSnackbar("Claim spin ticket fail!");
+    } finally {
+      hide();
+    }
+  };
+
+  const handleRaidTicketQuest = async () => {
+    try {
+      show();
+      await raidQuest();
+      refetchQuests();
+      showSnackbar("Claim raid ticket successfully!");
+      setShowReward(true);
+    } catch (error) {
+      showSnackbar("Claim raid ticket fail!");
+    } finally {
+      hide();
+    }
+  };
+
   const handleAllDailyQuests = async () => {
     try {
       show();
@@ -267,6 +297,12 @@ function Task({}: Props) {
       case QuestCodes.VISIT_TWITTER:
         webApp.openLink(quest.visitUrl);
         await handleVisitTwitterQuest();
+        break;
+      case QuestCodes.SPIN_TICKET:
+        await handleSpinTicketQuest();
+        break;
+      case QuestCodes.RAID_TICKET:
+        await handleRaidTicketQuest();
         break;
       case QuestCodes.ALL_DAILY_QUESTS:
         await handleAllDailyQuests();
