@@ -63,17 +63,18 @@ export const CAT_CHANGE_DISPLAY_LEVELS = [
 export const GUEST_SPEED = 50;
 export const MAX_GUESTS = 6;
 export const SPECIAL_GUEST_PERCENTAGE = 55;
-export const GUEST_MAX_GEN_DELAY = 7000;
+export const GUEST_MAX_GEN_DELAY = 9000;
 export const GUEST_MIN_GEN_DELAY = 3000;
 export const GUEST_MAX_ORDER_DELAY = 8000;
 export const GUEST_MIN_ORDER_DELAY = 3000;
 
-export const DIALOG_MAX_GEN_DELAY = 60000;
+export const DIALOG_MAX_GEN_DELAY = 20000;
 export const DIALOG_MIN_GEN_DELAY = 10000;
 export const DIALOG_MIN_DURATION = 3000;
 export const DIALOG_MAX_DURATION = 8000;
 
 export const DEFAULT_QUEST_ICON = "/images/user-task.png";
+export const DEFAULT_USER_AVATAR = "/icons/user-avatar.png";
 
 //TODO: Change this after
 // export const CAT_ASSET_FOLDER = "demo-cats";

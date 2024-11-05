@@ -4,7 +4,7 @@ import { get } from "lodash";
 import { LeaderBoard } from "@/types/leaderBoard";
 import { formatStringNumber, ordinalSuffix } from "@/utils/helpers";
 import FormatText from "./FormatText";
-import { DEFAULT_QUEST_ICON } from "@/constants/config";
+import { DEFAULT_QUEST_ICON, DEFAULT_USER_AVATAR } from "@/constants/config";
 
 type Props = {
   user: LeaderBoard;
@@ -30,13 +30,13 @@ const CardUser = ({ user, type, isShowIcon, iconUrl }: Props) => {
               </div>
               <div className="uppercase text-gray-90 text-bodySm">You</div>
             </div>
-            <div className="rounded-full w-6 h-6">
+            <div className="rounded-full w-6 h-6 flex items-center justify-center bg-white border border-gray-20">
               <Image
-                className="rounded-[100px]"
-                src={imageUrl === "" ? DEFAULT_QUEST_ICON : imageUrl}
-                alt="cat pic"
+                src={DEFAULT_USER_AVATAR}
+                alt="user avatar"
                 width={24}
                 height={24}
+                className="rounded-[100px]"
               />
             </div>
             <div className="text-bodyMd text-gray-60">

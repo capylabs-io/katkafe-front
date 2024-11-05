@@ -27,7 +27,7 @@ const Button = ({
       //   opacity: disabled ? "0.5" : "1",
       // }}
       className={classNames(
-        "border-orange-90 border-2 w-full h-full rounded-lg text-orange-90 flex items-center justify-center shadow-bottom-2xl",
+        "border-orange-90 border-2 w-full h-full rounded-lg text-orange-90 flex items-center justify-center shadow-bottom-2xl bg-orange-10 pb-1 px-4 min-h-10",
         disabled
           ? "cursor-not-allowed opacity-50"
           : "cursor-pointer opacity-100",
