@@ -4,9 +4,7 @@ import { BuyBody, Item } from "@/types/item";
 
 export const getItems = async (type: string) => {
   const response = await katAxios.get<Item[]>(`${BASE_URL}/shops`, {
-    params: {
-      type,
-    },
+    params: { type },
   });
   return response.data;
 };

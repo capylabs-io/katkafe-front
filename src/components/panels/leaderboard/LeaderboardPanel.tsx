@@ -1,11 +1,12 @@
 import { useLeaderboad } from "@/lib/hooks/leaderboard/useLeaderboard";
 import { useLayoutStore } from "@/stores/layoutStore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/common/Card";
 import { LEADERBOARDS } from "@/constants/leaderboard";
 import { LeaderboardInfoPanel } from "./LeaderboardInfoPanel";
 import { get } from "lodash";
+import { useRankStore } from "@/stores/rank/rankStore";
 
 export const LeaderboardPanel = () => {
   const [setShowLeaderboardPanel] = useLayoutStore((state) => [
@@ -16,7 +17,9 @@ export const LeaderboardPanel = () => {
     { key: string; value: string; path: string; rarity?: string } | undefined
   >(undefined);
 
-  const { showPanel, setShowPanel } = useLeaderboad();
+  const [totalUsers] = useRankStore((state) => [state.totalUsers]);
+
+  const { showPanel, setShowPanel, fetchUserCount } = useLeaderboad();
 
   const handleClose = () => {
     setShowLeaderboardPanel(false);
@@ -36,6 +39,11 @@ export const LeaderboardPanel = () => {
     setShowPanel({ ...showPanel, [key]: false });
     setCurrentLeaderboard(undefined);
   };
+
+  useEffect(() => {
+    fetchUserCount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -72,7 +80,11 @@ export const LeaderboardPanel = () => {
                   />
                 </div>
 
-                <div className="overflow-y-auto w-full flex flex-wrap justify-center gap-2 mx-auto mb-2 mt-6">
+                <div className="text-bodyMd text-orange-90 mt-4">
+                  Total user: {totalUsers}
+                </div>
+
+                <div className="overflow-y-auto w-full flex flex-wrap justify-center gap-2 mx-auto mb-2 mt-4 pb-3">
                   {Object.values(LEADERBOARDS).map((item) => (
                     <Card
                       key={item.key}

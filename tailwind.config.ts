@@ -85,6 +85,9 @@ const config: Config = {
         "bottom-xl-gray-20": "0px -2px 0px 0px #b5b5b5 inset",
         "bottom-2xl-gray-20": "0px -4px 0px 0px #b5b5b5 inset",
       },
+      dropShadow: {
+        "bottom-card-gray-20": "0px 2px #b5b5b5",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

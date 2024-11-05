@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000000;
+  color: #000000;
 }
 
 #app {
@@ -36,9 +37,11 @@ body {
   width: 112px;
   height: 48px;
 }
+
 .slick-arrow::before {
   display: none;
 }
+
 .active-overlay {
   position: absolute;
   top: 0;
@@ -83,10 +86,12 @@ body {
     opacity: 100;
     display: block;
   }
+
   80% {
     transform: translateY(-50px);
     opacity: 0;
   }
+
   100% {
     opacity: 0;
     display: hidden;
@@ -99,9 +104,11 @@ body {
   background-size: contain;
   padding: 0 6%;
 }
+
 .notMobile h1 {
   font-size: 24px;
 }
+
 @layer base {
   :root {
     --radius: 0.5rem;

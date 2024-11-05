@@ -42,7 +42,7 @@ export const InGameUI = () => {
   let staffUrl = "/icons/ic-staff.png";
   let manageUrl = "/icons/ic-manage.png";
   let shopUrl = "/icons/ic-shop.png";
-  let friendUrl = "/icons/ic-friend.png";
+  let friendUrl = "/icons/ic-game.png";
 
   const [clicks, setClicks] = useState<Click[]>([]);
   const [showLoginAward, setShowLoginAward] = useState(false);
@@ -62,6 +62,7 @@ export const InGameUI = () => {
     setShowBoostPanel,
     setShowEventPanel,
     setShowRedeemPanel,
+    setMiniGamePanel,
     setShowWalletPanel,
   ] = useLayoutStore((state) => [
     state.setShowManagePanel,
@@ -71,6 +72,7 @@ export const InGameUI = () => {
     state.setShowBoostPanel,
     state.setShowEventPanel,
     state.setShowRedeemPanel,
+    state.setMiniGamePanel,
     state.setShowWalletPanel,
   ]);
 
@@ -111,9 +113,17 @@ export const InGameUI = () => {
       state.currentRestaurant,
       state.restaurants,
     ]);
-  const [showOfflineEarning, setShowOfflineEarning] = useLayoutStore(
-    (state) => [state.showOfflineEarning, state.setShowOfflineEarning]
-  );
+  const [
+    showOfflineEarning,
+    setShowOfflineEarning,
+    isOfflineEarningClaimed,
+    setIsOfflineEarningClaimed,
+  ] = useLayoutStore((state) => [
+    state.showOfflineEarning,
+    state.setShowOfflineEarning,
+    state.isOfflineEarningClaimed,
+    state.setIsOfflineEarningClaimed,
+  ]);
   const [staffs, staffUpgradeConfigs] = useStaffStore((state) => [
     state.staffs,
     state.staffUpgradeConfigs,
@@ -214,14 +224,21 @@ export const InGameUI = () => {
       staffUrl = "/icons/ic-staff-2.png";
       manageUrl = "/icons/ic-manage-2.png";
       shopUrl = "/icons/ic-shop-2.png";
-      friendUrl = "/icons/ic-friend-2.png";
+      friendUrl = "/icons/ic-game-2.png";
       break;
     case 3:
       homeUrl = "/icons/ic-home-3.png";
       staffUrl = "/icons/ic-staff-3.png";
       manageUrl = "/icons/ic-manage-3.png";
       shopUrl = "/icons/ic-shop-3.png";
-      friendUrl = "/icons/ic-friend-3.png";
+      friendUrl = "/icons/ic-game-3.png";
+      break;
+    case 4:
+      homeUrl = "/icons/ic-home-4.png";
+      staffUrl = "/icons/ic-staff-4.png";
+      manageUrl = "/icons/ic-manage-4.png";
+      shopUrl = "/icons/ic-shop-4.png";
+      friendUrl = "/icons/ic-game-4.png";
       break;
   }
 
@@ -278,11 +295,12 @@ export const InGameUI = () => {
   }, []);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && !isOfflineEarningClaimed) {
       setShowOfflineEarning(true);
+      setIsOfflineEarningClaimed(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [loading, isOfflineEarningClaimed]);
   useEffect(() => {
     if (user?.bean) {
       setCoinTapping(Number(user?.bean));
@@ -438,11 +456,11 @@ export const InGameUI = () => {
         />
         <MenuButton
           key="friend"
-          title="Boost"
+          title="Game"
           icon={{
             url: friendUrl,
           }}
-          onClick={() => setShowBoostPanel(true)}
+          onClick={() => setMiniGamePanel(true)}
         />
       </div>
       {/* {user?.isLoginFirstTime && showLoginDialog && (
@@ -462,19 +480,9 @@ export const InGameUI = () => {
         <OfflineEarning onClick={handleOnClick} data={claimableData} />
       )}
       <div className="absolute left-2.5 top-[23%]">
-        {/* <MenuButton
-          key="shop"
-          title="Event"
-          icon={{
-            url: "/images/task.png",
-            size: 56,
-          }}
-          onClick={() => setShowEventPanel(true)}
-          showButtonBg={false}
-        /> */}
         <Animator
           width={48}
-          height={54}
+          height={48}
           url="/images/event-btn.png"
           steps={4}
           onClick={() => setShowEventPanel(true)}
@@ -485,19 +493,9 @@ export const InGameUI = () => {
         </div>
       </div>
       <div className="absolute left-2.5 top-[31%]">
-        {/* <MenuButton
-          key="shop"
-          title="Event"
-          icon={{
-            url: "/images/task.png",
-            size: 56,
-          }}
-          onClick={() => setShowEventPanel(true)}
-          showButtonBg={false}
-        /> */}
         <Animator
           width={48}
-          height={54}
+          height={48}
           url="/images/redeem-btn.png"
           steps={4}
           onClick={() => setShowRedeemPanel(true)}
@@ -509,19 +507,9 @@ export const InGameUI = () => {
       </div>
 
       <div className="absolute right-2.5 top-[31%]">
-        {/* <MenuButton
-          key="shop"
-          title="Event"
-          icon={{
-            url: "/images/task.png",
-            size: 56,
-          }}
-          onClick={() => setShowEventPanel(true)}
-          showButtonBg={false}
-        /> */}
         <Animator
           width={48}
-          height={54}
+          height={48}
           url="/images/wallet-btn.png"
           steps={4}
           onClick={() => setShowWalletPanel(true)}
@@ -529,6 +517,20 @@ export const InGameUI = () => {
         />
         <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-extrabold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
           Wallet
+        </div>
+      </div>
+
+      <div className="absolute right-[72px] top-[31%]">
+        <Animator
+          width={48}
+          height={48}
+          url="/images/booster-btn.png"
+          steps={4}
+          onClick={() => setShowBoostPanel(true)}
+          fps={6}
+        />
+        <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-extrabold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
+          Booster
         </div>
       </div>
     </div>

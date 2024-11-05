@@ -29,7 +29,7 @@ export const ShopItem = ({ item, onPurchase, currencyType }: Props) => {
 
   return (
     <div
-      className="flex flex-col justify-center items-center border border-orange-20 rounded-xl p-2 shadow-bottom-2xl-orange-20 cursor-pointer bg-gray-10"
+      className="flex flex-col justify-center items-center border border-gray-20 rounded-xl p-2 drop-shadow-[0_2px_#b5b5b5] cursor-pointer bg-gray-10"
       onClick={handlePurchaseClick}
     >
       <div className="text-center font-semibold text-bodyMd">

@@ -2,6 +2,10 @@ import React from "react";
 import Button from "./Button";
 import Image from "next/image";
 import { RewardType } from "@/types/quest";
+import {
+  getIconPathByRewardType,
+  getImagePathByRewardType,
+} from "@/utils/quest";
 
 type Props = {
   onClick: () => void;
@@ -23,7 +27,7 @@ const RewardQuest = ({ onClick, reward = 100, rewardType }: Props) => {
 
           <div className="flex justify-center mb-3">
             <Image
-              src="/images/offline-earning.png"
+              src={getImagePathByRewardType(rewardType)}
               alt="cat pic"
               width={150}
               height={150}
@@ -32,15 +36,13 @@ const RewardQuest = ({ onClick, reward = 100, rewardType }: Props) => {
         </div>
         <div className="flex items-center justify-center">
           <div className="border border-[#DDDCC9] bg-orange-20 px-6 rounded relative">
-            {rewardType && RewardType.DIAMOND === rewardType ? (
-              <div className="absolute top-1/2 -translate-y-1/2 -left-2">
-                <img src="/images/kbuck.png" className="w-4 h-4" alt="" />
-              </div>
-            ) : (
-              <div className="absolute top-1/2 -translate-y-1/2 -left-2">
-                <img src="/images/coin.png" className="w-4 h-4" alt="" />
-              </div>
-            )}
+            <div className="absolute top-1/2 -translate-y-1/2 -left-2">
+              <img
+                src={getIconPathByRewardType(rewardType)}
+                className="w-4 h-4"
+                alt=""
+              />
+            </div>
             {reward}
           </div>
         </div>

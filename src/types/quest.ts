@@ -4,6 +4,9 @@ export enum RewardType {
   KBUCK = "kBuck",
   BEAN = "bean",
   DIAMOND = "diamond",
+  SPIN = "spin",
+  RAID = "raid",
+  SHIELD = "shield",
 }
 
 export type Quest = {

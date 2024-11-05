@@ -28,6 +28,11 @@ type States = {
 
   // Leaderboard
   showLeaderboardPanel: boolean;
+
+  showMinigamePanel: boolean;
+
+  showErrorPanel: boolean;
+  isOfflineEarningClaimed: boolean;
 };
 
 type Actions = {
@@ -57,6 +62,11 @@ type Actions = {
 
   // Leaderboard
   setShowLeaderboardPanel: (show: boolean) => void;
+
+  setMiniGamePanel: (show: boolean) => void;
+  setShowErrorPanel: (show: boolean) => void;
+
+  setIsOfflineEarningClaimed: (show: boolean) => void;
 };
 
 const defaultStates = {
@@ -83,10 +93,23 @@ const defaultStates = {
   showWalletPanel: false,
   //
   showLeaderboardPanel: false,
+
+  showMinigamePanel: false,
+  showErrorPanel: false,
+
+  isOfflineEarningClaimed: false,
 };
 
 export const useLayoutStore = create<States & Actions>((set) => ({
   ...defaultStates,
+  setIsOfflineEarningClaimed: (show: boolean) =>
+    set({ isOfflineEarningClaimed: show }),
+  setShowErrorPanel: (show: boolean) => {
+    set({ showErrorPanel: show });
+    set({ isAnyPanelOpen: show });
+  },
+  setMiniGamePanel: (show: boolean) =>
+    set({ showMinigamePanel: show, isAnyPanelOpen: show }),
   setShowWalletPanel: (show: boolean) =>
     set({ showWalletPanel: show, isAnyPanelOpen: show }),
   setShowRedeemPanel: (show: boolean) =>

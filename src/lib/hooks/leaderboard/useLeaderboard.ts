@@ -2,6 +2,7 @@ import {
   claimReferralRankReward,
   getLeaderboard,
 } from "@/requests/leaderboard";
+import { getUserCount } from "@/requests/user";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { useRankStore } from "@/stores/rank/rankStore";
 import { ClaimReferralRankRewardRequest } from "@/types/friend";
@@ -32,6 +33,15 @@ export const useLeaderboad = () => {
     }
   };
 
+  const fetchUserCount = async () => {
+    try {
+      const response = await getUserCount();
+      setTotalUsers(response);
+    } catch (error) {
+      console.error("Error fetching", error);
+    }
+  };
+
   const claimRankReward = async (body: ClaimReferralRankRewardRequest) => {
     try {
       const response = await claimReferralRankReward(body);
@@ -44,6 +54,7 @@ export const useLeaderboad = () => {
   return {
     showPanel,
     setShowPanel,
+    fetchUserCount,
     fetchLeaderboard,
     claimRankReward,
   };
