@@ -7,6 +7,7 @@ import { LEADERBOARDS } from "@/constants/leaderboard";
 import { LeaderboardInfoPanel } from "./LeaderboardInfoPanel";
 import { get } from "lodash";
 import { useRankStore } from "@/stores/rank/rankStore";
+import classNames from "classnames";
 
 export const LeaderboardPanel = () => {
   const [setShowLeaderboardPanel] = useLayoutStore((state) => [
@@ -14,7 +15,14 @@ export const LeaderboardPanel = () => {
   ]);
 
   const [currentLeaderboard, setCurrentLeaderboard] = useState<
-    { key: string; value: string; path: string; rarity?: string } | undefined
+    | {
+        key: string;
+        value: string;
+        path: string;
+        rarity?: string;
+        isRecaculate: boolean;
+      }
+    | undefined
   >(undefined);
 
   const [totalUsers] = useRankStore((state) => [state.totalUsers]);
@@ -32,6 +40,7 @@ export const LeaderboardPanel = () => {
       value: get(LEADERBOARDS[key], "value", ""),
       path: get(LEADERBOARDS[key], "path", ""),
       rarity: get(LEADERBOARDS[key], "rarity"),
+      isRecaculate: get(LEADERBOARDS[key], "isRecaculate", false),
     });
   };
 
@@ -88,9 +97,19 @@ export const LeaderboardPanel = () => {
                   {Object.values(LEADERBOARDS).map((item) => (
                     <Card
                       key={item.key}
-                      className="w-[150px] h-[120]px border-gray-20 bg-orange-10 rounded-t-xl cursor-pointer shadow-bottom-2xl-gray-20"
-                      onClick={() => handleOpenLeaderboard(item.key)}
+                      className={classNames(
+                        "w-[150px] h-[120]px border-gray-20 bg-orange-10 rounded-t-xl shadow-bottom-2xl-gray-20 relative",
+                        !item.isRecaculate && "cursor-pointer"
+                      )}
+                      onClick={() =>
+                        !item.isRecaculate && handleOpenLeaderboard(item.key)
+                      }
                     >
+                      {item.isRecaculate && (
+                        <div className="flex flex-col justify-center items-center inset-x-0 absolute w-full h-full z-10 rounded-xl bg-black opacity-70">
+                          <div className="text-white z-9">Caculating</div>
+                        </div>
+                      )}
                       <CardContent className="p-0">
                         <div className="w-full bg-[url('/images/leaderboard/pattern.png')] bg-cover rounded-t-xl">
                           <Image
