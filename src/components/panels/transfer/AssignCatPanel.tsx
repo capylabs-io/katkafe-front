@@ -3,6 +3,7 @@ import { CAT_SELECT_FILTERS, CAT_STAR_FILTERS } from "@/constants/filter";
 import { Staff } from "@/types/common-types";
 import React, { useState } from "react";
 import Image from "next/image";
+import Button from "@/components/ui/Button";
 
 type Props = {
   onClose: () => void;
@@ -74,6 +75,13 @@ export const AssignCatPanel = ({ onClose, onAssign, staffs }: Props) => {
     }
   };
 
+  const handleAssign = () => {
+    const staff = staffs.find((staff) => isActive.includes(staff._id));
+    if (staff) {
+      onAssign(staff);
+    }
+  };
+
   return (
     <div className="bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">
       <div className="absolute top-6 left-4 bg-[#fffde9] rounded-full border-[#ededed] cursor-pointer">
@@ -97,7 +105,7 @@ export const AssignCatPanel = ({ onClose, onAssign, staffs }: Props) => {
             <p className="bg-red-10 h-[2px] w-[13%]"></p>
           </span>
 
-          <div className="w-full bg-[#fff8de] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-[3px] overflow-hidden mt-8">
+          <div className="w-full bg-[#fff8de] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 !h-[calc(100%-32px)] p-2 overflow-hidden mt-8 flex flex-col">
             <div className="flex mt-2 items-center justify-between cursor-pointer">
               <select
                 className="z-20 h-7 !border-[#5d5d5d] !border !rounded-md bg-[#FFFDE9] px-1 uppercase"
@@ -164,11 +172,11 @@ export const AssignCatPanel = ({ onClose, onAssign, staffs }: Props) => {
                 </span>
               </div>
             </div>
-            <div className="mt-2 gap-2 flex flex-wrap max-h-[350px] overflow-y-auto scroll-style">
+            <div className="mt-2 gap-2 flex flex-wrap overflow-y-auto scroll-style">
               {getFilteredStaffs().map((staff) => (
                 <div
                   key={staff._id}
-                  className="w-[100px] h-[130px] cursor-pointer"
+                  className="w-[96px] h-[130px] cursor-pointer"
                 >
                   <StaffCardAssign
                     cat={staff}
@@ -177,6 +185,9 @@ export const AssignCatPanel = ({ onClose, onAssign, staffs }: Props) => {
                   />
                 </div>
               ))}
+            </div>
+            <div className="border-t border-gray-20 w-full flex flex-col items-center p-2 gap-y-1.5">
+              <Button onClick={handleAssign}>Confirm Selection</Button>
             </div>
           </div>
         </div>

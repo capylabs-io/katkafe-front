@@ -42,6 +42,8 @@ import { RaidingGameUI } from "@/components/ui/RaidingGameUI";
 import { ErrorStartApp } from "@/components/ui/ErrorStartApp";
 import { WalletPanel } from "@/components/panels/wallet/WalletPanel";
 import { TransferPanel } from "@/components/panels/transfer/TransferPanel";
+import { useConfirmDialogStore } from "@/stores/confirmDialogStore";
+import { ConfirmDialog } from "@/components/ui/CommonConfirmDialog";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -103,6 +105,9 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
 
   const [isShowingLoading] = useLoadingStore((state) => [state.isShowing]);
   const [isShowingSnackbar] = useSnackBarStore((state) => [state.isShowing]);
+  const [isShowingConfirm] = useConfirmDialogStore((state) => [
+    state.isShowing,
+  ]);
   const [currentMinigameModule] = useMiniGameStore((state) => [
     state.currentModule,
   ]);
@@ -168,8 +173,6 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
       {showFindGuildPanel && <FindGuild />}
       {showGuildDetailPanel && <GuildDetail />}
       {showRestaurantPanel && <Restaurant />}
-      {isShowingLoading && <Loading />}
-      {isShowingSnackbar && <SnackBar />}
       {showBoostPanel && <Boost />}
       {showEventPanel && <EventPanel />}
       {showRedeemPanel && <RedeemPanel />}
@@ -178,7 +181,10 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
       {showTransferPanel && <TransferPanel />}
       <ShopConfirmDialog />
       <PurchaseResultDialog />
+      {isShowingConfirm && <ConfirmDialog />}
       {showErrorPanel && <ErrorStartApp />}
+      {isShowingLoading && <Loading />}
+      {isShowingSnackbar && <SnackBar />}
     </div>
   );
 });
