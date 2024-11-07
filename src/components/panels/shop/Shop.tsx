@@ -25,6 +25,7 @@ import NumberFormatter from "@/components/ui/NumberFormat";
 import { GemShopContent } from "./GemShopContent";
 import qs from "qs";
 import { StarterBundleShopContent } from "./StarterBundleContent";
+import moment from "moment";
 
 const TABS = {
   CAT: "Cat",
@@ -182,73 +183,80 @@ const Shop = () => {
       <div className="bg-[url('/images/bg-name.png')] w-[170px] h-[35px] bg-contain bg-center bg-no-repeat text-center mb-6">
         <div className="text-center uppercase">deal of the day</div>
       </div>
-      <div className="w-full flex flex-wrap gap-10 justify-center">
-        {packItems.map((item) => (
-          <div key={item._id} className="flex flex-col items-center gap-y-2">
-            <div className="w-[114px] h-[186px]">
-              <Image
-                alt="pack image"
-                src={item.imgUrl}
-                width={114}
-                height={186}
-              />
-            </div>
-            <Popover>
-              <PopoverTrigger>
-                <div className="text-orange-90 flex items-center hover:cursor-pointer">
-                  <div>{item.itemName}</div>
-                  <InfoIcon size={16} className="ml-2 cursor-pointer" />
-                </div>
-              </PopoverTrigger>
-              <PopoverContent className="w-[150px] bg-[#fffde9] text-orange-90">
-                <div>
-                  <div className="text-bold text-black">Rarity Info</div>
-                  <div className="flex flex-row gap-x-1.5">
-                    <div>Common:</div>
-                    <div>{get(item, "data.rarity.common", 0)}%</div>
+      <div className="w-full grid grid-cols-1 gap-6 justify-center">
+        {packItems
+          .sort((a, b) =>
+            moment(a.createdAt).isAfter(moment(b.createdAt)) ? -1 : 1
+          )
+          .map((item) => (
+            <div key={item._id} className="flex flex-col items-center gap-y-2">
+              <div className="w-[114px] h-[186px]">
+                <Image
+                  alt="pack image"
+                  src={item.imgUrl}
+                  width={114}
+                  height={186}
+                />
+              </div>
+              <Popover>
+                <PopoverTrigger>
+                  <div className="text-orange-90 flex items-center hover:cursor-pointer">
+                    <div>{item.itemName}</div>
+                    <InfoIcon size={16} className="ml-2 cursor-pointer" />
                   </div>
-                  <div className="flex flex-row gap-x-1.5">
-                    <div className="text-[#5e80d8]">Rare:</div>
-                    <div>{get(item, "data.rarity.rare", 0)}%</div>
+                </PopoverTrigger>
+                <PopoverContent className="w-[150px] bg-[#fffde9] text-orange-90">
+                  <div>
+                    <div className="text-bold text-black">Rarity Info</div>
+                    <div className="flex flex-row gap-x-1.5">
+                      <div>Common:</div>
+                      <div>{get(item, "data.rarity.common", 0)}%</div>
+                    </div>
+                    <div className="flex flex-row gap-x-1.5">
+                      <div className="text-[#5e80d8]">Rare:</div>
+                      <div>{get(item, "data.rarity.rare", 0)}%</div>
+                    </div>
+                    <div className="flex flex-row gap-x-1.5">
+                      <div className="text-[#a8163d]">Epic:</div>
+                      <div>{get(item, "data.rarity.epic", 0)}%</div>
+                    </div>
+                    <div className="flex flex-row gap-x-1.5">
+                      <div className="text-[#a8163d]">Legendary:</div>
+                      <div>{get(item, "data.rarity.legendary", 0)}%</div>
+                    </div>
                   </div>
-                  <div className="flex flex-row gap-x-1.5">
-                    <div className="text-[#a8163d]">Epic:</div>
-                    <div>{get(item, "data.rarity.epic", 0)}%</div>
-                  </div>
-                  <div className="flex flex-row gap-x-1.5">
-                    <div className="text-[#a8163d]">Legendary:</div>
-                    <div>{get(item, "data.rarity.legendary", 0)}%</div>
-                  </div>
-                </div>
-              </PopoverContent>
-            </Popover>
+                </PopoverContent>
+              </Popover>
 
-            <div className="w-[90px] h-[30px] flex flex-col justify-center items-center gap-y-1.5 mt-2">
-              {get(item, "price").toString() !== "0" && (
-                <Button onClick={() => showConfirm(item, CURRENCY_TYPES.BEAN)}>
-                  <NumberFormatter value={item.price} />
-                  <img
-                    className="w-4 h-4 ml-1"
-                    src="./images/coin.png"
-                    alt=""
-                  />
-                </Button>
-              )}
-              {get(item, "diamondPrice").toString() !== "0" && (
-                <Button
-                  onClick={() => showConfirm(item, CURRENCY_TYPES.DIAMOND)}
-                >
-                  <NumberFormatter value={item.diamondPrice} />
-                  <img
-                    className="w-4 h-4 ml-1"
-                    src="./images/kbuck.png"
-                    alt=""
-                  />
-                </Button>
-              )}
+              <div className="h-fit flex flex-col justify-center items-center gap-y-1.5 mt-2 w-[120px]">
+                {get(item, "price").toString() !== "0" && (
+                  <Button
+                    onClick={() => showConfirm(item, CURRENCY_TYPES.BEAN)}
+                    customClassNames=""
+                  >
+                    <NumberFormatter value={item.price} />
+                    <img
+                      className="w-4 h-4 ml-1"
+                      src="./images/coin.png"
+                      alt=""
+                    />
+                  </Button>
+                )}
+                {get(item, "diamondPrice").toString() !== "0" && (
+                  <Button
+                    onClick={() => showConfirm(item, CURRENCY_TYPES.DIAMOND)}
+                  >
+                    <NumberFormatter value={item.diamondPrice} />
+                    <img
+                      className="w-4 h-4 ml-1"
+                      src="./images/kbuck.png"
+                      alt=""
+                    />
+                  </Button>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

@@ -115,7 +115,10 @@ export const LogPanel = () => {
   }, [fetchNextPage, inView]);
 
   return (
-    <div className="w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 !h-[calc(100vh-96px)] overflow-y-auto mt-8">
+    <div
+      className="w-full bg-[#fffeec] rounded-b-[20px] rounded-t border border-gray-20 z-10 overflow-y-auto mt-8 !h-[calc(100%-32px)]"
+      key="logPanel"
+    >
       {renderContent()}
     </div>
   );

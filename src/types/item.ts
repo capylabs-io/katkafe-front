@@ -20,6 +20,9 @@ export type Item = Staff & {
   data: any;
   configId: Staff;
   imgUrl?: string;
+
+  createdAt?: string;
+  updatedAt?: string;
 };
 
 export type BuyBody = {
