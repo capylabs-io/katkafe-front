@@ -1,4 +1,8 @@
 import { EventReward, EventRewardType } from "@/types/event";
+import {
+  getIconPathByRewardType,
+  getImagePathByRewardType,
+} from "@/utils/quest";
 
 export const EventRewardInfo = ({ reward }: { reward: EventReward }) => {
   switch (reward.type) {
@@ -7,7 +11,11 @@ export const EventRewardInfo = ({ reward }: { reward: EventReward }) => {
     case EventRewardType.DIAMOND:
       return (
         <div className="flex items-center gap-x-1">
-          <img src="/images/coin.png" className="w-4 h-4" alt="" />
+          <img
+            src={getImagePathByRewardType(reward.type)}
+            className="w-4 h-4"
+            alt=""
+          />
           <span>{reward.value}</span>
         </div>
       );

@@ -37,7 +37,7 @@ const StaffCardAssign = ({ cat, active, handleClick }: Props) => {
     >
       <div className="h-full w-full">
         {active && (
-          <div className="active-overlay relative">
+          <div className="active-overlay relative overflow-hidden rounded-lg !h-[calc(100%-8px)] mt-1">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               <img src="/images/active.png" alt="" className="w-4 h-4" />
             </div>
@@ -54,7 +54,7 @@ const StaffCardAssign = ({ cat, active, handleClick }: Props) => {
             {name && (
               <div
                 className={classNames(
-                  "text-[8px] mx-1 pt-[8px] text-center h-[30px] relative -my-1",
+                  "text-[10px] mx-1 pt-[6px] text-center h-[30px] relative",
                   textColorClasses
                 )}
               >
@@ -64,7 +64,7 @@ const StaffCardAssign = ({ cat, active, handleClick }: Props) => {
           </div>
           <div
             className={classNames(
-              "flex justify-between items-center px-2 mb-1",
+              "flex justify-between items-center px-2 mb-1.5",
               textColorClasses
             )}
           >

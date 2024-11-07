@@ -49,7 +49,7 @@ const RewardDialog: React.FC<Props> = ({
       )}
       {type === ShopType.Bundle && (
         <div className="text-lg text-gray-30 mb-2">
-          You purchased {item?.name} successFully! You received:
+          You purchased {item?.name} successfully! You received:
         </div>
       )}
 

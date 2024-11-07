@@ -6,19 +6,18 @@ const inter = Inter({ subsets: ["latin"] });
 const pixelify = Pixelify_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "KatKafe",
-    description: "Welcome to KatKafe!",
+  title: "KatKafe",
+  description: "Welcome to KatKafe!",
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body className={pixelify.className}>{children}</body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <body className={pixelify.className}>{children}</body>
+    </html>
+  );
 }
-

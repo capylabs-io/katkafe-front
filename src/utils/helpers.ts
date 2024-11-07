@@ -91,3 +91,7 @@ export const sliceString = (
 
   return `${startSlice}...${endSlice}`;
 };
+
+export function formatTimeUnit(unit: number): string {
+  return unit < 10 ? `0${unit}` : `${unit}`;
+}
