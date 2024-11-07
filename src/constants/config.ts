@@ -96,7 +96,7 @@ export const CAT_HAT_COUNT = 10;
 export const CAT_FRAME_WIDTH = 160;
 export const CAT_FRAME_HEIGHT = 160;
 
-export const SPECIAL_CHARACTER_COUNT = 12;
+export const SPECIAL_CHARACTER_COUNT = 13;
 export const SPECIAL_CHARACTER_FOLDER = "cats/specials";
 export const SPECIAL_AURA_COUNT = 2;
 export const SPECIAL_AURA_FOLDER = "specials/auras";

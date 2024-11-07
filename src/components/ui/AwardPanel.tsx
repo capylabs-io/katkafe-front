@@ -36,7 +36,7 @@ const AwardPanel = ({ handleClaim, cat, rewards }: Props) => {
         )}
         {rewards && assetRewards.length > 0 && (
           <div className="flex flex-col gap-y-2 text-white text-center items-center">
-            <div>+</div>
+            {cat && rewards.length > 0 && <div>+</div>}
             {rewards
               .filter(
                 (reward) =>

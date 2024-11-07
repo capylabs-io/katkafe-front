@@ -5,7 +5,10 @@ import { DEFAULT_QUEST_ICON } from "@/constants/config";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import { RewardType } from "@/types/quest";
-import { getIconPathByRewardType } from "@/utils/quest";
+import {
+  getIconPathByRewardType,
+  getImagePathByRewardType,
+} from "@/utils/quest";
 
 type Props = {
   type: "achievement" | "task";
@@ -59,7 +62,7 @@ const CardTask = ({
           <div className="flex items-center gap-1">
             <div className="text-gray-30">{reward.quantity}</div>
             <div className="w-4 h-4">
-              <img src={getIconPathByRewardType(reward.type)} alt="" />
+              <img src={getImagePathByRewardType(reward.type)} alt="" />
             </div>
           </div>
         </div>
