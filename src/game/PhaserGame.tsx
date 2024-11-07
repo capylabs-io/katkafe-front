@@ -25,7 +25,7 @@ import FindGuild from "@/components/panels/guild/FindGuildPanel";
 import GuildDetail from "@/components/panels/guild/GuildDetailPanel";
 import Roll from "@/components/panels/roll/Roll";
 import Task from "@/components/panels/quest/Quest";
-import Restaurant from "@/components/panels/restaurant/Restaurant";
+import { Restaurant } from "@/components/panels/restaurant/Restaurant";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { Loading } from "@/components/ui/Loading";
 import SnackBar from "@/components/ui/common/SnackBar";
