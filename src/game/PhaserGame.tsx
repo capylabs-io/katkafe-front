@@ -44,6 +44,7 @@ import { WalletPanel } from "@/components/panels/wallet/WalletPanel";
 import { TransferPanel } from "@/components/panels/transfer/TransferPanel";
 import { useConfirmDialogStore } from "@/stores/confirmDialogStore";
 import { ConfirmDialog } from "@/components/ui/CommonConfirmDialog";
+import { Announcement } from "@/components/panels/event/Announcement";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -80,6 +81,9 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     showErrorPanel,
     showWalletPanel,
     showTransferPanel,
+    showAnnouncementPanel,
+    isAnnouncementPanelOpened,
+    setShowAnnouncementPanel,
   ] = useLayoutStore((state) => [
     state.showFriendPanel,
     state.showManagePanel,
@@ -101,6 +105,9 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     state.showErrorPanel,
     state.showWalletPanel,
     state.showTransferPanel,
+    state.showAnnouncementPanel,
+    state.isAnnouncementPanelOpened,
+    state.setShowAnnouncementPanel,
   ]);
 
   const [isShowingLoading] = useLoadingStore((state) => [state.isShowing]);

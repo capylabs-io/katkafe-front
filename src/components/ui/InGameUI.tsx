@@ -29,6 +29,8 @@ import { Animator } from "./Animator";
 import { CommonDot } from "./CommonDot";
 import { InGameMenu } from "./layout/InGameMenu";
 import { motion } from "framer-motion";
+import { Announcement } from "../panels/event/Announcement";
+import { SHOW_ANNOUNCEMENT } from "@/constants/events";
 
 type Click = {
   id: number;
@@ -67,6 +69,9 @@ export const InGameUI = () => {
     setMiniGamePanel,
     setShowWalletPanel,
     setShowTransferPanel,
+    setShowAnnouncementPanel,
+    showAnnouncementPanel,
+    isAnnouncementPanelOpened,
   ] = useLayoutStore((state) => [
     state.setShowManagePanel,
     state.setShowStaffPanel,
@@ -78,6 +83,9 @@ export const InGameUI = () => {
     state.setMiniGamePanel,
     state.setShowWalletPanel,
     state.setShowTransferPanel,
+    state.setShowAnnouncementPanel,
+    state.showAnnouncementPanel,
+    state.isAnnouncementPanelOpened,
   ]);
 
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
@@ -303,6 +311,9 @@ export const InGameUI = () => {
       setShowOfflineEarning(true);
       setIsOfflineEarningClaimed(true);
     }
+    if (!loading && !isAnnouncementPanelOpened && SHOW_ANNOUNCEMENT) {
+      setShowAnnouncementPanel(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, isOfflineEarningClaimed]);
   useEffect(() => {
@@ -413,13 +424,20 @@ export const InGameUI = () => {
       </div>
       <div className="absolute flex w-full justify-between items-center px-8 bottom-8">
         <InGameMenu>
-          <MenuButton
-            key="home"
-            title="Menu"
-            icon={{
-              url: homeUrl,
-            }}
-          />
+          <div className="relative">
+            <MenuButton
+              key="home"
+              title="Menu"
+              icon={{
+                url: homeUrl,
+              }}
+            />
+            {SHOW_ANNOUNCEMENT && (
+              <div className="absolute top-0 right-0 pointer-events-none">
+                <CommonDot />
+              </div>
+            )}
+          </div>
         </InGameMenu>
         <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
           <div className="relative">
@@ -495,6 +513,8 @@ export const InGameUI = () => {
       {!loading && user && !user.isLoginFirstTime && showOfflineEarning && (
         <OfflineEarning onClick={handleOnClick} data={claimableData} />
       )}
+
+      {showAnnouncementPanel && <Announcement />}
       {/* <div className="absolute left-2.5 top-[23%]">
         <Animator
           width={48}
