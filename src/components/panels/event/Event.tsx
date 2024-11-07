@@ -82,6 +82,8 @@ function EventPanel({}: Props) {
         if (catReward) {
           const rewardCat = await getOneStaff(catReward.value);
           setRewardCat(rewardCat);
+        } else {
+          setRewardCat(undefined);
         }
         await fetchStaffs();
         showSnackbar("Event completed!");
