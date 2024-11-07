@@ -24,7 +24,7 @@ export const useLeaderboad = () => {
       show();
       const response = await getLeaderboard(type, rarity);
       setRanks(response.topUsers);
-      setCurrentRank(response.userRank[0]);
+      setCurrentRank(response.userRank);
       setTotalUsers(response.totalUsers);
     } catch (error) {
       console.error("Error fetching", error);

@@ -26,7 +26,7 @@ const CardUser = ({ user, type, isShowIcon, iconUrl }: Props) => {
           <div className="flex gap-x-4 items-center text-center ">
             <div className="flex flex-col gap-0">
               <div className="text-bodySm text-gray-60">
-                {ordinalSuffix(rank)}
+                {rank > 0 ? ordinalSuffix(rank + 1) : "1000+"}
               </div>
               <div className="uppercase text-gray-90 text-bodySm">You</div>
             </div>
