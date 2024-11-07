@@ -35,6 +35,9 @@ type States = {
   isOfflineEarningClaimed: boolean;
 
   showTransferPanel: boolean;
+
+  showAnnouncementPanel: boolean;
+  isAnnouncementPanelOpened: boolean;
 };
 
 type Actions = {
@@ -71,6 +74,9 @@ type Actions = {
   setIsOfflineEarningClaimed: (show: boolean) => void;
 
   setShowTransferPanel: (show: boolean) => void;
+
+  setShowAnnouncementPanel: (show: boolean) => void;
+  setIsAnnouncementPanelOpened: (show: boolean) => void;
 };
 
 const defaultStates = {
@@ -103,10 +109,18 @@ const defaultStates = {
 
   isOfflineEarningClaimed: false,
   showTransferPanel: false,
+
+  showAnnouncementPanel: false,
+  isAnnouncementPanelOpened: false,
 };
 
 export const useLayoutStore = create<States & Actions>((set) => ({
   ...defaultStates,
+  setShowAnnouncementPanel: (show: boolean) => {
+    set({ showAnnouncementPanel: show });
+  },
+  setIsAnnouncementPanelOpened: (show: boolean) =>
+    set({ isAnnouncementPanelOpened: show }),
   setShowTransferPanel: (show: boolean) => set({ showTransferPanel: show }),
   setIsOfflineEarningClaimed: (show: boolean) =>
     set({ isOfflineEarningClaimed: show }),

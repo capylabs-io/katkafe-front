@@ -8,6 +8,8 @@ import { useLayoutStore } from "@/stores/layoutStore";
 import { MenuButton } from "../MenuButton";
 import Image from "next/image";
 import { Pixelify_Sans } from "next/font/google";
+import { SHOW_ANNOUNCEMENT } from "@/constants/events";
+import { CommonDot } from "../CommonDot";
 
 const defaultIconSize = 44;
 const defaultIconPath = "/icons/menu/";
@@ -115,11 +117,13 @@ export const InGameMenu = ({ children }: PropsWithChildren) => {
       icon: "ic-transfer.png",
       label: "Transfer",
       onClick: () => setShowTransferPanel(true),
+      showNotice: true,
     },
     {
       icon: "ic-event.png",
       label: "EVENT",
       onClick: () => setShowEventPanel(true),
+      showNotice: true,
     },
     {
       icon: "ic-voucher.png",
@@ -240,13 +244,20 @@ export const InGameMenu = ({ children }: PropsWithChildren) => {
                   whileTap={{ scale: 0.98 }}
                   className="overflow-x-visible"
                 >
-                  <MenuItem
-                    imgUrl={`${defaultIconPath}${item.icon}`}
-                    label={item.label}
-                    imgHeight={defaultIconSize}
-                    imgWidth={defaultIconSize}
-                    onClick={item.onClick}
-                  />
+                  <div className="relative">
+                    <MenuItem
+                      imgUrl={`${defaultIconPath}${item.icon}`}
+                      label={item.label}
+                      imgHeight={defaultIconSize}
+                      imgWidth={defaultIconSize}
+                      onClick={item.onClick}
+                    />
+                    {SHOW_ANNOUNCEMENT && item.showNotice && (
+                      <div className="absolute top-0 right-0 pointer-events-none">
+                        <CommonDot />
+                      </div>
+                    )}
+                  </div>
                 </motion.button>
               ))}
             </motion.div>
