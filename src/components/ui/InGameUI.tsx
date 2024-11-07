@@ -27,6 +27,8 @@ import { useUserBoostsStore } from "@/stores/boost/userBoostsStore";
 import { BoostType } from "@/types/boost";
 import { Animator } from "./Animator";
 import { CommonDot } from "./CommonDot";
+import { InGameMenu } from "./layout/InGameMenu";
+import { motion } from "framer-motion";
 
 type Click = {
   id: number;
@@ -38,7 +40,7 @@ type Click = {
 //   handleClick: () => void;
 // }
 export const InGameUI = () => {
-  let homeUrl = "/icons/ic-home.png";
+  let homeUrl = "/icons/ic-menu.png";
   let staffUrl = "/icons/ic-staff.png";
   let manageUrl = "/icons/ic-manage.png";
   let shopUrl = "/icons/ic-shop.png";
@@ -222,21 +224,21 @@ export const InGameUI = () => {
 
   switch (currentRestaurant?.order) {
     case 2:
-      homeUrl = "/icons/ic-home-2.png";
+      homeUrl = "/icons/ic-menu-2.png";
       staffUrl = "/icons/ic-staff-2.png";
       manageUrl = "/icons/ic-manage-2.png";
       shopUrl = "/icons/ic-shop-2.png";
       friendUrl = "/icons/ic-game-2.png";
       break;
     case 3:
-      homeUrl = "/icons/ic-home-3.png";
+      homeUrl = "/icons/ic-menu-3.png";
       staffUrl = "/icons/ic-staff-3.png";
       manageUrl = "/icons/ic-manage-3.png";
       shopUrl = "/icons/ic-shop-3.png";
       friendUrl = "/icons/ic-game-3.png";
       break;
     case 4:
-      homeUrl = "/icons/ic-home-4.png";
+      homeUrl = "/icons/ic-menu-4.png";
       staffUrl = "/icons/ic-staff-4.png";
       manageUrl = "/icons/ic-manage-4.png";
       shopUrl = "/icons/ic-shop-4.png";
@@ -409,61 +411,73 @@ export const InGameUI = () => {
           </>
         ))}
       </div>
-      <div className="absolute flex w-full justify-between px-8 bottom-8">
-        <MenuButton
-          key="home"
-          title="Home"
-          onClick={() => setShowRestaurantPanel(true)}
-          icon={{
-            url: homeUrl,
-          }}
-        />
-        <div className="relative">
+      <div className="absolute flex w-full justify-between items-center px-8 bottom-8">
+        <InGameMenu>
           <MenuButton
-            key="list"
-            title="List"
+            key="home"
+            title="Menu"
             icon={{
-              url: staffUrl,
+              url: homeUrl,
             }}
-            onClick={() => setShowStaffPanel(true)}
           />
-          {showNotiCatUpgrade && (
-            <div className="absolute top-0 right-0 pointer-events-none">
-              <CommonDot />
-            </div>
-          )}
-        </div>
-        <div className="relative">
+        </InGameMenu>
+        <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
+          <div className="relative">
+            <MenuButton
+              key="list"
+              title="Staff"
+              icon={{
+                url: staffUrl,
+              }}
+              onClick={() => setShowStaffPanel(true)}
+            />
+            {showNotiCatUpgrade && (
+              <div className="absolute top-0 right-0 pointer-events-none">
+                <CommonDot />
+              </div>
+            )}
+          </div>
+        </motion.button>
+
+        <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
+          <div className="relative">
+            <MenuButton
+              key="manage"
+              title="Manage"
+              icon={{
+                url: manageUrl,
+              }}
+              onClick={() => setShowManagePanel(true)}
+            />
+            {showNotiRestaurantUpgrade && (
+              <div className="absolute top-0 right-0 pointer-events-none">
+                <CommonDot />
+              </div>
+            )}
+          </div>
+        </motion.button>
+
+        <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
           <MenuButton
-            key="manage"
-            title="Manage"
+            key="shop"
+            title="Shop"
             icon={{
-              url: manageUrl,
+              url: shopUrl,
             }}
-            onClick={() => setShowManagePanel(true)}
+            onClick={() => setShowShopPanel(true)}
           />
-          {showNotiRestaurantUpgrade && (
-            <div className="absolute top-0 right-0 pointer-events-none">
-              <CommonDot />
-            </div>
-          )}
-        </div>
-        <MenuButton
-          key="shop"
-          title="Shop"
-          icon={{
-            url: shopUrl,
-          }}
-          onClick={() => setShowShopPanel(true)}
-        />
-        <MenuButton
-          key="friend"
-          title="Game"
-          icon={{
-            url: friendUrl,
-          }}
-          onClick={() => setMiniGamePanel(true)}
-        />
+        </motion.button>
+
+        <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
+          <MenuButton
+            key="friend"
+            title="Game"
+            icon={{
+              url: friendUrl,
+            }}
+            onClick={() => setMiniGamePanel(true)}
+          />
+        </motion.button>
       </div>
       {/* {user?.isLoginFirstTime && showLoginDialog && (
         <LoginDialog onClick={handleClick} />
@@ -481,7 +495,7 @@ export const InGameUI = () => {
       {!loading && user && !user.isLoginFirstTime && showOfflineEarning && (
         <OfflineEarning onClick={handleOnClick} data={claimableData} />
       )}
-      <div className="absolute left-2.5 top-[23%]">
+      {/* <div className="absolute left-2.5 top-[23%]">
         <Animator
           width={48}
           height={48}
@@ -535,7 +549,7 @@ export const InGameUI = () => {
         <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[14px] font-extrabold drop-shadow-[0px_1px_black] text-stroke-[0.75px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
           Booster
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

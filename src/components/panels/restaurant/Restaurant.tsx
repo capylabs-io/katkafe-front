@@ -8,7 +8,6 @@ import { Pagination } from "@/components/ui/Pagination";
 import UnlockDialog from "@/components/ui/UnlockDialog";
 import { useUserStore } from "@/stores/userStore";
 import { useLoadingStore } from "@/stores/LoadingStore";
-import { Loading } from "@/components/ui/Loading";
 import { unclockRestaurant } from "@/requests/restaurant";
 import { useDialogStore } from "@/stores/DialogStore";
 import { Restaurant as RestaurantType } from "@/types/restaurant";
@@ -17,7 +16,7 @@ import { useSnackBarStore } from "@/stores/SnackBarStore";
 import ConfirmDialog from "@/components/ui/common/ConfirmDialog";
 const itemsPerPage = 2;
 
-function Restaurant() {
+export const Restaurant = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showDialog, setShowDialog] = useState(false);
   const [confirmDialog, setConfirmDialog] = useState(false);
@@ -124,59 +123,117 @@ function Restaurant() {
     setCurrentRestaurant(restaurantSelected as RestaurantType | null);
     setShowRestaurantPanel(false);
   };
-  return (
-    <div className="list-panel bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">
-      <div className="rounded-3xl border-solid border-orange-90 border-4 h-[calc(100%-16px)] mt-4">
-        <div className="rounded-[21px] border-solid border-orange-30 border-4 bg-orange-30 h-full relative">
-          <div className="absolute -left-[15px] -top-[13px] bg-[#fffde9] rounded-full border-[#ededed] cursor-pointer">
-            <Image
-              src="/images/back.png"
-              alt="cat pic"
-              width={32}
-              height={32}
-              onClick={handleBack}
-            />
-          </div>
-          <div className="absolute left-1/2 -translate-x-1/2 -translate-y-[28px] border-2 px-6 py-2 border-orange-90 bg-orange-10 rounded-t-xl text-orange-90">
-            <div className="uppercase font-semibold">Coffee spot</div>
-          </div>
+  // return (
+  //   <div className="list-panel bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">
+  //     <div className="rounded-3xl border-solid border-orange-90 border-4 h-[calc(100%-16px)] mt-4">
+  //       <div className="rounded-[21px] border-solid border-orange-30 border-4 bg-orange-30 h-full relative">
+  //         <div className="absolute -left-[15px] -top-[13px] bg-[#fffde9] rounded-full border-[#ededed] cursor-pointer">
+  //           <Image
+  //             src="/images/back.png"
+  //             alt="cat pic"
+  //             width={32}
+  //             height={32}
+  //             onClick={handleBack}
+  //           />
+  //         </div>
+  //         <div className="absolute left-1/2 -translate-x-1/2 -translate-y-[28px] border-2 px-6 py-2 border-orange-90 bg-orange-10 rounded-t-xl text-orange-90">
+  //           <div className="uppercase font-semibold">Coffee spot</div>
+  //         </div>
 
-          <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">
-            <p className="bg-red-10 h-[2px] w-[13%]"></p>
-            <p className="bg-red-10 h-[2px] w-[70%]"></p>
-            <p className="bg-red-10 h-[2px] w-[13%]"></p>
-          </span>
-          <div className="w-full flex flex-col gap-2 bg-orange-10 rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-4 overflow-auto mt-8">
-            <Pagination
-              onPageClick={handlePageClick}
-              customClassName="flex justify-center w-full z-20"
-              currentPage={currentPage}
-              totalPages={Math.ceil((restaurants.length + 1) / itemsPerPage)}
-              onClickNextPage={handleNextPage}
-              onClickPrevPage={handlePrevPage}
-            />
-            {currentRestaurants.map((restaurant) => (
-              <>
-                <div
-                  key={`${restaurant._id}+ ${restaurant.name}`}
-                  className={classNames(
-                    "bg-orange-10 p-2 rounded-lg",
-                    currentRestaurant?.order === restaurant.order
-                      ? "border-2 border-primary !shadow-none"
-                      : "border border-[#cccbbd]"
-                  )}
-                  style={{ boxShadow: "0px -4px 0px 0px #cccbbd inset" }}
-                >
-                  <RestaurantCard
-                    restaurant={restaurant}
-                    onUnlock={handleClickUnlock}
-                    onCardClick={handleOnCardClick}
-                  />
-                </div>
-              </>
-            ))}
-          </div>
-        </div>
+  //         <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">
+  //           <p className="bg-red-10 h-[2px] w-[13%]"></p>
+  //           <p className="bg-red-10 h-[2px] w-[70%]"></p>
+  //           <p className="bg-red-10 h-[2px] w-[13%]"></p>
+  //         </span>
+  //         <div className="w-full flex flex-col gap-2 bg-orange-10 rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-4 overflow-auto mt-8">
+  //           <Pagination
+  //             onPageClick={handlePageClick}
+  //             customClassName="flex justify-center w-full z-20"
+  //             currentPage={currentPage}
+  //             totalPages={Math.ceil((restaurants.length + 1) / itemsPerPage)}
+  //             onClickNextPage={handleNextPage}
+  //             onClickPrevPage={handlePrevPage}
+  //           />
+  //           {currentRestaurants.map((restaurant) => (
+  //             <>
+  //               <div
+  //                 key={`${restaurant._id}+ ${restaurant.name}`}
+  //                 className={classNames(
+  //                   "bg-orange-10 p-2 rounded-lg",
+  //                   currentRestaurant?.order === restaurant.order
+  //                     ? "border-2 border-primary !shadow-none"
+  //                     : "border border-[#cccbbd]"
+  //                 )}
+  //                 style={{ boxShadow: "0px -4px 0px 0px #cccbbd inset" }}
+  //               >
+  //                 <RestaurantCard
+  //                   restaurant={restaurant}
+  //                   onUnlock={handleClickUnlock}
+  //                   onCardClick={handleOnCardClick}
+  //                 />
+  //               </div>
+  //             </>
+  //           ))}
+  //         </div>
+  //       </div>
+  //     </div>
+  //     {showDialog && (
+  //       <>
+  //         <div
+  //           className="bg-[#807f76] opacity-70 absolute w-full h-full items-center flex justify-center top-0 left-0 z-10"
+  //           onClick={handleClickOutside}
+  //         ></div>
+  //         <UnlockDialog
+  //           data={dataUnlock}
+  //           onUnclock={() => {
+  //             setConfirmDialog(true), setShowDialog(false);
+  //           }}
+  //           onClose={() => setShowDialog(false)}
+  //         />
+  //       </>
+  //     )}
+  //     {confirmDialog && (
+  //       <ConfirmDialog
+  //         onCancel={() => setConfirmDialog(false)}
+  //         onAgree={handleClickUnlockDialog}
+  //         title="Unlock Confirmation"
+  //         content="Do you want to unlock this restaurant?"
+  //       />
+  //     )}
+  //   </div>
+  // );
+
+  return (
+    <>
+      <div className="w-full flex flex-col gap-2 bg-orange-10 rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-4 overflow-auto mt-8">
+        <Pagination
+          onPageClick={handlePageClick}
+          customClassName="flex justify-center w-full z-20"
+          currentPage={currentPage}
+          totalPages={Math.ceil(restaurants.length / itemsPerPage)}
+          onClickNextPage={handleNextPage}
+          onClickPrevPage={handlePrevPage}
+        />
+        {currentRestaurants.map((restaurant) => (
+          <>
+            <div
+              key={`${restaurant._id}+ ${restaurant.name}`}
+              className={classNames(
+                "bg-orange-10 p-2 rounded-lg",
+                currentRestaurant?.order === restaurant.order
+                  ? "border-2 border-primary !shadow-none"
+                  : "border border-[#cccbbd]"
+              )}
+              style={{ boxShadow: "0px -4px 0px 0px #cccbbd inset" }}
+            >
+              <RestaurantCard
+                restaurant={restaurant}
+                onUnlock={handleClickUnlock}
+                onCardClick={handleOnCardClick}
+              />
+            </div>
+          </>
+        ))}
       </div>
       {showDialog && (
         <>
@@ -201,8 +258,6 @@ function Restaurant() {
           content="Do you want to unlock this restaurant?"
         />
       )}
-    </div>
+    </>
   );
-}
-
-export default Restaurant;
+};
