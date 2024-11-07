@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { DEFAULT_MENU_ICON } from "@/constants/icon";
 import classNames from "classnames";
+import { Pixelify_Sans } from "next/font/google";
 
 type Props = {
   icon?: {
@@ -12,6 +13,8 @@ type Props = {
   onClick?: () => void | Promise<void>;
   showButtonBg?: boolean;
 };
+
+const pixelify = Pixelify_Sans({ subsets: ["latin"] });
 
 export const MenuButton = ({
   icon,
@@ -28,6 +31,9 @@ export const MenuButton = ({
         showButtonBg && "bg-btn-menu bg-no-repeat bg-contain",
         "min-w-[48px] min-h-[48px] relative flex justify-center items-center"
       )}
+      style={{
+        ...pixelify.style,
+      }}
       onClick={handleOnClick}
     >
       <div>

@@ -52,7 +52,7 @@ const StaffCard = ({ catId, active, onViewClick, onRemoveClick }: Props) => {
     <div
       className={classNames(
         `h-full bg-center bg-no-repeat bg-contain w-full cursor-pointer relative`,
-        active ? "border-[#FC9B53] rounded-xl border" : ""
+        active ? "border-[#FC9B53] rounded-lg border" : ""
       )}
       onClick={handleCardClick}
       style={{ backgroundImage: backgroundCard }}
