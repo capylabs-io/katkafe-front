@@ -135,52 +135,52 @@ export class GameUI {
         .setAlpha(0.5)
     );
 
-    const renderedBtnQuest = drawSpriteButton(
-      this.scene,
-      `${LOCATION_ASSETS.BTN_QUEST}-${currentLocation}`,
-      assets[LOCATION_ASSETS.BTN_QUEST].x,
-      assets[LOCATION_ASSETS.BTN_QUEST].y,
-      ASSET_SCALE,
-      LAYERS.OBJECT,
-      {
-        title: "Quest",
-        offset: 36,
-      },
-      () => EventBus.emit(EVENT_BUS_TYPES.UI_BUTTON_CLICK, UI_BUTTON.QUEST)
-    );
-    this.uiGroup.add(renderedBtnQuest.sprite);
-    this.uiGroup.add(renderedBtnQuest.text);
+    // const renderedBtnQuest = drawSpriteButton(
+    //   this.scene,
+    //   `${LOCATION_ASSETS.BTN_QUEST}-${currentLocation}`,
+    //   assets[LOCATION_ASSETS.BTN_QUEST].x,
+    //   assets[LOCATION_ASSETS.BTN_QUEST].y,
+    //   ASSET_SCALE,
+    //   LAYERS.OBJECT,
+    //   {
+    //     title: "Quest",
+    //     offset: 36,
+    //   },
+    //   () => EventBus.emit(EVENT_BUS_TYPES.UI_BUTTON_CLICK, UI_BUTTON.QUEST)
+    // );
+    // this.uiGroup.add(renderedBtnQuest.sprite);
+    // this.uiGroup.add(renderedBtnQuest.text);
 
-    const renderedBtnRank = drawSpriteButton(
-      this.scene,
-      `${LOCATION_ASSETS.BTN_RANK}-${currentLocation}`,
-      assets[LOCATION_ASSETS.BTN_RANK].x,
-      assets[LOCATION_ASSETS.BTN_RANK].y,
-      ASSET_SCALE,
-      LAYERS.OBJECT,
-      {
-        title: "Rank",
-        offset: getOffsetByLocation(currentLocation),
-      },
-      () => EventBus.emit(EVENT_BUS_TYPES.UI_BUTTON_CLICK, UI_BUTTON.RANK)
-    );
-    this.uiGroup.add(renderedBtnRank.sprite);
-    this.uiGroup.add(renderedBtnRank.text);
+    // const renderedBtnRank = drawSpriteButton(
+    //   this.scene,
+    //   `${LOCATION_ASSETS.BTN_RANK}-${currentLocation}`,
+    //   assets[LOCATION_ASSETS.BTN_RANK].x,
+    //   assets[LOCATION_ASSETS.BTN_RANK].y,
+    //   ASSET_SCALE,
+    //   LAYERS.OBJECT,
+    //   {
+    //     title: "Rank",
+    //     offset: getOffsetByLocation(currentLocation),
+    //   },
+    //   () => EventBus.emit(EVENT_BUS_TYPES.UI_BUTTON_CLICK, UI_BUTTON.RANK)
+    // );
+    // this.uiGroup.add(renderedBtnRank.sprite);
+    // this.uiGroup.add(renderedBtnRank.text);
 
-    const renderedBtnFriend = drawSpriteButton(
-      this.scene,
-      `${LOCATION_ASSETS.BTN_FRIEND}-${currentLocation}`,
-      assets[LOCATION_ASSETS.BTN_FRIEND].x,
-      assets[LOCATION_ASSETS.BTN_FRIEND].y,
-      ASSET_SCALE,
-      LAYERS.OBJECT,
-      {
-        title: "Friend",
-        offset: getOffsetByLocation(currentLocation),
-      },
-      () => EventBus.emit(EVENT_BUS_TYPES.UI_BUTTON_CLICK, UI_BUTTON.FRIEND)
-    );
-    this.uiGroup.add(renderedBtnFriend.sprite);
-    this.uiGroup.add(renderedBtnFriend.text);
+    // const renderedBtnFriend = drawSpriteButton(
+    //   this.scene,
+    //   `${LOCATION_ASSETS.BTN_FRIEND}-${currentLocation}`,
+    //   assets[LOCATION_ASSETS.BTN_FRIEND].x,
+    //   assets[LOCATION_ASSETS.BTN_FRIEND].y,
+    //   ASSET_SCALE,
+    //   LAYERS.OBJECT,
+    //   {
+    //     title: "Friend",
+    //     offset: getOffsetByLocation(currentLocation),
+    //   },
+    //   () => EventBus.emit(EVENT_BUS_TYPES.UI_BUTTON_CLICK, UI_BUTTON.FRIEND)
+    // );
+    // this.uiGroup.add(renderedBtnFriend.sprite);
+    // this.uiGroup.add(renderedBtnFriend.text);
   }
 }

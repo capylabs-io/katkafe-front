@@ -35,3 +35,14 @@ export const getStaffUpgradeConfigs = async () => {
   const response = await katAxios.get(`${BASE_URL}/cat-upgrade`);
   return response.data;
 };
+
+export const transferStaff = async (
+  destinationCatId: string,
+  sourceCatId: string
+) => {
+  const response = await katAxios.post(`${BASE_URL}/cats/transfer`, {
+    destinationCatId,
+    sourceCatId,
+  });
+  return response.data;
+};

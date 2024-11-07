@@ -373,7 +373,7 @@ const StaffList: React.FC = () => {
                 </div>
               </div>
             }
-            <div className="mt-2 gap-[6px] flex flex-wrap max-h-[405px] overflow-y-auto overflow-x-hidden">
+            <div className="mt-2 gap-[6px] flex flex-wrap h-[calc(100%-32px)] pb-5 overflow-y-auto">
               {getFilteredStaffs().map((staff) => (
                 <div
                   key={staff._id}

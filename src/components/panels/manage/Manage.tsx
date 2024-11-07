@@ -26,10 +26,12 @@ import ConfirmDialog from "@/components/ui/common/ConfirmDialog";
 import { useUserBoostsStore } from "@/stores/boost/userBoostsStore";
 import { BoostType } from "@/types/boost";
 import { MoveRight } from "lucide-react";
+import { Restaurant } from "../restaurant/Restaurant";
 
 const TABS = {
   CAFE: "Cafe",
   STAFF: "Staff",
+  INFO: "Info",
 };
 const CONFIRM_DIALOG_TYPE = {
   REMOVE: "remove",
@@ -41,7 +43,7 @@ const Manage: React.FC = () => {
   const [showStaffPanel, setShowStaffPanel] = useState(false);
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [showCardInfo, setShowCardInfo] = useState(false);
-  const [activeTab, setActiveTab] = useState(TABS.CAFE);
+  const [activeTab, setActiveTab] = useState(TABS.INFO);
   const [showDialog, setShowDialog] = useState(false);
   const [fee, setFee] = useState(0);
   const [confirmDialog, setConfirmDialog] = useState(false);
@@ -347,8 +349,16 @@ const Manage: React.FC = () => {
           </div>
           <div className="flex">
             <div
+              onClick={() => handleTabClick(TABS.INFO)}
+              className={`absolute cursor-pointer left-1/2 -translate-x-[128px] border-2 px-4 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+                activeTab === TABS.INFO ? isActive : ""
+              }`}
+            >
+              <div className="uppercase font-semibold">Info</div>
+            </div>
+            <div
               onClick={() => handleTabClick(TABS.CAFE)}
-              className={`absolute cursor-pointer left-1/2 -translate-x-[100px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+              className={`absolute cursor-pointer left-1/2 -translate-x-[40px] border-2 px-4 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
                 activeTab === TABS.CAFE ? isActive : ""
               }`}
             >
@@ -356,7 +366,7 @@ const Manage: React.FC = () => {
             </div>
             <div
               onClick={() => handleTabClick(TABS.STAFF)}
-              className={`absolute cursor-pointer left-1/2 translate-x-[10px] border-2 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
+              className={`absolute cursor-pointer left-1/2 translate-x-[52px] border-2 px-4 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
                 activeTab === TABS.STAFF ? isActive : ""
               }`}
             >
@@ -440,7 +450,7 @@ const Manage: React.FC = () => {
               </div>
             </div>
           )}
-          {activeTab === TABS.CAFE && (
+          {activeTab === TABS.INFO && (
             <div className="bg-[#fff8de] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-2 overflow-hidden mt-8 w-full flex flex-col justify-between">
               <div className="gap-6 overflow-y-auto px-1">
                 <div>
@@ -571,6 +581,7 @@ const Manage: React.FC = () => {
               </div>
             </div>
           )}
+          {activeTab === TABS.CAFE && <Restaurant />}
         </div>
         {showStaffPanel && (
           <div className="absolute !z-20 w-full h-full top-0 left-0">

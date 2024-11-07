@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  SetStateAction,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -24,7 +25,7 @@ import FindGuild from "@/components/panels/guild/FindGuildPanel";
 import GuildDetail from "@/components/panels/guild/GuildDetailPanel";
 import Roll from "@/components/panels/roll/Roll";
 import Task from "@/components/panels/quest/Quest";
-import Restaurant from "@/components/panels/restaurant/Restaurant";
+import { Restaurant } from "@/components/panels/restaurant/Restaurant";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { Loading } from "@/components/ui/Loading";
 import SnackBar from "@/components/ui/common/SnackBar";
@@ -40,6 +41,10 @@ import { MINI_GAME_MODULES } from "@/types/mini-game";
 import { RaidingGameUI } from "@/components/ui/RaidingGameUI";
 import { ErrorStartApp } from "@/components/ui/ErrorStartApp";
 import { WalletPanel } from "@/components/panels/wallet/WalletPanel";
+import { TransferPanel } from "@/components/panels/transfer/TransferPanel";
+import { useConfirmDialogStore } from "@/stores/confirmDialogStore";
+import { ConfirmDialog } from "@/components/ui/CommonConfirmDialog";
+import { Announcement } from "@/components/panels/event/Announcement";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -75,6 +80,10 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     showMinigamePanel,
     showErrorPanel,
     showWalletPanel,
+    showTransferPanel,
+    showAnnouncementPanel,
+    isAnnouncementPanelOpened,
+    setShowAnnouncementPanel,
   ] = useLayoutStore((state) => [
     state.showFriendPanel,
     state.showManagePanel,
@@ -95,10 +104,17 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
     state.showMinigamePanel,
     state.showErrorPanel,
     state.showWalletPanel,
+    state.showTransferPanel,
+    state.showAnnouncementPanel,
+    state.isAnnouncementPanelOpened,
+    state.setShowAnnouncementPanel,
   ]);
 
   const [isShowingLoading] = useLoadingStore((state) => [state.isShowing]);
   const [isShowingSnackbar] = useSnackBarStore((state) => [state.isShowing]);
+  const [isShowingConfirm] = useConfirmDialogStore((state) => [
+    state.isShowing,
+  ]);
   const [currentMinigameModule] = useMiniGameStore((state) => [
     state.currentModule,
   ]);
@@ -164,16 +180,18 @@ export const PhaserGame = forwardRef<IRefPhaserGame>(function PhaserGame(
       {showFindGuildPanel && <FindGuild />}
       {showGuildDetailPanel && <GuildDetail />}
       {showRestaurantPanel && <Restaurant />}
-      {isShowingLoading && <Loading />}
-      {isShowingSnackbar && <SnackBar />}
       {showBoostPanel && <Boost />}
       {showEventPanel && <EventPanel />}
       {showRedeemPanel && <RedeemPanel />}
       {showMinigamePanel && !isRaiding && <MiniGamePanel />}
       {showWalletPanel && <WalletPanel />}
+      {showTransferPanel && <TransferPanel />}
       <ShopConfirmDialog />
       <PurchaseResultDialog />
+      {isShowingConfirm && <ConfirmDialog />}
       {showErrorPanel && <ErrorStartApp />}
+      {isShowingLoading && <Loading />}
+      {isShowingSnackbar && <SnackBar />}
     </div>
   );
 });
