@@ -34,13 +34,16 @@ export const Announcement = () => {
 
   const currentEvent = useMemo(() => {
     if (!CURRENT_EVENTS || CURRENT_EVENTS.length === 0) return;
-    const event = CURRENT_EVENTS.find(
-      (event) =>
+    const event = CURRENT_EVENTS.find((event) => {
+      return (
         moment
-          .utc(event.date, "DD/MM/YYYY")
-          .isAfter(moment.utc().startOf("day")) &&
-        moment.utc(event.date, "DD/MM/YYYY").isAfter(moment.utc().endOf("day"))
-    );
+          .utc()
+          .isAfter(moment.utc(event.startDate, "DD/MM/YYYY").startOf("day")) &&
+        moment
+          .utc()
+          .isBefore(moment.utc(event.endDate, "DD/MM/YYYY").endOf("day"))
+      );
+    });
     if (!event) return CURRENT_EVENTS[CURRENT_EVENTS.length - 1];
     return event;
   }, []);
@@ -60,11 +63,11 @@ export const Announcement = () => {
     return TOKEN_SALE_END_DATE;
   }, [isTokenSaleStarted]);
 
-  const renderer = ({ hours, minutes, seconds, completed }) => {
+  const renderer = ({ days, hours, minutes, seconds, completed }) => {
     return (
       <div className="flex items-center gap-x-2 text-lg">
         <div className="rounded-lg w-10 h-10 flex items-center justify-center border border-gray-30 bg-orange-20">
-          {formatTimeUnit(hours)}
+          {formatTimeUnit(hours + days * 24)}
         </div>
         <span>:</span>
         <div className="rounded-lg w-10 h-10 flex items-center justify-center border border-gray-30 bg-orange-20">
@@ -115,7 +118,7 @@ export const Announcement = () => {
                   <div className="px-3 mt-2 text-center">
                     <div>{currentEvent.title}</div>
                     <div className="text-bodyMd text-orange-90">
-                      {currentEvent.date}
+                      {currentEvent.startDate}
                     </div>
                   </div>
                 </div>
