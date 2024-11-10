@@ -237,12 +237,9 @@ const StaffAssign: React.FC<Props> = ({ showStaffPanel, onAssignSuccess }) => {
                 </span>
               </div>
             </div>
-            <div className="mt-2 gap-2 flex flex-wrap h-[calc(100%-104px)] pb-5 overflow-y-auto scroll-style">
+            <div className="mt-2 gap-2 grid grid-cols-3 h-[calc(100%-104px)] pb-5 overflow-y-auto scroll-style">
               {getFilteredStaffs().map((staff) => (
-                <div
-                  key={staff._id}
-                  className="w-[100px] h-[130px] cursor-pointer"
-                >
+                <div key={staff._id} className="h-[136px] cursor-pointer">
                   <StaffCardAssign
                     cat={staff}
                     active={isActive?.includes(staff._id)}
