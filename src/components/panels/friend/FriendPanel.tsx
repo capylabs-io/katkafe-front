@@ -36,7 +36,7 @@ export const FriendPanel: React.FC = () => {
   const [showSnackbar] = useSnackBarStore((state) => [state.show]);
   const webApp = useWebApp();
 
-  const { friends } = useFetchFriends();
+  // const { friends } = useFetchFriends();
   const [rankConfigs, fetchRankConfigs] = useRankConfigs();
   const { claimRankReward } = useLeaderboad();
 
@@ -89,6 +89,98 @@ export const FriendPanel: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
+  const referralCount = get(user, "referralCounter", 10);
+
+  const content = (
+    <div className="bg-orange-10 rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-2 mt-8 w-full flex flex-col">
+      <div className="w-full">
+        <div className="text-center text-bodyXl text-gray-50 mb-2">
+          Invite friend to get bonus
+        </div>
+        <div className="flex flex-col justify-between items-center border-orange-20 border rounded-lg p-2 mb-1">
+          <div className="flex justify-between items-center w-full mb-1">
+            <div className="flex flex-col gap-1 text-bodyMd text-gray-40">
+              <div>Invite Regular user</div>
+              <div className="flex items-center gap-1">
+                <div className="w-4 h-4">
+                  <img src="/images/kbuck.png" alt="" />
+                </div>
+                <span className="text-gray-30">+2 For you and your Friend</span>
+              </div>
+            </div>
+            <div>
+              <img src="/images/info-1.png" alt="" className="w-10" />
+            </div>
+          </div>
+          <div className="flex justify-between items-center w-full">
+            <div className="flex flex-col gap-1 text-bodyMd text-gray-40">
+              <div>Invite Premium user</div>
+              <div className="flex items-center gap-1">
+                <div className="w-4 h-4">
+                  <img src="/images/kbuck.png" alt="" />
+                </div>
+                <span className="text-gray-30">+3 For you and your Friend</span>
+              </div>
+            </div>
+            <div>
+              <img src="/images/info-2.png" alt="" className="w-10" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="flex justify-center items-center bg-orange-60 border border-orange-20 h-12 rounded-lg mt-2">
+          <div className="text-center text-gray-60 text-bodyMd">
+            {!referralCount || referralCount === 0 ? (
+              <div>You haven&apos;t invited any friends yet</div>
+            ) : (
+              <div>
+                You have invited{" "}
+                <span className="font-bold text-black">
+                  {referralCount} friends
+                </span>{" "}
+                successfully!
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="mt-3 justify-center flex">
+          <div className="w-[172px] h-[39px]">
+            <Button onClick={handleInviteUrl}>Invite Friend</Button>
+          </div>
+        </div>
+      </div>
+      <div className="w-full flex flex-col mt-4 border-t border-orange-20 pt-2">
+        <div className="text-center text-bodyXl text-gray-40 mb-2">
+          Friend level up bonus
+        </div>
+        <div className="bg-[#f7f6dc] flex flex-col justify-between items-center border-orange-20 border rounded-lg p-2 max-h-[230px] overflow-y-auto overflow-x-hidden">
+          <div className="justify-between w-full grid grid-cols-10 mb-1 text-bodyMd text-gray-40">
+            <span className="text-center col-span-4">Level up</span>
+            <span className="text-center col-span-3">Users</span>
+            <span className="text-center col-span-3">Reward</span>
+          </div>
+          <div className="h-full overflow-y-auto">
+            <div className="flex flex-col bg-orange-10 border-[#e8ddbd] border rounded-lg">
+              {rankConfigs.map((rankConfig) => (
+                <div
+                  key={rankConfig._id}
+                  // className="w-full h-full cursor-pointer"
+                  className="w-full h-full cursor-pointer bg-[#f7f5dc] border-[#e8ddbd] border-b first:rounded-t-lg last:border-b-0 last:rounded-b-lg"
+                >
+                  <CardBonus
+                    rankConfig={rankConfig}
+                    onClick={() => handleClaim(rankConfig._id)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="bg-[#2e2e2e] w-full h-full absolute z-10 p-4 top-0">
       <div className="rounded-3xl border-solid border-orange-90 border-4 h-[calc(100%-16px)] mt-4">
@@ -101,7 +193,7 @@ export const FriendPanel: React.FC = () => {
               onClick={handleClose}
             />
           </div>
-          <div className="flex">
+          {/* <div className="flex">
             <div
               onClick={() => handleTabClick(TABS.FRIENDLIST)}
               className={`absolute cursor-pointer left-1/2 -translate-x-[145px] border-2 border-b-0 px-6 py-1 bg-[#edc6a9] border-[#edc6a9] -translate-y-[20px] rounded-t-xl text-orange-90 ${
@@ -123,8 +215,18 @@ export const FriendPanel: React.FC = () => {
             <p className="bg-red-10 h-[2px] w-[13%]"></p>
             <p className="bg-red-10 h-[2px] w-[70%]"></p>
             <p className="bg-red-10 h-[2px] w-[13%]"></p>
+          </span> */}
+          <div className="absolute left-1/2 -translate-x-1/2 -translate-y-[28px] border-2 px-6 py-2 border-orange-90 bg-orange-10 rounded-t-xl text-orange-90">
+            <div className="uppercase font-semibold">INVITE FRIEND</div>
+          </div>
+
+          <span className="flex justify-between gap-2 absolute top-[14px] w-[90%] left-1/2 -translate-x-1/2">
+            <p className="bg-red-10 h-[2px] w-[13%]"></p>
+            <p className="bg-red-10 h-[2px] w-[70%]"></p>
+            <p className="bg-red-10 h-[2px] w-[13%]"></p>
           </span>
-          {activeTab === TABS.FRIENDLIST && (
+          {content}
+          {/* {activeTab === TABS.FRIENDLIST && (
             <>
               <div className="bg-orange-10 rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-2 mt-8 w-full flex flex-col justify-between">
                 <div>
@@ -152,22 +254,6 @@ export const FriendPanel: React.FC = () => {
                           height={80}
                         />
                       </div>
-                      {/* <div className="flex justify-between items-center w-full">
-                      <div className="flex flex-col gap-1">
-                        <div>Invite Regular user</div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4">
-                            <img src="/images/kbuck.png" alt="" />
-                          </div>
-                          <span className="text-[#6F6F6F]">
-                            +3 For you and your Friend
-                          </span>
-                        </div>
-                      </div>
-                      <div>
-                        <img src="/images/info-2.png" alt="" className="w-10" />
-                      </div>
-                    </div> */}
                     </div>
                   </div>
                   <div className="flex flex-col justify-center">
@@ -219,36 +305,6 @@ export const FriendPanel: React.FC = () => {
           )}
           {activeTab === TABS.INVITE && (
             <div className="bg-orange-10 rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-2 mt-8 w-full flex flex-col">
-              {/* <div className="mt-4 w-[120px] h-[120px]">
-                <img src="/images/barista.png" alt="" />
-              </div>
-              <div className="text-xl mt-2">TOP BARISTA</div>
-              <div className="text-sm mb-6">
-                Invite more friend to get to the top
-              </div>
-              <div className="overflow-y-auto w-full">
-                <div className="flex flex-col bg-orange-10 border-[#e8ddbd] border rounded-lg">
-                  {friends?.referralList.map((friend, index) => (
-                    <div
-                      key={friend._id}
-                      className="w-full h-full cursor-pointer bg-[#f7f5dc] border-[#e8ddbd] border-b first:rounded-t-lg last:border-b-0 last:rounded-b-lg"
-                    >
-                      <CardBarista
-                        type={TABS.FRIENDLIST}
-                        id={index}
-                        avatarUrl={friend.avatarUrl}
-                        username={friend.username}
-                        referralCounter={friend.referralCounter}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-3 justify-center flex">
-                <div className="w-[172px] h-[39px]">
-                  <Button>Invite Friend</Button>
-                </div>
-              </div> */}
               <div className="w-full">
                 <div className="text-center text-bodyXl text-gray-50 mb-2">
                   Invite friend to get bonus
@@ -317,7 +373,7 @@ export const FriendPanel: React.FC = () => {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>
