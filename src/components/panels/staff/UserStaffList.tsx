@@ -373,11 +373,11 @@ const StaffList: React.FC = () => {
                 </div>
               </div>
             }
-            <div className="mt-2 gap-[6px] flex flex-wrap h-[calc(100%-32px)] pb-5 overflow-y-auto">
+            <div className="mt-2 gap-[6px] grid grid-cols-3 pb-5 overflow-y-auto justify-center h-[calc(100%-32px)]">
               {getFilteredStaffs().map((staff) => (
                 <div
                   key={staff._id}
-                  className="w-[100px] h-[130px] cursor-pointer relative"
+                  className="h-[136px] cursor-pointer relative"
                   onClick={() => handleChooseClick(staff)}
                 >
                   <CatCard cat={staff} />
