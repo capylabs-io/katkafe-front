@@ -451,12 +451,12 @@ const Manage: React.FC = () => {
             </div>
           )}
           {activeTab === TABS.INFO && (
-            <div className="bg-[#fff8de] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-2 overflow-hidden mt-8 w-full flex flex-col justify-between">
-              <div className="gap-6 overflow-y-auto px-1">
+            <div className="bg-[#fff8de] rounded-b-[20px] rounded-t border border-gray-20 absolute z-10 h-[calc(100%-32px)] p-3 overflow-hidden mt-8 w-full flex flex-col justify-between">
+              <div className="gap-6 overflow-y-auto">
                 <div>
                   <img
                     src={currentRestaurant?.imgUrl}
-                    className="w-[312px] h-[200px] !rounded"
+                    className="w-full h-auto !rounded"
                     alt=""
                   />
                 </div>

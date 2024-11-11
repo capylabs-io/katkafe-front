@@ -422,7 +422,7 @@ export const InGameUI = () => {
           </>
         ))}
       </div>
-      <div className="absolute flex w-full justify-between items-center px-8 bottom-8">
+      <div className="absolute flex w-full justify-between items-center px-4 bottom-8">
         <InGameMenu>
           <div className="relative">
             <MenuButton

@@ -36,7 +36,7 @@ const MenuItem = ({
 
   return (
     <div
-      className="relative flex items-center justify-center overflow-x-visible cursor-pointer"
+      className="relative flex items-center justify-center overflow-x-visible cursor-pointer pt-0.5"
       style={{
         ...pixelify.style,
       }}
@@ -56,7 +56,7 @@ const MenuItem = ({
           alt={"menu-icon"}
         />
       </div>
-      <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[16px] font-bold drop-shadow-[0px_1px_black] text-stroke-[0.5px] text-stroke-[#6f6f6f] -bottom-2.5 uppercase">
+      <div className="absolute left-1/2 -translate-x-1/2 text-center text-white text-[16px] font-bold drop-shadow-[0px_1px_black] text-stroke-[0.25px] text-stroke-[#6f6f6f] -bottom-2 uppercase bg-black bg-opacity-30 px-2 rounded-md">
         {label}
       </div>
     </div>
